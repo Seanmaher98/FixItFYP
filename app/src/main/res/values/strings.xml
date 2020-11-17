@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FixItFYP</string>
+
+    <array name="Genres">
+        <item>Plumber</item>
+        <item>Builder</item>
+        <item>Electrician</item>
+    </array>
+
+    <array name="County">
+        <item>Tipperary</item>
+        <item>Cork</item>
+        <item>Waterford</item>
+    </array>
+</resources>

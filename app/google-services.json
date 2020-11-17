@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "635714463288",
+    "firebase_url": "https://fixitfyp.firebaseio.com",
+    "project_id": "fixitfyp",
+    "storage_bucket": "fixitfyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635714463288:android:12b017e70fb729c1e228cd",
+        "android_client_info": {
+          "package_name": "com.example.fixitfyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635714463288-cma2e3kqdojt4i3m1prj3npagieur8jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiajCl1vNWyUg0xU6El0egG6bVQq9orHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635714463288-cma2e3kqdojt4i3m1prj3npagieur8jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
