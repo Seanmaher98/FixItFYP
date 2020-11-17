@@ -1,15 +1,51 @@
 <resources>
     <string name="app_name">FixItFYP</string>
 
-    <array name="Genres">
+    <array name="Jobs">
         <item>Plumber</item>
         <item>Builder</item>
         <item>Electrician</item>
+        <item>Painter</item>
+        <item>Handyman</item>
+        <item>Carpenter</item>
     </array>
 
     <array name="County">
-        <item>Tipperary</item>
+
+        <item>Antrim</item>
+        <item>Armagh</item>
+        <item>Carlow</item>
+        <item>Cavan</item>
+        <item>Clare</item>
         <item>Cork</item>
+        <item>Derry</item>
+        <item>Donegal</item>
+        <item>Down</item>
+        <item>Dublin</item>
+        <item>Fermanagh</item>
+        <item>Galway</item>
+        <item>Kerry</item>
+        <item>Kildare</item>
+        <item>Kilkenny</item>
+        <item>Laois</item>
+        <item>Leitrim</item>
+        <item>Limerick</item>
+        <item>Longford</item>
+        <item>Louth</item>
+        <item>Mayo</item>
+        <item>Meath</item>
+        <item>Monaghan</item>
+        <item>Offaly</item>
+        <item>Roscommon</item>
+        <item>Sligo</item>
+        <item>Tipperary</item>
+        <item>Tyrone</item>
         <item>Waterford</item>
+        <item>Westmeath</item>
+        <item>Wexford</item>
+        <item>Wicklow</item>
+
     </array>
+
+
 </resources>

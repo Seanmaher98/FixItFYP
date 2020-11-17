@@ -11,7 +11,7 @@ public class Trades {
     String tradeAddressLine2;
     String tradeAddressLineTown;
     String tradeCounty;
-    String tradeGenre;
+    String tradeJobs;
 
     public Trades() {
 
@@ -26,7 +26,7 @@ public class Trades {
         this.tradeAddressLine2 = tradeAddressLine2;
         this.tradeAddressLineTown = tradeAddressLineTown;
         this.tradeCounty = tradeCounty;
-        this.tradeGenre = tradeGenre;
+        this.tradeJobs = tradeGenre;
     }
 
     public String getTradeId() {
@@ -57,8 +57,7 @@ public class Trades {
         return tradeCounty;
     }
 
-    public String getTradeGenre() {
-        return tradeGenre;
+    public String getTradeJobs() { return tradeJobs;
     }
 
     public void setTradeId(String tradeId) {
@@ -89,9 +88,12 @@ public class Trades {
         this.tradeCounty = tradeCounty;
     }
 
-    public void setTradeGenre(String tradeGenre) {
-        this.tradeGenre = tradeGenre;
+    public void setTradeJobs(String tradeGenre) {
+        this.tradeJobs = tradeJobs;
     }
+
+
+
 }
 //End
 
