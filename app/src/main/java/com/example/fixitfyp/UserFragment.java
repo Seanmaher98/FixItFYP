@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,14 @@ public class UserFragment extends Fragment {
         buttonAddUser = (Button) view.findViewById(R.id.buttonAddUser);
         user = new Users();
 
+        //Code that checks if there is text input into text fields
+        editUserFirstName.addTextChangedListener(tradeTextWatcher);
+        editUserLastName.addTextChangedListener(tradeTextWatcher);
+        editUserEmail.addTextChangedListener(tradeTextWatcher);
+        editUserAddressLine1.addTextChangedListener(tradeTextWatcher);
+        editUserAddressLine2.addTextChangedListener(tradeTextWatcher);
+        editUserAddressLineTown.addTextChangedListener(tradeTextWatcher);
+
 
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,5 +90,33 @@ public class UserFragment extends Fragment {
         Toast.makeText(getActivity(), "Congratulations! You are now Registered", Toast.LENGTH_LONG).show();
     }
     //END OF CODE FROM YOUTUBE
+
+    //Youtube code to disable button when text boxes are empty
+    //https://youtu.be/Vy_4sZ6JVHM, Disable Button When EditText Is Empty (TextWatcher), Coding In flow
+    private TextWatcher tradeTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String firstNameUserInput = editUserFirstName.getText().toString().trim();
+            String lastNameUserInput = editUserLastName.getText().toString().trim();
+            String emailUserInput = editUserEmail.getText().toString().trim();
+            String addressUserInput = editUserAddressLine1.getText().toString().trim();
+            String address2UserInput = editUserAddressLine2.getText().toString().trim();
+            String addressTownUserInput = editUserAddressLineTown.getText().toString().trim();
+
+            buttonAddUser.setEnabled(!firstNameUserInput.isEmpty() && !lastNameUserInput.isEmpty() &&
+                    !emailUserInput.isEmpty() && !addressUserInput.isEmpty() && !address2UserInput.isEmpty()
+                    && !addressTownUserInput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
 }

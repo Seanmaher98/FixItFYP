@@ -11,17 +11,17 @@
         android:id="@+id/trade_const_layout"
         android:layout_width="360dp"
         android:layout_height="450dp"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp">
 
         <ScrollView
             android:id="@+id/trade_scroll"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_width="331dp"
+            android:layout_height="425dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/trade_const_layout">
+
         <LinearLayout
             android:id="@+id/trade_layout"
             android:layout_width="322dp"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/trade_scroll">
+            app:layout_constraintTop_toTopOf="@id/trade_const_layout">
 
             <EditText
                 android:id="@+id/editFirstName"
@@ -169,22 +169,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerCounty" />
 
+            <Button
+                android:id="@+id/buttonAddTrade"
+                android:layout_width="247dp"
+                android:layout_height="48dp"
+                android:text="Register"
+                android:enabled="false"
+                android:textColor="@color/white"
+                android:background="@drawable/custom_buttons"
+                app:layout_constraintBottom_toBottomOf="@id/trade_const_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trade_scroll"/>
 
 
         </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/buttonAddTrade"
-            android:layout_width="247dp"
-            android:layout_height="48dp"
-            android:text="Register"
-            android:textColor="@color/white"
-            app:background="@drawable/button_design"
-            app:layout_constraintBottom_toBottomOf="@id/trade_const_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trade_scroll"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

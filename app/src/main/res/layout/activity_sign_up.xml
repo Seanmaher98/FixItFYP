@@ -35,20 +35,22 @@
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
-            android:layout_width="416dp"
-            android:layout_height="470dp"
+            android:layout_width="380dp"
+            android:layout_height="500dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="0dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.78"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout"
             app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.viewpager.widget.ViewPager>

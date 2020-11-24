@@ -12,17 +12,16 @@
         android:id="@+id/user_const_layout"
         android:layout_width="360dp"
         android:layout_height="450dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginLeft="16dp">
 
         <ScrollView
             android:id="@+id/user_scroll"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_width="331dp"
+            android:layout_height="425dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/user_const_layout">
 
             <LinearLayout
                 android:id="@+id/user_layout"
@@ -36,7 +35,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/user_scroll">
+                app:layout_constraintTop_toTopOf="@id/user_const_layout">
 
                 <EditText
                     android:id="@+id/editUserFirstName"
@@ -81,12 +80,13 @@
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
                     android:ems="10"
-                    android:textCursorDrawable="@color/teal_200"
                     android:hint="   Enter e-mail Address"
                     android:inputType="textEmailAddress"
+                    android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editLastName" />
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="8dp" />
@@ -158,23 +158,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editUserAddressLineTown" />
 
+                <Button
+                    android:id="@+id/buttonAddUser"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/custom_buttons"
+                    android:enabled="false"
+                    android:text="Register"
+                    android:textColor="@color/white" />
+
 
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/buttonAddUser"
-            android:layout_width="248dp"
-            android:layout_height="47dp"
-            android:text="Register"
-            android:textColor="@color/white"
-            app:background="@drawable/button_design"
-            app:layout_constraintBottom_toBottomOf="@id/user_const_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_scroll"
-            app:layout_constraintVertical_bias="0.064" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
