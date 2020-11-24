@@ -1,117 +1,117 @@
 package com.example.fixitfyp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignUp extends AppCompatActivity {
-    //Line 17 to 85 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
-    //Note the code has been modified, variables have been changed and added by me to suit my project
-    EditText editFirstName;
-    EditText editLastName;
-    EditText editAddressLine1;
-    EditText editAddressLine2;
-    EditText editAddressLineTown;
-    Spinner spinnerCounty;
-    Spinner spinnerJobs;
-    Button buttonAdd;
-
-    DatabaseReference databaseTrades;
-    Trades trade;
+    //This TabLayout was created by me with the help of a YouTube Tutorial -  https://youtu.be/NHBO87ZxGgs
+    //The tutorial was How to Implement Tablayout With Viewpager in Android Studio Tablayout+Viewpager, Android Coding.
+    //First I set my variables
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        databaseTrades = FirebaseDatabase.getInstance().getReference("Trades");
+        //Initialise Variables
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager = findViewById(R.id.viewpager);
+        //Initialise array
+        ArrayList<String> arrayList = new ArrayList<>();
+        //Add Title of Tabs
+        arrayList.add("User Sign Up");
+        arrayList.add("Trade Sign Up");
+        //Prepare view pager
+        prepareViewPager(viewPager, arrayList);
 
-        editFirstName = (EditText) findViewById(R.id.editFirstName);
-        editLastName = (EditText) findViewById(R.id.editLastName);
-        editAddressLine1 = (EditText) findViewById(R.id.editAddressLine1);
-        editAddressLine2 = (EditText) findViewById(R.id.editAddressLine2);
-        editAddressLineTown = (EditText) findViewById(R.id.editAddressLineTown);
-        spinnerCounty = (Spinner) findViewById(R.id.spinnerCounty);
-        spinnerJobs = (Spinner) findViewById(R.id.spinnerJobs);
-        buttonAdd = (Button) findViewById(R.id.buttonAddTrade);
-        trade = new Trades();
-
-        //looks at function signuptextwatcher to make sure fields arent blank
-        editFirstName.addTextChangedListener(signupTextWatcher);
-        editLastName.addTextChangedListener(signupTextWatcher);
-        editAddressLine1.addTextChangedListener(signupTextWatcher);
-        editAddressLineTown.addTextChangedListener(signupTextWatcher);
+        //Set up with view pager
+        tabLayout.setupWithViewPager(viewPager);
 
 
+    }
 
+    private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
+        //Initialise main adapter
+        MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
+        //initialise main fragment
+        TradeFragment fragment = new TradeFragment();
+        //use for loop
+        for (int i = 0; i < arrayList.size(); i++) {
+            //Initialise bundle
+            Bundle bundle = new Bundle();
+            //Put string
+            bundle.putString("title", arrayList.get(i));
+            //Set argument
+            fragment.setArguments(bundle);
+            //Add fragment
+            adapter.addFragment(fragment, arrayList.get(i));
+            //Define new fragment
+            fragment = new TradeFragment();
+        }
+        //Set adapter
+        viewPager.setAdapter(adapter);
+    }
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //calling method to add to database
-                addTrade();
+    private class MainAdapter extends FragmentPagerAdapter {
+        //Initialise array list
+        ArrayList<String> arrayList = new ArrayList<>();
+        List<Fragment> fragmentList = new ArrayList<>();
+
+        //Create Constructor
+        public void addFragment(Fragment fragment, String title) {
+            //add title
+            arrayList.add(title);
+            //add fragment
+            fragmentList.add(fragment);
+
+        }
+
+        public MainAdapter(@NonNull FragmentManager fm) {
+            super(fm);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            Fragment fragment = null;
+            switch (position) {
+                case 0:
+                    fragment = new UserFragment();
+                    break;
+                case 1:
+                    fragment = new TradeFragment();
+                    break;
             }
-        });
-    }
-    private void addTrade(){
-        //Getters and Setters Youtube Tutorial
-        //Gets the text entered into our textbox
-        String firstName = editFirstName.getText().toString();
-        String lastName = editLastName.getText().toString();
-        String addressLine1 = editAddressLine1.getText().toString();
-        String addressLine2 = editAddressLine2.getText().toString();
-        String addressLineTown = editAddressLineTown.getText().toString();
-        String county = spinnerCounty.getSelectedItem().toString();
-        String jobs = spinnerJobs.getSelectedItem().toString();
-
-
-        trade.setTradeFirstName(editFirstName.getText().toString());
-        trade.setTradeLastName(editLastName.getText().toString());
-        trade.setTradeAddressLine1(editAddressLine1.getText().toString());
-        trade.setTradeAddressLine2(editAddressLine2.getText().toString());
-        trade.setTradeAddressLineTown(editAddressLineTown.getText().toString());
-        trade.setTradeCounty(spinnerCounty.getSelectedItem().toString());
-        trade.setTradeJobs(spinnerJobs.getSelectedItem().toString());
-
-
-        //Sends the text inputted into the app to the database
-        FirebaseDatabase.getInstance().getReference("Trades").push().setValue(trade);
-
-        Toast.makeText(SignUp.this, "Data Inserted", Toast.LENGTH_LONG).show();
-
-    }
-    //END OF CODE FROM YOUTUBE
-
-    //sets a textwatcher so that fields are not blank
-    private TextWatcher signupTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            return fragment;
         }
 
         @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String firstnameInput = editFirstName.getText().toString().trim();
-            String lastnameInput = editLastName.getText().toString().trim();
-            String addressInput = editAddressLine1.getText().toString().trim();
-            String addresstownInput = editAddressLineTown.getText().toString().trim();
-
-            buttonAdd.setEnabled(!firstnameInput.isEmpty() && !lastnameInput.isEmpty() && !addressInput.isEmpty() && !addresstownInput.isEmpty());
+        public int getCount() {
+            //return fragment list size
+            return fragmentList.size();
         }
 
+        @Nullable
         @Override
-        public void afterTextChanged(Editable editable) {
-
+        public CharSequence getPageTitle(int position) {
+            //return array list position
+            return arrayList.get(position);
         }
-    };
     }
+    //END YOUTUBE CODE
+
+}

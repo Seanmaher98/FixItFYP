@@ -8,8 +8,9 @@
     tools:context=".SignUp">
 
     <ImageView
-        android:layout_width="211dp"
-        android:layout_height="184dp"
+        android:id="@+id/imageView"
+        android:layout_width="405dp"
+        android:layout_height="115dp"
         android:src="@drawable/project_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,8 +21,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="407dp"
-        android:layout_height="540dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:background="@drawable/style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,107 +32,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.968">
 
-        <EditText
-            android:id="@+id/editFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter First Name"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/black"
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="416dp"
+            android:layout_height="470dp"
+            android:layout_marginLeft="40dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHeight_percent="0.78"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout"
-            app:layout_constraintVertical_bias="0.091" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-        <EditText
-            android:id="@+id/editLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Last Name"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editFirstName" />
-
-        <EditText
-            android:id="@+id/editAddressLine1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Address"
-            android:inputType="textPostalAddress"
-            android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editLastName" />
-
-        <EditText
-            android:id="@+id/editAddressLine2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Address"
-            android:inputType="textPostalAddress"
-            android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAddressLine1" />
-
-        <EditText
-            android:id="@+id/editAddressLineTown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Town"
-            android:inputType="textPostalAddress"
-            android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAddressLine2" />
-
-        <Spinner
-            android:id="@+id/spinnerCounty"
-            android:layout_width="186dp"
-            android:layout_height="45dp"
-            android:entries="@array/County"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.448"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAddressLineTown" />
-
-        <Spinner
-            android:id="@+id/spinnerJobs"
-            android:layout_width="186dp"
-            android:layout_height="45dp"
-            android:entries="@array/Jobs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.448"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerCounty" />
-
-        <Button
-            android:id="@+id/buttonAddTrade"
-            android:layout_width="293dp"
-            android:layout_height="41dp"
-            android:enabled="false"
-            android:text="Register"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.61"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerCounty" />
-
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.viewpager.widget.ViewPager>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

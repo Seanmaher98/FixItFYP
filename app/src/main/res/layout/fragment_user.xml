@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TradeFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_const_layout"
+        android:layout_width="360dp"
+        android:layout_height="450dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp">
+
+        <ScrollView
+            android:id="@+id/user_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/user_layout"
+                android:layout_width="322dp"
+                android:layout_height="402dp"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/user_scroll">
+
+                <EditText
+                    android:id="@+id/editUserFirstName"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:hint="   Enter First Name"
+                    android:inputType="textPersonName"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.091" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <EditText
+                    android:id="@+id/editUserLastName"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:hint="   Enter Last Name"
+                    android:inputType="textPersonName"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editUserFirstName" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <EditText
+                    android:id="@+id/editUserEmail"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:textCursorDrawable="@color/teal_200"
+                    android:hint="   Enter e-mail Address"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editLastName" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+
+                <EditText
+                    android:id="@+id/editUserAddressLine1"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:hint="   Enter Address"
+                    android:inputType="textPostalAddress"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.539"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editUserEmail" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <EditText
+                    android:id="@+id/editUserAddressLine2"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:hint="   Enter Address"
+                    android:inputType="textPostalAddress"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editUserAddressLine1" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <EditText
+                    android:id="@+id/editUserAddressLineTown"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:ems="10"
+                    android:hint="   Town"
+                    android:inputType="textPostalAddress"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.481"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editUserAddressLine2" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <Spinner
+                    android:id="@+id/UserspinnerCounty"
+                    android:layout_width="248dp"
+                    android:layout_height="47dp"
+                    android:background="@drawable/edit_text"
+                    android:entries="@array/County"
+                    android:textCursorDrawable="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.475"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editUserAddressLineTown" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buttonAddUser"
+            android:layout_width="248dp"
+            android:layout_height="47dp"
+            android:text="Register"
+            android:textColor="@color/white"
+            app:background="@drawable/button_design"
+            app:layout_constraintBottom_toBottomOf="@id/user_const_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_scroll"
+            app:layout_constraintVertical_bias="0.064" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

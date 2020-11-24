@@ -10,8 +10,12 @@
         <item>Carpenter</item>
     </array>
 
-    <array name="County">
+    <array name="Tabs">
+        <item>User Sign Up</item>
+        <item>Trades Sign Up</item>
+    </array>
 
+    <array name="County">
         <item>Antrim</item>
         <item>Armagh</item>
         <item>Carlow</item>

@@ -1,12 +1,13 @@
 package com.example.fixitfyp;
 
 //Creating Variables for the data inputted by Service Provider Signing Up
-//Code here was obtained and modified from youtube video on connecting Firebase to Android
-//YouTube Tutorial - https://youtu.be/EM2x33g4syY
+//Code here was obtained and modified from youtube tutorial
+//YouTube Tutorial, Firebase Realtime Database Tutorial for Android, Simplified Coding - https://youtu.be/EM2x33g4syY
 public class Trades {
     String tradeId;
     String tradeFirstName;
     String tradeLastName;
+    String tradeEmail;
     String tradeAddressLine1;
     String tradeAddressLine2;
     String tradeAddressLineTown;
@@ -22,6 +23,7 @@ public class Trades {
         this.tradeId = tradeId;
         this.tradeFirstName = tradeFirstName;
         this.tradeLastName = tradeLastName;
+        this.tradeEmail = tradeEmail;
         this.tradeAddressLine1 = tradeAddressLine1;
         this.tradeAddressLine2 = tradeAddressLine2;
         this.tradeAddressLineTown = tradeAddressLineTown;
@@ -41,6 +43,10 @@ public class Trades {
         return tradeLastName;
     }
 
+    public String getTradeEmail() {
+        return tradeEmail;
+    }
+
     public String getTradeAddressLine1() {
         return tradeAddressLine1;
     }
@@ -57,8 +63,9 @@ public class Trades {
         return tradeCounty;
     }
 
-    public String getTradeJobs() { return tradeJobs;
-    }
+    public String getTradeJobs() { return tradeJobs; }
+
+
 
     public void setTradeId(String tradeId) {
         this.tradeId = tradeId;
@@ -70,6 +77,10 @@ public class Trades {
 
     public void setTradeLastName(String tradeLastName) {
         this.tradeLastName = tradeLastName;
+    }
+
+    public void setTradeEmail(String tradeEmail) {
+        this.tradeEmail = tradeEmail;
     }
 
     public void setTradeAddressLine1(String tradeAddressLine1) {
@@ -88,7 +99,7 @@ public class Trades {
         this.tradeCounty = tradeCounty;
     }
 
-    public void setTradeJobs(String tradeGenre) {
+    public void setTradeJobs(String tradeJobs) {
         this.tradeJobs = tradeJobs;
     }
 
