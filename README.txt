@@ -19,3 +19,13 @@ THIRD PARTY COMPONENTS
  2)src\main\java\com\example\fixitfyp\SignUp.java
    How to Implement Tablayout With Viewpager in Android Studio Tablayout+Viewpager, Android Coding, https://youtu.be/NHBO87ZxGgs
    This tutorial was used to implement a tab layout on the sign up page of my project
+
+ 3)src\main\java\com\example\fixitfyp\UserFragment.java
+   src\main\java\com\example\fixitfyp\TradeFragment.java
+   Disable Button When EditText Is Empty (TextWatcher), Coding In flow, //https://youtu.be/Vy_4sZ6JVHM,
+   This tutorial was used to figure how to disable a button when no text is inputted into text boxes.
+
+ 4) src\main\java\com\example\fixitfyp\UserFragment.java
+    src\main\java\com\example\fixitfyp\TradeFragment.java
+    Validate Email & Password with Regular Expression - Android Studio Tutorial, Coding In flow, https://youtu.be/cnD_7qFeZcY
+    Used to validate email address inputted when signing up

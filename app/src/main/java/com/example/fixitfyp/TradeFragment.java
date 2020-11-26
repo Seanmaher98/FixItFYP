@@ -3,25 +3,23 @@ package com.example.fixitfyp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TradeFragment extends Fragment {
-    //Line 25 to 89 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //Line 21 TO 102 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
     //Note the code has been modified, variables have been changed and added by me to suit my project
     //Declaring my variables
     EditText editFirstName;
@@ -41,7 +39,7 @@ public class TradeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_trade, container, false);
         //Assign variables
         databaseTrades = FirebaseDatabase.getInstance().getReference("Trades");
 
@@ -64,6 +62,9 @@ public class TradeFragment extends Fragment {
         editAddressLine2.addTextChangedListener(tradeTextWatcher);
         editAddressLineTown.addTextChangedListener(tradeTextWatcher);
 
+
+
+
 //Click Listener allows the addTrade function to be called when button is clicked
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +72,13 @@ public class TradeFragment extends Fragment {
                 //calling method to add to database
                 addTrade();
             }
+
         });
         return view;
+
     }
+
+
 
     private void addTrade(){
         //Getters and Setters Youtube Tutorial
@@ -113,9 +118,12 @@ public class TradeFragment extends Fragment {
             String addressInput = editAddressLine1.getText().toString().trim();
             String address2Input = editAddressLine2.getText().toString().trim();
             String addressTownInput = editAddressLineTown.getText().toString().trim();
-
+            //Calls method below to see if email address is valid
+            validateEmail();
+            //Enables button when fields are populated
             buttonAdd.setEnabled(!firstNameInput.isEmpty() && !lastNameInput.isEmpty() &&
-            !emailInput.isEmpty() && !addressInput.isEmpty() && !address2Input.isEmpty() && !addressTownInput.isEmpty());
+            !emailInput.isEmpty() && validateEmail() && !addressInput.isEmpty() && !address2Input.isEmpty()
+                    && !addressTownInput.isEmpty());
         }
 
         @Override
@@ -123,5 +131,23 @@ public class TradeFragment extends Fragment {
 
         }
     };
+    //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
+    //making email be valid email
+    private boolean validateEmail() {
+        String emailInput = editEmail.getText().toString().trim();
+
+        if (emailInput.isEmpty()){
+            editEmail.setError("This Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            editEmail.setError("This email address is not valid");
+            return false;
+        }else {
+            editEmail.setError(null);
+            return true;
+        }
+    }
+    //END OF CODE YOUTUBE
+
 
 }

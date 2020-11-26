@@ -11,7 +11,8 @@
         android:theme="@style/Theme.FixItFYP">
 
         <activity android:name=".SignUp"
-            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+        
+
+
+
+
 
     </application>
 

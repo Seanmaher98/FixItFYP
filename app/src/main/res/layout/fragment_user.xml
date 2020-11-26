@@ -7,17 +7,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TradeFragment">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="405dp"
+        android:layout_height="115dp"
+        android:src="@drawable/project_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user_const_layout"
         android:layout_width="360dp"
-        android:layout_height="450dp"
-        android:layout_marginLeft="16dp">
+        android:layout_height="500dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="120dp">
 
         <ScrollView
             android:id="@+id/user_scroll"
             android:layout_width="331dp"
-            android:layout_height="425dp"
+            android:layout_height="500dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +41,7 @@
                 android:layout_width="322dp"
                 android:layout_height="402dp"
                 android:orientation="vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="50dp"
                 android:paddingTop="16dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="16dp"
@@ -39,12 +52,14 @@
 
                 <EditText
                     android:id="@+id/editUserFirstName"
-                    android:layout_width="248dp"
+                    android:layout_width="150dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
-                    android:hint="   Enter First Name"
+                    android:hint="   First Name"
                     android:inputType="textPersonName"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,12 +74,14 @@
 
                 <EditText
                     android:id="@+id/editUserLastName"
-                    android:layout_width="248dp"
+                    android:layout_width="200dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
-                    android:hint="   Enter Last Name"
+                    android:hint="   Last Name"
                     android:inputType="textPersonName"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,9 +96,11 @@
                     android:layout_width="248dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
-                    android:hint="   Enter e-mail Address"
+                    android:hint="   E-mail"
                     android:inputType="textEmailAddress"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,9 +116,11 @@
                     android:layout_width="248dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
-                    android:hint="   Enter Address"
+                    android:hint="   Address Line 1"
                     android:inputType="textPostalAddress"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.539"
@@ -115,9 +136,11 @@
                     android:layout_width="248dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
-                    android:hint="   Enter Address"
+                    android:hint="   Address Line 2"
                     android:inputType="textPostalAddress"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
@@ -130,12 +153,14 @@
 
                 <EditText
                     android:id="@+id/editUserAddressLineTown"
-                    android:layout_width="248dp"
+                    android:layout_width="200dp"
                     android:layout_height="47dp"
                     android:background="@drawable/edit_text"
+                    android:cursorVisible="true"
                     android:ems="10"
                     android:hint="   Town"
                     android:inputType="textPostalAddress"
+                    android:textAlignment="gravity"
                     android:textCursorDrawable="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.481"
@@ -148,8 +173,9 @@
 
                 <Spinner
                     android:id="@+id/UserspinnerCounty"
-                    android:layout_width="248dp"
+                    android:layout_width="200dp"
                     android:layout_height="47dp"
+                    android:textAlignment="gravity"
                     android:background="@drawable/edit_text"
                     android:entries="@array/County"
                     android:textCursorDrawable="@color/teal_200"
@@ -172,5 +198,6 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

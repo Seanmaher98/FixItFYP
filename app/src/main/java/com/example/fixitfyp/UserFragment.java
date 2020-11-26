@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserFragment extends Fragment {
-    //Line 21 to 85 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //Line 21 to 93 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
     //Note the code has been modified, variables have been changed and added by me to suit my project
     EditText editUserFirstName;
     EditText editUserLastName;
@@ -107,9 +108,11 @@ public class UserFragment extends Fragment {
             String addressUserInput = editUserAddressLine1.getText().toString().trim();
             String address2UserInput = editUserAddressLine2.getText().toString().trim();
             String addressTownUserInput = editUserAddressLineTown.getText().toString().trim();
-
+            //Calls method below to see if email address is valid
+            validateUserEmail();
+            //Enables button when fields are populated
             buttonAddUser.setEnabled(!firstNameUserInput.isEmpty() && !lastNameUserInput.isEmpty() &&
-                    !emailUserInput.isEmpty() && !addressUserInput.isEmpty() && !address2UserInput.isEmpty()
+                    !emailUserInput.isEmpty() && validateUserEmail() && !addressUserInput.isEmpty() && !address2UserInput.isEmpty()
                     && !addressTownUserInput.isEmpty());
         }
 
@@ -118,5 +121,22 @@ public class UserFragment extends Fragment {
 
         }
     };
+    //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
+    //making email be valid email
+    private boolean validateUserEmail() {
+        String emailUserInput = editUserEmail.getText().toString().trim();
+
+        if (emailUserInput.isEmpty()){
+            editUserEmail.setError("This Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailUserInput).matches()) {
+            editUserEmail.setError("This email address is not valid");
+            return false;
+        }else {
+            editUserEmail.setError(null);
+            return true;
+        }
+    }
+    //END OF CODE YOUTUBE
 
 }
