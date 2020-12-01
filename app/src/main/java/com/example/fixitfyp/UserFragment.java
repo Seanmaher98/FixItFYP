@@ -1,7 +1,10 @@
 package com.example.fixitfyp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -13,25 +16,37 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class UserFragment extends Fragment {
-    //Line 21 to 93 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
-    //Note the code has been modified, variables have been changed and added by me to suit my project
-    EditText editUserFirstName;
-    EditText editUserLastName;
-    EditText editUserEmail;
-    EditText editUserAddressLine1;
-    EditText editUserAddressLine2;
-    EditText editUserAddressLineTown;
-    Spinner UserspinnerCounty;
-    Button buttonAddUser;
+import java.util.HashMap;
+import java.util.Objects;
 
-    DatabaseReference databaseUsers;
-    Users user;
+public class UserFragment extends Fragment {
+    //ITERATION 1 Line 21 to 93 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //ITERATION 2 This class has been modified in order to allow users to be authenticated when signing up
+    //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
+    //Note the code has been modified, variables have been changed and added by me to suit my project
+    //Declaring my variables
+    EditText userName;
+    EditText userEmail;
+    EditText userPassword;
+    EditText userPhone;
+    Button buttonAddUser;
+    TextView tvSignIn;
+
+    FirebaseAuth fAuth;
+    DatabaseReference dbRef;
+    FirebaseDatabase fDatabase;
 
 
 
@@ -41,102 +56,105 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         //Assign variables
-        databaseUsers = FirebaseDatabase.getInstance().getReference("Users");
+        fAuth = FirebaseAuth.getInstance();
+        fDatabase = FirebaseDatabase.getInstance();
 
-        editUserFirstName = (EditText) view.findViewById(R.id.editUserFirstName);
-        editUserLastName = (EditText) view.findViewById(R.id.editUserLastName);
-        editUserEmail = (EditText) view.findViewById(R.id.editUserEmail);
-        editUserAddressLine1 = (EditText) view.findViewById(R.id.editUserAddressLine1);
-        editUserAddressLine2 = (EditText) view.findViewById(R.id.editUserAddressLine2);
-        editUserAddressLineTown = (EditText) view.findViewById(R.id.editUserAddressLineTown);
-        UserspinnerCounty = (Spinner) view.findViewById(R.id.UserspinnerCounty);
+        userName = (EditText) view.findViewById(R.id.editUserName);
+        userEmail = (EditText) view.findViewById(R.id.editUserEmail);
+        userPassword = (EditText) view.findViewById(R.id.editUserPassword);
+        userPhone = (EditText) view.findViewById(R.id.editPhoneNumber);
         buttonAddUser = (Button) view.findViewById(R.id.buttonAddUser);
-        user = new Users();
+        tvSignIn =(TextView) view.findViewById(R.id.textAlreadyMember);
 
-        //Code that checks if there is text input into text fields
-        editUserFirstName.addTextChangedListener(tradeTextWatcher);
-        editUserLastName.addTextChangedListener(tradeTextWatcher);
-        editUserEmail.addTextChangedListener(tradeTextWatcher);
-        editUserAddressLine1.addTextChangedListener(tradeTextWatcher);
-        editUserAddressLine2.addTextChangedListener(tradeTextWatcher);
-        editUserAddressLineTown.addTextChangedListener(tradeTextWatcher);
 
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intSignIn = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intSignIn);
+            }
+        });
 
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //calling method to add to database
-                addUser();
+                validateEmail();
+                //This code has been taken from YouTube
+                //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
+                String email = userEmail.getText().toString();
+                String pwd = userPassword.getText().toString();
+                if(email.isEmpty()){
+                    userEmail.setError("Please enter email");
+                    userEmail.requestFocus();
+                }
+                else if(pwd.isEmpty()){
+                    userPassword.setError("Please enter password");
+                    userPassword.requestFocus();
+                }
+                else if(email.isEmpty() && pwd.isEmpty()){
+                    Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                }
+                else if(!(email.isEmpty() && pwd.isEmpty())){
+                    fAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                addUser();
+                            }
+                            else {
+                                Toast.makeText(getContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
     }
 
     private void addUser(){
-        //Getters and Setters Youtube Tutorial
-        //Gets the text entered into our textbox
-
-        user.setUserFirstName(editUserFirstName.getText().toString());
-        user.setUserLastName(editUserLastName.getText().toString());
-        user.setUserEmail(editUserEmail.getText().toString());
-        user.setUserAddressLine1(editUserAddressLine1.getText().toString());
-        user.setUserAddressLine2(editUserAddressLine2.getText().toString());
-        user.setUserAddressLineTown(editUserAddressLineTown.getText().toString());
-        user.setUserCounty(UserspinnerCounty.getSelectedItem().toString());
-
-
-        //Sends the text inputted into the fields to the database
-        FirebaseDatabase.getInstance().getReference("Users").push().setValue(user);
-
-        Toast.makeText(getActivity(), "Congratulations! You are now Registered", Toast.LENGTH_LONG).show();
+        FirebaseUser rUser = fAuth.getCurrentUser();
+        String userId = rUser.getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("userId", userId);
+        hashMap.put("userName", userName.getText().toString());
+        hashMap.put("userEmail", userEmail.getText().toString());
+        hashMap.put("userPhone", userPhone.getText().toString());
+        dbRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //End of YouTube Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
     }
-    //END OF CODE FROM YOUTUBE
 
-    //Youtube code to disable button when text boxes are empty
-    //https://youtu.be/Vy_4sZ6JVHM, Disable Button When EditText Is Empty (TextWatcher), Coding In flow
-    private TextWatcher tradeTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        }
 
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String firstNameUserInput = editUserFirstName.getText().toString().trim();
-            String lastNameUserInput = editUserLastName.getText().toString().trim();
-            String emailUserInput = editUserEmail.getText().toString().trim();
-            String addressUserInput = editUserAddressLine1.getText().toString().trim();
-            String address2UserInput = editUserAddressLine2.getText().toString().trim();
-            String addressTownUserInput = editUserAddressLineTown.getText().toString().trim();
-            //Calls method below to see if email address is valid
-            validateUserEmail();
-            //Enables button when fields are populated
-            buttonAddUser.setEnabled(!firstNameUserInput.isEmpty() && !lastNameUserInput.isEmpty() &&
-                    !emailUserInput.isEmpty() && validateUserEmail() && !addressUserInput.isEmpty() && !address2UserInput.isEmpty()
-                    && !addressTownUserInput.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
     //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
     //making email be valid email
-    private boolean validateUserEmail() {
-        String emailUserInput = editUserEmail.getText().toString().trim();
+    private boolean validateEmail() {
+        String emailInput = userEmail.getText().toString().trim();
 
-        if (emailUserInput.isEmpty()){
-            editUserEmail.setError("This Field can't be empty");
+        if (emailInput.isEmpty()) {
+            userEmail.setError("This Field can't be empty");
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailUserInput).matches()) {
-            editUserEmail.setError("This email address is not valid");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            userEmail.setError("This email address is not valid");
             return false;
-        }else {
-            editUserEmail.setError(null);
+        } else {
+            userEmail.setError(null);
             return true;
         }
     }
     //END OF CODE YOUTUBE
-
 }

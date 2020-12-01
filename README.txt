@@ -29,3 +29,8 @@ THIRD PARTY COMPONENTS
     src\main\java\com\example\fixitfyp\TradeFragment.java
     Validate Email & Password with Regular Expression - Android Studio Tutorial, Coding In flow, https://youtu.be/cnD_7qFeZcY
     Used to validate email address inputted when signing up
+
+ 5) src\main\java\com\example\fixitfyp\UserFragment.java
+    src\main\java\com\example\fixitfyp\TradeFragment.java
+    Create Login And Registration Screen In Android Using Firebase, EasyLearn, https://youtu.be/V0ZrnL-i77Q
+    Used to authenticate and sign in our user, also to create our log in screen and authentication

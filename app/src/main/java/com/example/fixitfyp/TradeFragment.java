@@ -1,7 +1,10 @@
 package com.example.fixitfyp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -13,27 +16,36 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 public class TradeFragment extends Fragment {
-    //Line 21 TO 102 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //ITERATION 1 Line 21 TO 102 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //ITERATION 2 This class has been modified in order to allow users to be authenticated when signing up
+    //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
     //Note the code has been modified, variables have been changed and added by me to suit my project
     //Declaring my variables
-    EditText editFirstName;
-    EditText editLastName;
-    EditText editEmail;
-    EditText editAddressLine1;
-    EditText editAddressLine2;
-    EditText editAddressLineTown;
-    Spinner spinnerCounty;
-    Spinner spinnerJobs;
+    EditText tradeName;
+    EditText tradeEmail;
+    EditText tradePassword;
+    EditText tradePhone;
     Button buttonAdd;
+    TextView tvSignIn2;
 
-    DatabaseReference databaseTrades;
-    Trades trade;
+    FirebaseAuth fAuth;
+    DatabaseReference dbRef;
+    FirebaseDatabase fDatabase;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,113 +53,106 @@ public class TradeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trade, container, false);
         //Assign variables
-        databaseTrades = FirebaseDatabase.getInstance().getReference("Trades");
+        fAuth = FirebaseAuth.getInstance();
+        fDatabase = FirebaseDatabase.getInstance();
 
-        editFirstName = (EditText) view.findViewById(R.id.editFirstName);
-        editLastName = (EditText) view.findViewById(R.id.editLastName);
-        editEmail = (EditText) view.findViewById(R.id.editEmail);
-        editAddressLine1 = (EditText) view.findViewById(R.id.editAddressLine1);
-        editAddressLine2 = (EditText) view.findViewById(R.id.editAddressLine2);
-        editAddressLineTown = (EditText) view.findViewById(R.id.editAddressLineTown);
-        spinnerCounty = (Spinner) view.findViewById(R.id.spinnerCounty);
-        spinnerJobs = (Spinner) view.findViewById(R.id.spinnerJobs);
+        tradeName = (EditText) view.findViewById(R.id.editTradeName);
+        tradeEmail = (EditText) view.findViewById(R.id.editTradeEmail);
+        tradePassword = (EditText) view.findViewById(R.id.editTradePassword);
+        tradePhone = (EditText) view.findViewById(R.id.editTradePhone);
         buttonAdd = (Button) view.findViewById(R.id.buttonAddTrade);
-        trade = new Trades();
+        tvSignIn2 =(TextView) view.findViewById(R.id.textAlreadyMember2);
 
-        //Code that checks if there is text input into text fields
-        editFirstName.addTextChangedListener(tradeTextWatcher);
-        editLastName.addTextChangedListener(tradeTextWatcher);
-        editEmail.addTextChangedListener(tradeTextWatcher);
-        editAddressLine1.addTextChangedListener(tradeTextWatcher);
-        editAddressLine2.addTextChangedListener(tradeTextWatcher);
-        editAddressLineTown.addTextChangedListener(tradeTextWatcher);
+        tvSignIn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intSignIn = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intSignIn);
+            }
+        });
 
-
-
-
-//Click Listener allows the addTrade function to be called when button is clicked
+        //Click Listener allows the addTrade function to be called when button is clicked
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //calling method to add to database
-                addTrade();
-            }
-
-        });
+                validateEmail();
+                //This code has been taken from YouTube
+                //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
+                    String email = tradeEmail.getText().toString();
+                    String pwd = tradePassword.getText().toString();
+                    if(email.isEmpty()){
+                        tradeEmail.setError("Please enter email");
+                        tradeEmail.requestFocus();
+                    }
+                    else if(pwd.isEmpty()){
+                        tradePassword.setError("Please enter password");
+                        tradePassword.requestFocus();
+                    }
+                    else if(email.isEmpty() && pwd.isEmpty()){
+                        Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!(email.isEmpty() && pwd.isEmpty())){
+                        fAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    addTrade();
+                                }
+                                else {
+                                    Toast.makeText(getContext(), "Sign Up Failed here", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         return view;
-
     }
-
-
 
     private void addTrade(){
-        //Getters and Setters Youtube Tutorial
-        //Gets the text entered into the fields
-
-        trade.setTradeFirstName(editFirstName.getText().toString());
-        trade.setTradeLastName(editLastName.getText().toString());
-        trade.setTradeEmail(editEmail.getText().toString());
-        trade.setTradeAddressLine1(editAddressLine1.getText().toString());
-        trade.setTradeAddressLine2(editAddressLine2.getText().toString());
-        trade.setTradeAddressLineTown(editAddressLineTown.getText().toString());
-        trade.setTradeCounty(spinnerCounty.getSelectedItem().toString());
-        trade.setTradeJobs(spinnerJobs.getSelectedItem().toString());
-
-        //Sends the text inputted into the app to the firebase database
-        //Trades is the name of the folder it is stored in on firebase
-        FirebaseDatabase.getInstance().getReference("Trades").push().setValue(trade);
-
-        Toast.makeText(getActivity(), "Congratulations! You are now Registered", Toast.LENGTH_LONG).show();
+        FirebaseUser rUser = fAuth.getCurrentUser();
+        String tradeId = rUser.getUid();
+        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(tradeId);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("tradeId", tradeId);
+        hashMap.put("tradeName", tradeName.getText().toString());
+        hashMap.put("tradeEmail", tradeEmail.getText().toString());
+        hashMap.put("tradePhone", tradePhone.getText().toString());
+        dbRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Sign Up failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //End of YouTube Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
     }
-    //END OF CODE FROM YOUTUBE
 
 
-    //Youtube code to disable button when text boxes are empty
-    //https://youtu.be/Vy_4sZ6JVHM, Disable Button When EditText Is Empty (TextWatcher), Coding In flow
-    private TextWatcher tradeTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
+            //making email be valid email
+                private boolean validateEmail() {
+                    String emailInput = tradeEmail.getText().toString().trim();
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String firstNameInput = editFirstName.getText().toString().trim();
-            String lastNameInput = editLastName.getText().toString().trim();
-            String emailInput = editEmail.getText().toString().trim();
-            String addressInput = editAddressLine1.getText().toString().trim();
-            String address2Input = editAddressLine2.getText().toString().trim();
-            String addressTownInput = editAddressLineTown.getText().toString().trim();
-            //Calls method below to see if email address is valid
-            validateEmail();
-            //Enables button when fields are populated
-            buttonAdd.setEnabled(!firstNameInput.isEmpty() && !lastNameInput.isEmpty() &&
-            !emailInput.isEmpty() && validateEmail() && !addressInput.isEmpty() && !address2Input.isEmpty()
-                    && !addressTownInput.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-    //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
-    //making email be valid email
-    private boolean validateEmail() {
-        String emailInput = editEmail.getText().toString().trim();
-
-        if (emailInput.isEmpty()){
-            editEmail.setError("This Field can't be empty");
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            editEmail.setError("This email address is not valid");
-            return false;
-        }else {
-            editEmail.setError(null);
-            return true;
-        }
-    }
-    //END OF CODE YOUTUBE
-
-
+                    if (emailInput.isEmpty()) {
+                        tradeEmail.setError("This Field can't be empty");
+                        return false;
+                    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+                        tradeEmail.setError("This email address is not valid");
+                        return false;
+                    } else {
+                        tradeEmail.setError(null);
+                        return true;
+                    }
+                }
+                //END OF CODE YOUTUBE
 }
+
+
+

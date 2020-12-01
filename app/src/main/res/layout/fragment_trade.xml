@@ -23,14 +23,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/trade_const_layout"
         android:layout_width="360dp"
-        android:layout_height="500dp"
+        android:layout_height="550dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="120dp">
 
         <ScrollView
             android:id="@+id/trade_scroll"
             android:layout_width="331dp"
-            android:layout_height="520dp"
+            android:layout_height="540dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +51,14 @@
             app:layout_constraintTop_toTopOf="@id/trade_const_layout">
 
             <EditText
-                android:id="@+id/editFirstName"
-                android:layout_width="150dp"
+                android:id="@+id/editTradeName"
+                android:layout_width="248dp"
                 android:layout_height="47dp"
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
-                android:hint="  First Name"
-                android:inputType="textPersonName"
+                android:hint="Full Name"
+                android:inputType="textCapWords"
                 android:textAlignment="gravity"
                 android:textCursorDrawable="@color/teal_200"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -73,35 +73,13 @@
                 android:layout_height="8dp" />
 
             <EditText
-                android:id="@+id/editLastName"
-                android:layout_width="200dp"
-                android:layout_height="47dp"
-                android:background="@drawable/edit_text"
-                android:cursorVisible="true"
-                android:ems="10"
-                android:hint="   Last Name"
-                android:inputType="textPersonName"
-                android:textAlignment="gravity"
-                android:textCursorDrawable="@color/teal_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toEndOf="@+id/editFirstName"
-                app:layout_constraintTop_toBottomOf="parent" />
-
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <EditText
-                android:id="@+id/editEmail"
+                android:id="@+id/editTradeEmail"
                 android:layout_width="248dp"
                 android:layout_height="47dp"
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
-                android:hint="    E-mail"
+                android:hint="E-mail"
                 android:inputType="textEmailAddress"
                 android:textAlignment="gravity"
                 android:textCursorDrawable="@color/teal_200"
@@ -114,14 +92,15 @@
                 android:layout_height="8dp" />
 
             <EditText
-                android:id="@+id/editAddressLine1"
+                android:id="@+id/editTradePassword"
                 android:layout_width="248dp"
                 android:layout_height="47dp"
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
-                android:hint="   Address Line 1"
-                android:inputType="textPostalAddress"
+                android:hint="Create Password"
+                android:inputType="textPassword"
+                android:textAlignment="gravity"
                 android:textCursorDrawable="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,85 +111,52 @@
                 android:layout_height="8dp" />
 
             <EditText
-                android:id="@+id/editAddressLine2"
+                android:id="@+id/editTradePhone"
                 android:layout_width="248dp"
                 android:layout_height="47dp"
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
-                android:hint="   Address Line 2"
-                android:inputType="textPostalAddress"
-                android:textAlignment="gravity"
+                android:hint="Phone Number"
+                android:inputType="phone"
                 android:textCursorDrawable="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editAddressLine1" />
+                app:layout_constraintTop_toBottomOf="@+id/editTradePassword" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
-            <EditText
-                android:id="@+id/editAddressLineTown"
-                android:layout_width="200dp"
-                android:layout_height="47dp"
-                android:background="@drawable/edit_text"
-                android:cursorVisible="true"
-                android:ems="10"
-                android:hint="   Town"
-                android:inputType="textPostalAddress"
-                android:textAlignment="gravity"
-                android:textCursorDrawable="@color/teal_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editAddressLine2" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <Spinner
-                android:id="@+id/spinnerCounty"
-                android:layout_width="200dp"
-                android:layout_height="47dp"
-                android:textAlignment="gravity"
-                android:background="@drawable/edit_text"
-                android:textCursorDrawable="@color/teal_200"
-                android:entries="@array/County"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.465"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editAddressLineTown" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <Spinner
-                android:id="@+id/spinnerJobs"
-                android:layout_width="200dp"
-                android:layout_height="47dp"
-                android:textAlignment="gravity"
-                android:background="@drawable/edit_text"
-                android:entries="@array/Jobs"
-                android:textCursorDrawable="@color/teal_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.486"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerCounty" />
 
             <Button
                 android:id="@+id/buttonAddTrade"
                 android:layout_width="247dp"
                 android:layout_height="48dp"
                 android:text="Register"
-                android:enabled="false"
+                android:enabled="true"
                 android:textColor="@color/white"
                 android:background="@drawable/custom_buttons"
                 app:layout_constraintBottom_toBottomOf="@id/trade_const_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/trade_scroll"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/textAlreadyMember2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Already a member? Sign In here"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editPhoneNumber"
+                app:layout_constraintVertical_bias="0.0" />
 
         </LinearLayout>
 
