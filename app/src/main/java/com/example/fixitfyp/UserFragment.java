@@ -102,7 +102,7 @@ public class UserFragment extends Fragment {
                                 addUser();
                             }
                             else {
-                                Toast.makeText(getContext(), "Sign Up Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "It seems you already have an account, log in", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -129,6 +129,10 @@ public class UserFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
+                    userName.getText().clear();
+                    userEmail.getText().clear();
+                    userPassword.getText().clear();
+                    userPhone.getText().clear();
                 }
                 else{
                     Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();

@@ -43,7 +43,7 @@ public class TradeFragment extends Fragment {
     TextView tvSignIn2;
 
     FirebaseAuth fAuth;
-    DatabaseReference dbRef;
+    DatabaseReference dbTradeRef;
     FirebaseDatabase fDatabase;
 
 
@@ -99,7 +99,7 @@ public class TradeFragment extends Fragment {
                                     addTrade();
                                 }
                                 else {
-                                    Toast.makeText(getContext(), "Sign Up Failed here", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "It seems like you already have an account, please log in", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -113,19 +113,23 @@ public class TradeFragment extends Fragment {
     }
 
     private void addTrade(){
-        FirebaseUser rUser = fAuth.getCurrentUser();
-        String tradeId = rUser.getUid();
-        dbRef = FirebaseDatabase.getInstance().getReference("Users").child(tradeId);
+        FirebaseUser rTrade = fAuth.getCurrentUser();
+        String tradeId = rTrade.getUid();
+        dbTradeRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeId);
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("tradeId", tradeId);
         hashMap.put("tradeName", tradeName.getText().toString());
         hashMap.put("tradeEmail", tradeEmail.getText().toString());
         hashMap.put("tradePhone", tradePhone.getText().toString());
-        dbRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbTradeRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
+                    tradeName.getText().clear();
+                    tradeEmail.getText().clear();
+                    tradePassword.getText().clear();
+                    tradePhone.getText().clear();
                 } else {
                     Toast.makeText(getContext(), "Sign Up failed", Toast.LENGTH_SHORT).show();
                 }

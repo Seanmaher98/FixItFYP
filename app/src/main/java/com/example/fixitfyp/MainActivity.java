@@ -2,6 +2,7 @@ package com.example.fixitfyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
         HomeScreenLogo = findViewById(R.id.logo);
         HomeScreenBackground = findViewById(R.id.loadimage);
     //makes the items slide updwards/downwards on home screen
-        HomeScreenLogo.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
-        HomeScreenBackground.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
+        HomeScreenLogo.animate().translationY(-1600).setDuration(10000).setStartDelay(4000);
+        HomeScreenBackground.animate().translationY(1400).setDuration(10000).setStartDelay(4000);
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
 
     }
 }
