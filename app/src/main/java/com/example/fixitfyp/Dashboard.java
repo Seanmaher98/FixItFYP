@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +26,8 @@ public class Dashboard extends AppCompatActivity {
     ImageView nameImage;
     ImageView emailImage;
     ImageView phoneImage;
-    String email;
-    String password;
+    Button btnLogOut;
+
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -43,6 +45,7 @@ public class Dashboard extends AppCompatActivity {
         nameImage = findViewById(R.id.imageViewName);
         emailImage = findViewById(R.id.imageViewEmail);
         phoneImage = findViewById(R.id.imageViewPhone);
+        btnLogOut = findViewById(R.id.button_LogOut);
     //This code reads from our database
         //It reads from our table users and pulls the relevant data to the logged in user
         database.getInstance().getReference("Users")
@@ -52,9 +55,13 @@ public class Dashboard extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             //This sets the textviews to the data pulled from firebase
-                            nameText.setText(snapshot.child("userName").getValue(String.class));
-                            emailText.setText(snapshot.child("userEmail").getValue(String.class));
-                            phoneText.setText(snapshot.child("userPhone").getValue(String.class));
+                            nameText.setText(snapshot.child("tradeName").getValue(String.class));
+                            emailText.setText(snapshot.child("tradeEmail").getValue(String.class));
+                            phoneText.setText(snapshot.child("tradePhone").getValue(String.class));
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "You do not have the correct privileges for this", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), UserHome.class));
                         }
                     }
 
@@ -64,6 +71,12 @@ public class Dashboard extends AppCompatActivity {
                     }
                 });
 
-
+            btnLogOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
+                }
+            });
     }
 }

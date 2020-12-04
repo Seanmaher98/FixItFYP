@@ -135,7 +135,7 @@ public class UserFragment extends Fragment {
                     userPhone.getText().clear();
                 }
                 else{
-                    Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Details not saved", Toast.LENGTH_SHORT).show();
                 }
             }
         });

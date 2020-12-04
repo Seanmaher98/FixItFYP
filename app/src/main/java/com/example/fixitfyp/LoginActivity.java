@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button btnLoginUser;
+    CheckBox tradeCheck;
     FirebaseAuth fAuth;
     TextView tvSignUp;
 
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.userEmailLogin);
         mPassword = findViewById(R.id.userPasswordLogin);
         btnLoginUser = findViewById(R.id.buttonUserLogin);
+        tradeCheck = findViewById(R.id.checkBoxTrade);
         tvSignUp = findViewById(R.id.textSignUp);
         fAuth = FirebaseAuth.getInstance();
 
@@ -55,11 +58,12 @@ public class LoginActivity extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful() && tradeCheck.isChecked()) {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
-                        } else if (validateEmail() == false)
+                        }else if (task.isSuccessful() && tradeCheck.isChecked() == false)
+                            startActivity(new Intent(getApplicationContext(), UserHome.class));
+                        else if (validateEmail() == false)
                         Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
                         else{
                             Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();

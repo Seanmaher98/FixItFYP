@@ -14,8 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
         <RelativeLayout
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
@@ -24,9 +26,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="35sp"
                 android:text="Dashboard"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+
         </RelativeLayout>
 
         <LinearLayout
@@ -229,6 +232,14 @@
 
         </GridLayout>
 
+        <Button
+            android:id="@+id/button_LogOut"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Log Out"
+            android:background="@drawable/custom_buttons"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
 
     </LinearLayout>
 

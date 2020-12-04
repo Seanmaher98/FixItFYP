@@ -41,6 +41,7 @@ public class TradeFragment extends Fragment {
     EditText tradePhone;
     Button buttonAdd;
     TextView tvSignIn2;
+    Trades trade;
 
     FirebaseAuth fAuth;
     DatabaseReference dbTradeRef;
@@ -62,6 +63,7 @@ public class TradeFragment extends Fragment {
         tradePhone = (EditText) view.findViewById(R.id.editTradePhone);
         buttonAdd = (Button) view.findViewById(R.id.buttonAddTrade);
         tvSignIn2 =(TextView) view.findViewById(R.id.textAlreadyMember2);
+        trade = new Trades();
 
         tvSignIn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +98,7 @@ public class TradeFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    addTrade();
+                                 addTrade();
                                 }
                                 else {
                                     Toast.makeText(getContext(), "It seems like you already have an account, please log in", Toast.LENGTH_SHORT).show();
@@ -111,17 +113,18 @@ public class TradeFragment extends Fragment {
             });
         return view;
     }
-
+    //Currently having issues with this, our tradesmen is authenticating
+    //Our reference "Trades" seems to be causing us issues (Data not going to Realtime DB)
     private void addTrade(){
         FirebaseUser rTrade = fAuth.getCurrentUser();
         String tradeId = rTrade.getUid();
-        dbTradeRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeId);
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("tradeId", tradeId);
-        hashMap.put("tradeName", tradeName.getText().toString());
-        hashMap.put("tradeEmail", tradeEmail.getText().toString());
-        hashMap.put("tradePhone", tradePhone.getText().toString());
-        dbTradeRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        dbTradeRef = FirebaseDatabase.getInstance().getReference("Users").child(tradeId);
+        HashMap<String, String> hashMapTrade = new HashMap<>();
+        hashMapTrade.put("tradeId", tradeId);
+        hashMapTrade.put("tradeName", tradeName.getText().toString());
+        hashMapTrade.put("tradeEmail", tradeEmail.getText().toString());
+        hashMapTrade.put("tradePhone", tradePhone.getText().toString());
+        dbTradeRef.setValue(hashMapTrade).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -131,7 +134,8 @@ public class TradeFragment extends Fragment {
                     tradePassword.getText().clear();
                     tradePhone.getText().clear();
                 } else {
-                    Toast.makeText(getContext(), "Sign Up failed", Toast.LENGTH_SHORT).show();
+                    //An error handling message as our function is working properly
+                    Toast.makeText(getContext(), "Email and password verfied, details not saved, we are working to fix this issue", Toast.LENGTH_SHORT).show();
                 }
             }
         });
