@@ -33,8 +33,8 @@ public class SignUp extends AppCompatActivity {
         //Initialise array
         ArrayList<String> arrayList = new ArrayList<>();
         //Add Title of Tabs
-        arrayList.add("User Sign Up");
-        arrayList.add("Trade Sign Up");
+        arrayList.add("Users Sign Up");
+        arrayList.add("Trades Sign Up");
         //Prepare view pager
         prepareViewPager(viewPager, arrayList);
 

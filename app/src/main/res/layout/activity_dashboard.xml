@@ -57,6 +57,25 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageViewJob"
+                android:src="@drawable/ic_jpbtype"
+                android:layout_width="94dp"
+                android:layout_height="30dp"/>
+            <TextView
+                android:id="@+id/textViewJob"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="349dp"
+            android:layout_height="28dp"
+            android:orientation="horizontal">
+
+            <ImageView
                 android:id="@+id/imageViewEmail"
                 android:src="@drawable/ic_email_logo"
                 android:layout_width="94dp"

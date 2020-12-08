@@ -57,7 +57,7 @@
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
-                android:hint="Full Name"
+                android:hint="Company Name"
                 android:inputType="textCapWords"
                 android:textAlignment="gravity"
                 android:textCursorDrawable="@color/teal_200"
@@ -128,6 +128,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
 
+            <TextView
+                android:layout_width="248dp"
+                android:layout_height="20dp"
+                android:text="Choose the job type that best matches your company:"
+                android:textSize="10dp"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinnerJobs"
+                android:layout_width="248dp"
+                android:layout_height="47dp"
+                android:entries="@array/Jobs"
+                android:background="@drawable/edit_text" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
             <Button
                 android:id="@+id/buttonAddTrade"

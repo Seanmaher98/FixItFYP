@@ -40,6 +40,7 @@ public class TradeFragment extends Fragment {
     EditText tradePassword;
     EditText tradePhone;
     Button buttonAdd;
+    Spinner tradejobSpinner;
     TextView tvSignIn2;
     Trades trade;
 
@@ -61,6 +62,7 @@ public class TradeFragment extends Fragment {
         tradeEmail = (EditText) view.findViewById(R.id.editTradeEmail);
         tradePassword = (EditText) view.findViewById(R.id.editTradePassword);
         tradePhone = (EditText) view.findViewById(R.id.editTradePhone);
+        tradejobSpinner = (Spinner) view.findViewById(R.id.spinnerJobs);
         buttonAdd = (Button) view.findViewById(R.id.buttonAddTrade);
         tvSignIn2 =(TextView) view.findViewById(R.id.textAlreadyMember2);
         trade = new Trades();
@@ -117,13 +119,15 @@ public class TradeFragment extends Fragment {
     //Our reference "Trades" seems to be causing us issues (Data not going to Realtime DB)
     private void addTrade(){
         FirebaseUser rTrade = fAuth.getCurrentUser();
-        String tradeId = rTrade.getUid();
-        dbTradeRef = FirebaseDatabase.getInstance().getReference("Users").child(tradeId);
+        String userId = rTrade.getUid();
+        //Line 122 is a work around used to store our data in the path users as storing it in trades was not working
+        dbTradeRef = FirebaseDatabase.getInstance().getReference("Trades").child(userId);
         HashMap<String, String> hashMapTrade = new HashMap<>();
-        hashMapTrade.put("tradeId", tradeId);
+        hashMapTrade.put("tradeId", userId);
         hashMapTrade.put("tradeName", tradeName.getText().toString());
         hashMapTrade.put("tradeEmail", tradeEmail.getText().toString());
         hashMapTrade.put("tradePhone", tradePhone.getText().toString());
+        hashMapTrade.put("tradeJob", tradejobSpinner.getSelectedItem().toString());
         dbTradeRef.setValue(hashMapTrade).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -133,9 +137,10 @@ public class TradeFragment extends Fragment {
                     tradeEmail.getText().clear();
                     tradePassword.getText().clear();
                     tradePhone.getText().clear();
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 } else {
                     //An error handling message as our function is working properly
-                    Toast.makeText(getContext(), "Email and password verfied, details not saved, we are working to fix this issue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Details not saved", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -133,6 +133,7 @@ public class UserFragment extends Fragment {
                     userEmail.getText().clear();
                     userPassword.getText().clear();
                     userPhone.getText().clear();
+                    startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 else{
                     Toast.makeText(getContext(), "Details not saved", Toast.LENGTH_SHORT).show();
