@@ -28,10 +28,9 @@ public class MainActivity extends AppCompatActivity {
         HomeScreenLogo = findViewById(R.id.logo);
         HomeScreenBackground = findViewById(R.id.loadimage);
     //makes the items slide updwards/downwards on home screen
-        HomeScreenLogo.animate().translationY(-1600).setDuration(10000).setStartDelay(4000);
-        HomeScreenBackground.animate().translationY(1400).setDuration(10000).setStartDelay(4000);
+        HomeScreenLogo.animate().translationY(-1600).setDuration(2000).setStartDelay(10000);
+        HomeScreenBackground.animate().translationY(1400).setDuration(2000).setStartDelay(10000);
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
-
     }
+
 }

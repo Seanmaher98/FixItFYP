@@ -83,6 +83,7 @@ public class UserFragment extends Fragment {
                 //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
                 String email = userEmail.getText().toString();
                 String pwd = userPassword.getText().toString();
+
                 if(email.isEmpty()){
                     userEmail.setError("Please enter email");
                     userEmail.requestFocus();

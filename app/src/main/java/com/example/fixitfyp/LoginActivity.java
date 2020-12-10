@@ -51,9 +51,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //I had to insert this if statement as my app kept when the button was pressed an the fields were empty
+                validateEmail();
+                if (!validateEmail())
+                    validateEmail();
+                else{
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
-                validateEmail();
                 //Authenticate
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -61,9 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful() && tradeCheck.isChecked()) {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
-                        }else if (task.isSuccessful() && tradeCheck.isChecked() == false)
+                        } else if (task.isSuccessful() && !tradeCheck.isChecked())
                             startActivity(new Intent(getApplicationContext(), UserHome.class));
-                        else if (validateEmail() == false)
+                        else if (!validateEmail())
                         Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
                         else{
                             Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
@@ -71,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
             }
         });
 
@@ -82,14 +87,14 @@ public class LoginActivity extends AppCompatActivity {
         String emailInput = mEmail.getText().toString().trim();
         String passwordInput = mPassword.getText().toString().trim();
 
-        if (emailInput.isEmpty()) {
-            mEmail.setError("This Field can't be empty");
+        if (emailInput.isEmpty() && passwordInput.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
             return false;
         } else if (passwordInput.isEmpty()) {
-            mPassword.setError("This password is incorrect");
+            Toast.makeText(LoginActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
             return false;
-        } else if (emailInput.isEmpty() && passwordInput.isEmpty()) {
-            mPassword.setError("Fields cannot be blank");
+        } else if(emailInput.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             mEmail.setError("This email address is not valid");
