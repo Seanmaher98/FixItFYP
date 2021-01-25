@@ -65,7 +65,7 @@ public class Dashboard extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "You are not a registered Tradesman", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), UserHome.class));
+                            startActivity(new Intent(getApplicationContext(), ProductsActivity.class));
                         }
                     }
 

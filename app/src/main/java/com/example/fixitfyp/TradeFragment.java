@@ -95,7 +95,7 @@ public class TradeFragment extends Fragment {
                     else if(email.isEmpty() && pwd.isEmpty()){
                         Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                     }
-                    else if(!(email.isEmpty() && pwd.isEmpty())){
+                    else {
                         fAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -107,9 +107,6 @@ public class TradeFragment extends Fragment {
                                 }
                             }
                         });
-                    }
-                    else{
-                        Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

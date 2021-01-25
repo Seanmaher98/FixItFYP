@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
                         } else if (task.isSuccessful() && !tradeCheck.isChecked())
-                            startActivity(new Intent(getApplicationContext(), UserHome.class));
+                            startActivity(new Intent(getApplicationContext(), ProductsActivity.class));
                         else if (!validateEmail())
                         Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
                         else{

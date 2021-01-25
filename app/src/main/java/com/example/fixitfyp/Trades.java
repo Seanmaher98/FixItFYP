@@ -8,13 +8,16 @@ public class Trades {
     String tradeName;
     String tradeEmail;
     String tradePassword;
+    String tradeJob;
     String tradePhone;
 
- public Trades(String userId, String userName, String userEmail, String userPhone) {
-     this.tradeId = userId;
-     this.tradeName = userName;
-     this.tradeEmail = userEmail;
-     this.tradePhone = userPhone;
+ public Trades(String Id, String Name, String Email, String Phone, String Job) {
+     this.tradeId = Id;
+     this.tradeName = Name;
+     this.tradeEmail = Email;
+     this.tradePhone = Phone;
+     this.tradeJob = Job;
+
  }
 
  public Trades(){
@@ -41,6 +44,10 @@ public class Trades {
         return tradePhone;
     }
 
+    public String getTradeJob() {
+        return tradeJob;
+    }
+
     public void setTradeId(String tradeId) {
         this.tradeId = tradeId;
     }
@@ -59,6 +66,10 @@ public class Trades {
 
     public void setTradePhone(String tradePhone) {
         this.tradePhone = tradePhone;
+    }
+
+    public void setTradeJob(String tradeJob) {
+        this.tradeJob = tradeJob;
     }
 }
 

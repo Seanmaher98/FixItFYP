@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FixItFYP">
         <activity
-            android:name=".UserHome"
+            android:name=".ProductsActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustResize">
         </activity>
@@ -24,21 +24,21 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true">
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
             android:name=".SignUp"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

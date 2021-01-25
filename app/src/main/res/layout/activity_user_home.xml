@@ -8,8 +8,7 @@
     android:background="@drawable/background_universal"
     tools:context=".UserHome">
 
-
-
+    
 <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -69,23 +68,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                android:text="User Logged in, Interface coming soon!"
-                android:textSize="50dp"
-                android:padding="20dp"
-                android:textColor="@color/black"/>
-            <Button
-                android:id="@+id/button_LogOut"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Log Out"
-                android:background="@drawable/custom_buttons"
-                android:textColor="@color/white"
-                android:textSize="18dp"/>
-
 
 </LinearLayout>
-
+    <Button
+        android:id="@+id/button_LogOut"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Log Out"
+        android:background="@drawable/custom_buttons"
+        android:textColor="@color/white"
+        android:textSize="18dp"/>
+    
 </ScrollView>
