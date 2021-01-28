@@ -1,8 +1,5 @@
 package com.example.fixitfyp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -10,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox tradeCheck;
     FirebaseAuth fAuth;
     TextView tvSignUp;
+    TextView tvHome;
 
 
 
@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginUser = findViewById(R.id.buttonUserLogin);
         tradeCheck = findViewById(R.id.checkBoxTrade);
         tvSignUp = findViewById(R.id.textSignUp);
+        tvHome = findViewById(R.id.textHome);
         fAuth = FirebaseAuth.getInstance();
 
         tvSignUp.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +46,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intSignUp = new Intent(LoginActivity.this, SignUp.class);
                 startActivity(intSignUp);
+            }
+        });
+
+        tvHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intHome = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intHome);
             }
         });
 
@@ -66,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
                         } else if (task.isSuccessful() && !tradeCheck.isChecked())
-                            startActivity(new Intent(getApplicationContext(), ProductsActivity.class));
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         else if (!validateEmail())
                         Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
                         else{
