@@ -3,7 +3,6 @@ package com.example.fixitfyp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,16 +16,14 @@ import com.example.fixitfyp.Model.Products;
 import com.example.fixitfyp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity {
-
+    //This Activity was created by me with the help of a YouTube Tutorial - https://youtu.be/745ElNRjJew
+    //The tutorial was Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    BottomNavigationView bottomNavigationView;
     private Button btnLogIn;
 
     @Override
@@ -39,15 +36,17 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        bottomNavigationView = findViewById(R.id.bottombar);
         btnLogIn = findViewById(R.id.button_LogIn);
 
     }
 
+    //This method is adpated from the above mentioned video (https://youtu.be/745ElNRjJew)
     @Override
     protected void onStart() {
         super.onStart();
 
+        //This recycler view is a firebase recycler view, it is used to pull the data from my database.
+        //The code uses my database reference to pull data from my "Trades" database path
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(ProductsRef, Products.class)
@@ -57,51 +56,22 @@ public class HomeActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
+                        //sets the text views on my card view to data from firebase
                         productViewHolder.txtProductName.setText(products.getTradeName());
                         productViewHolder.txtProductDescription.setText(products.getTradeEmail());
-
                     }
-
                     @NonNull
                     @Override
                     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        //inflates my cardview containing database data
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
                         ProductViewHolder holder = new ProductViewHolder(view);
                         return holder;
 
                     }
-
                 };
-
         adapter.startListening();
         recyclerView.setAdapter(adapter);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-
-                    case R.id.menuplumber:
-                        bottomNavigationView.setBackgroundResource(R.color.plumber);
-                        return true;
-
-                    case R.id.menupainter:
-                        bottomNavigationView.setBackgroundResource(R.color.painter);
-                        return true;
-
-                    case R.id.menucarpenter:
-                        bottomNavigationView.setBackgroundResource(R.color.carpenter);
-                        return true;
-
-                    case R.id.menuelectric:
-                        bottomNavigationView.setBackgroundResource(R.color.electrician);
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-        });
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override

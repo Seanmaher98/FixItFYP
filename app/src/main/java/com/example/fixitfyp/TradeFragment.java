@@ -3,12 +3,6 @@ package com.example.fixitfyp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -112,12 +109,11 @@ public class TradeFragment extends Fragment {
             });
         return view;
     }
-    //Currently having issues with this, our tradesmen is authenticating
-    //Our reference "Trades" seems to be causing us issues (Data not going to Realtime DB)
+
     private void addTrade(){
         FirebaseUser rTrade = fAuth.getCurrentUser();
         String userId = rTrade.getUid();
-        //Line 122 is a work around used to store our data in the path users as storing it in trades was not working
+
         dbTradeRef = FirebaseDatabase.getInstance().getReference("Trades").child(userId);
         HashMap<String, String> hashMapTrade = new HashMap<>();
         hashMapTrade.put("tradeId", userId);

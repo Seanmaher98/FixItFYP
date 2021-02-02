@@ -7,6 +7,20 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.FixItFYP.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.FixItFYP.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,12 +46,12 @@
         android:id="@+id/button_LogIn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Log In"
+        android:text="Log In to view details"
         android:background="@drawable/custom_buttons"
         android:textColor="@color/white"
         android:textSize="18dp"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <!--<com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/bottombar"
         app:menu="@menu/bottommenu"
@@ -46,7 +60,7 @@
         android:background="@color/bottombar"
         android:layout_height="60dp">
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
 
 
 

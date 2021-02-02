@@ -24,9 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox tradeCheck;
     FirebaseAuth fAuth;
     TextView tvSignUp;
-    TextView tvHome;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginUser = findViewById(R.id.buttonUserLogin);
         tradeCheck = findViewById(R.id.checkBoxTrade);
         tvSignUp = findViewById(R.id.textSignUp);
-        tvHome = findViewById(R.id.textHome);
         fAuth = FirebaseAuth.getInstance();
 
+        //This text view allows users who are not registered to navigate to the signup class
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,25 +46,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intHome = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intHome);
-            }
-        });
-
         btnLoginUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //I had to insert this if statement as my app kept when the button was pressed an the fields were empty
+                //I had to insert this if statement as my app kept force closing when the button was pressed an the fields were empty
                 validateEmail();
                 if (!validateEmail())
                     validateEmail();
                 else{
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
-                //Authenticate
+                //Authentication process, I have used "if" statements to verify users, the check box is used to differentiate users and tradesmen
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -75,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
                             finish();
                         } else if (task.isSuccessful() && !tradeCheck.isChecked())
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                         else if (!validateEmail())
                         Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
                         else{
@@ -87,11 +76,9 @@ public class LoginActivity extends AppCompatActivity {
             }
             }
         });
-
     }
-
     //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
-    //making email be valid email
+    //making email be valid email address
     private boolean validateEmail() {
         String emailInput = mEmail.getText().toString().trim();
         String passwordInput = mPassword.getText().toString().trim();

@@ -47,7 +47,8 @@ public class Dashboard extends AppCompatActivity {
         phoneImage = findViewById(R.id.imageViewPhone);
         jobImage = findViewById(R.id.imageViewJob);
         btnLogOut = findViewById(R.id.button_LogOut);
-        //This code reads from our database
+
+        //This code reads from our database (Lines 53-75)
         //It reads from our table users and pulls the relevant data to the logged in user
         database.getInstance().getReference("Trades")
                 .child(firebaseAuth.getInstance().getCurrentUser().getUid())
@@ -63,7 +64,7 @@ public class Dashboard extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "You are not a registered Tradesman", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                         }
                     }
 

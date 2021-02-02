@@ -34,3 +34,12 @@ THIRD PARTY COMPONENTS
     src\main\java\com\example\fixitfyp\TradeFragment.java
     Create Login And Registration Screen In Android Using Firebase, EasyLearn, https://youtu.be/V0ZrnL-i77Q
     Used to authenticate and sign in our user, also to create our log in screen and authentication
+
+ 6) src\main\java\com\example\fixitfyp\HomeActivity.java
+    Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
+    Essentially my home page would be similar to that of an e-commerce website, this video was used to create such effect.
+
+ 7) src\main\java\com\example\fixitfyp\ProductDetailsActivity.java
+    How to make an e-commerce app tutorial 21, Coding Cafe, https://youtu.be/enyPmr6XhlQ
+    This video allowed me to show my tradesmens details once their name was clicked on,
+    By treating my tradesmen as products it was easy to use an e-commerce demo effectively.

@@ -63,6 +63,8 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+    //Taken from https://github.com/hdodenhof/CircleImageView, IMPLEMENTS AN IMAGE PHOTO
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

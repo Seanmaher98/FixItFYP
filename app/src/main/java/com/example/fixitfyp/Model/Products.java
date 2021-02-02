@@ -1,6 +1,8 @@
 package com.example.fixitfyp.Model;
 
 public class Products {
+    //Products class used for retrieving data from firebase and allows me to show them to user
+    //Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
 
     private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone;
 

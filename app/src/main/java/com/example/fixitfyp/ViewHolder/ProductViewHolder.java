@@ -10,6 +10,8 @@ import com.example.fixitfyp.Interface.ItemClickListener;
 import com.example.fixitfyp.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    //Used as a placeholder for the data that will be pulled from firebase
+    //Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
 
     public TextView txtProductName, txtProductDescription;
 
