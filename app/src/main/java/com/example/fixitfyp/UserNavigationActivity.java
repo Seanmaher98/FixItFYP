@@ -1,14 +1,19 @@
 package com.example.fixitfyp;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,36 +25,41 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserNavigationActivity extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private RecyclerView recyclerView;
-    private DatabaseReference ProductsRef;
+    AppBarConfiguration mAppBarConfiguration;
+    RecyclerView recyclerView;
+    DatabaseReference ProductsRef;
+    DatabaseReference UserRef;
+    TextView txtLoggedInUsername;
+    FirebaseAuth firebaseAuth;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_navigation);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Trades");
+        UserRef = FirebaseDatabase.getInstance().getReference("Users");
+        txtLoggedInUsername = findViewById(R.id.user_profile_name);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //This code is default when navigation drawer activity is created
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Products Home");
-        setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "You have no messages", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -61,7 +71,15 @@ public class UserNavigationActivity extends AppCompatActivity {
                 .build();
 
     }
-        @Override
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_navigation,menu);
+        return true;
+    }
+
+    @Override
         protected void onStart() {
             super.onStart();
             //This recycler view is a firebase recycler view, it is used to pull the data from my database.
@@ -78,7 +96,7 @@ public class UserNavigationActivity extends AppCompatActivity {
                         @Override
                         protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
                             productViewHolder.txtProductName.setText(products.getTradeName());
-                            productViewHolder.txtProductDescription.setText(products.getTradeEmail());
+                            productViewHolder.txtProductDescription.setText(products.getTradeJob());
 
                             productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -103,4 +121,16 @@ public class UserNavigationActivity extends AppCompatActivity {
             adapter.startListening();
             recyclerView.setAdapter(adapter);
         }
+    //Not working at the moment
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.nav_logOut){
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            Toast.makeText(getApplicationContext(),"You are now logged out", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        return true;
+    }
 }

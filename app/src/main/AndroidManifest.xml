@@ -16,12 +16,12 @@
         <activity
             android:name=".UserNavigationActivity"
             android:label="@string/title_activity_user_navigation"
-            android:noHistory="true"
             android:theme="@style/Theme.FixItFYP.NoActionBar">
         </activity>
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation|screenSize"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Dashboard"
@@ -41,7 +41,6 @@
         <activity
             android:name=".HomeActivity"
             android:configChanges="orientation|screenSize"
-            android:noHistory="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

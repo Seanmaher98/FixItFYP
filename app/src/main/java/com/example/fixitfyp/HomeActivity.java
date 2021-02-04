@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
                         //sets the text views on my card view to data from firebase
                         productViewHolder.txtProductName.setText(products.getTradeName());
-                        productViewHolder.txtProductDescription.setText(products.getTradeEmail());
+                        productViewHolder.txtProductDescription.setText(products.getTradeJob());
                     }
                     @NonNull
                     @Override

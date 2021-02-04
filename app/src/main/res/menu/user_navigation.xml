@@ -2,4 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:title="Menu"
+        android:icon="@drawable/ic_user_menu"
+        android:id="@+id/usermenu"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:title="Home"
+        android:icon="@drawable/ic_user_home"
+        android:id="@+id/userHome"
+        app:showAsAction="ifRoom" />
+
 </menu>
