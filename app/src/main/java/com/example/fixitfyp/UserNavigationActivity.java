@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,16 @@ import com.example.fixitfyp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class UserNavigationActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class UserNavigationActivity extends AppCompatActivity {
     DatabaseReference UserRef;
     TextView txtLoggedInUsername;
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase database;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -47,13 +53,16 @@ public class UserNavigationActivity extends AppCompatActivity {
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Trades");
         UserRef = FirebaseDatabase.getInstance().getReference("Users");
-        txtLoggedInUsername = findViewById(R.id.user_profile_name);
+        //txtLoggedInUsername = (TextView) findViewById(R.id.user_profile_name);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.user_profile_name);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,17 +75,46 @@ public class UserNavigationActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_bookings, R.id.nav_account, R.id.nav_logOut)
                 .setDrawerLayout(drawer)
                 .build();
 
-    }
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Users users = snapshot.getValue(Users.class);
+                            //This sets the textviews to the data pulled from firebase
+                            navUsername.setText(users.getUserName());
 
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Unable to get username", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.user_navigation,menu);
-        return true;
+                    }
+                });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //Not working at the moment
+                    int id = item.getItemId();
+
+                    if(id == R.id.nav_logOut){
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        Toast.makeText(getApplication(),"You are now logged out", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    return true;
+            }
+        });
+
     }
 
     @Override
@@ -121,16 +159,5 @@ public class UserNavigationActivity extends AppCompatActivity {
             adapter.startListening();
             recyclerView.setAdapter(adapter);
         }
-    //Not working at the moment
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
 
-        if(id == R.id.nav_logOut){
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            Toast.makeText(getApplicationContext(),"You are now logged out", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        return true;
-    }
 }

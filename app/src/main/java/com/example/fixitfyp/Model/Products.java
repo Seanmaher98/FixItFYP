@@ -6,17 +6,19 @@ public class Products {
     //It is for this reason that it is labelled products as opposed to trades
     private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone;
 
-    public Products(){
+    public Products() {
 
     }
 
-    public Products(String tradeName, String tradeEmail, String tradeId, String tradeJob, String tradePhone) {
+    public Products(String tradeName, String tradeEmail, String tradeId, String tradeJob,
+                    String tradePhone) {
         this.tradeName = tradeName;
         this.tradeEmail = tradeEmail;
         this.tradeId = tradeId;
         this.tradeJob = tradeJob;
         this.tradePhone = tradePhone;
     }
+
 
     public String getTradeName() {
         return tradeName;
@@ -57,4 +59,6 @@ public class Products {
     public void setTradePhone(String tradePhone) {
         this.tradePhone = tradePhone;
     }
+
+
 }

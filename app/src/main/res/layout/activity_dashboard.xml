@@ -192,6 +192,8 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="12dp"
+                android:clickable="true"
+                android:id="@+id/trade_set_prices"
                 app:cardElevation="6dp">
 
                 <LinearLayout
@@ -210,7 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Completed Jobs"
+                        android:text="Set Prices"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 

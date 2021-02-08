@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,7 @@ public class Dashboard extends AppCompatActivity {
     ImageView emailImage;
     ImageView phoneImage;
     ImageView jobImage;
+    CardView setPriceCard;
     Button btnLogOut;
 
 
@@ -48,6 +50,8 @@ public class Dashboard extends AppCompatActivity {
         jobImage = findViewById(R.id.imageViewJob);
         btnLogOut = findViewById(R.id.button_LogOut);
 
+        setPriceCard = findViewById(R.id.trade_set_prices);
+
         //This code reads from our database (Lines 53-75)
         //It reads from our table users and pulls the relevant data to the logged in user
         database.getInstance().getReference("Trades")
@@ -65,6 +69,7 @@ public class Dashboard extends AppCompatActivity {
                         else {
                             Toast.makeText(getApplicationContext(), "You are not a registered Tradesman", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
+                            finish();
                         }
                     }
 
@@ -81,5 +86,13 @@ public class Dashboard extends AppCompatActivity {
                     finish();
                 }
             });
+
+            setPriceCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(), TradesPricesActivity.class));
+                }
+            });
+
     }
 }

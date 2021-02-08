@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context=".TradesPricesActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prices"
+        android:id="@+id/product_prices"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/priceLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_prices"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/callout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Call Out"
+            android:textColor="@color/white"
+            android:textSize="15sp">
+        </TextView>
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_callout_price"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:background="@drawable/edit_text"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout"
+        android:id="@+id/priceLayout2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Consultation"
+            android:id="@+id/phone_consultation"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_consultation_price"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:background="@drawable/edit_text"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/priceLayout2"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_buttons"
+        android:enabled="true"
+        android:layout_centerHorizontal="true"
+        android:text="Save"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/btnSave"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_buttons"
+        android:enabled="true"
+        android:layout_centerHorizontal="true"
+        android:text="Close"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

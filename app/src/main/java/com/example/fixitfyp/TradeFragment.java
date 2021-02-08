@@ -120,6 +120,7 @@ public class TradeFragment extends Fragment {
         hashMapTrade.put("tradeName", tradeName.getText().toString());
         hashMapTrade.put("tradeEmail", tradeEmail.getText().toString());
         hashMapTrade.put("tradePhone", tradePhone.getText().toString());
+        hashMapTrade.put("tradePrices", null);
         hashMapTrade.put("tradeJob", tradejobSpinner.getSelectedItem().toString());
         dbTradeRef.setValue(hashMapTrade).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
