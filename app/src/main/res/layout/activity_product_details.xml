@@ -61,66 +61,50 @@
         android:gravity="center"
         android:layout_margin="10dp"/>
 
-    <LinearLayout
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="Select Date"
         android:layout_below="@id/product_details_phone"
-        android:id="@+id/priceLayout"
-        android:orientation="horizontal">
+        android:id="@+id/product_details_date"
+        android:textColorHint="@color/white"
+        android:inputType="date"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Call Out"
-            android:id="@+id/callout"
-            android:textSize="15sp"
-            android:textColor="@color/white"
-            android:layout_margin="10dp">
-        </TextView>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:id="@+id/calloutprice"
-            android:textSize="15sp"
-            android:gravity="right"
-            android:textColor="@color/white"
-            android:layout_margin="10dp">
-        </TextView>
-    </LinearLayout>
-
-    <LinearLayout
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/priceLayout"
-        android:id="@+id/priceLayout2"
-        android:orientation="horizontal">
+        android:hint="Select Time"
+        android:inputType="time"
+        android:textColorHint="@color/white"
+        android:layout_below="@id/product_details_date"
+        android:id="@+id/product_details_time"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Consultation"
-            android:id="@+id/phone_consultation"
-            android:textSize="15sp"
-            android:textColor="@color/white"
-            android:layout_margin="10dp">
-        </TextView>
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:id="@+id/phone_consultation_price"
-            android:textSize="15sp"
-            android:gravity="right"
-            android:textColor="@color/white"
-            android:layout_margin="10dp">
-        </TextView>
-    </LinearLayout>
-
+   <!-- <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Prices"
+        android:id="@+id/Prices"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:layout_below="@id/product_details_phone"
+        android:layout_margin="10dp">
+    </Button> -->
 
     <Button
         android:id="@+id/btnBook"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/priceLayout2"
+        android:layout_below="@id/product_details_time"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
         android:enabled="true"

@@ -40,10 +40,6 @@ public class UserNavigationActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference ProductsRef;
     DatabaseReference UserRef;
-    TextView txtLoggedInUsername;
-    FirebaseAuth firebaseAuth;
-    FirebaseDatabase database;
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -53,17 +49,15 @@ public class UserNavigationActivity extends AppCompatActivity {
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Trades");
         UserRef = FirebaseDatabase.getInstance().getReference("Users");
-        //txtLoggedInUsername = (TextView) findViewById(R.id.user_profile_name);
-
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
+        //Default when creating UserNavigation Activity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.user_profile_name);
-
+        //Default when creating UserNavigation Activity
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +66,13 @@ public class UserNavigationActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+        //Default when creating UserNavigation Activity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_bookings, R.id.nav_account, R.id.nav_logOut)
                 .setDrawerLayout(drawer)
                 .build();
-
+        //Adapted from the Dashboard Activity this code displays the logged in users username
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -91,7 +85,8 @@ public class UserNavigationActivity extends AppCompatActivity {
 
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Unable to get username", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "You are registered as a tradesmen, continue as guest", Toast.LENGTH_LONG).show();
+                            navUsername.setText("Guest");
                         }
                     }
                     @Override
@@ -99,11 +94,10 @@ public class UserNavigationActivity extends AppCompatActivity {
 
                     }
                 });
-
+        //This code allows us to log out when the log out item of the nav is selected
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                //Not working at the moment
                     int id = item.getItemId();
 
                     if(id == R.id.nav_logOut){
@@ -111,7 +105,11 @@ public class UserNavigationActivity extends AppCompatActivity {
                         Toast.makeText(getApplication(),"You are now logged out", Toast.LENGTH_SHORT).show();
                         finish();
                     }
+                    else if(id == R.id.nav_bookings){
+                        startActivity(new Intent(getApplicationContext(), UserBookings.class));
+                    }
                     return true;
+
             }
         });
 
@@ -123,7 +121,7 @@ public class UserNavigationActivity extends AppCompatActivity {
             //This recycler view is a firebase recycler view, it is used to pull the data from my database.
             //The code uses my database reference to pull data from my "Trades" database path - YouTube Tutorial - https://youtu.be/745ElNRjJew
             //This is the same code as seen in Home Activity
-
+            //START OF YOUTUBE CODE
             FirebaseRecyclerOptions<Products> options =
                     new FirebaseRecyclerOptions.Builder<Products>()
                             .setQuery(ProductsRef, Products.class)
@@ -159,5 +157,5 @@ public class UserNavigationActivity extends AppCompatActivity {
             adapter.startListening();
             recyclerView.setAdapter(adapter);
         }
-
+        //END OF YOUTUBE CODE
 }

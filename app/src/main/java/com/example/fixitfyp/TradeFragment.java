@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class TradeFragment extends Fragment {
-    //ITERATION 1 Line 21 TO 102 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //ITERATION 1 based off a youtube tutorial - https://youtu.be/EM2x33g4syY
     //ITERATION 2 This class has been modified in order to allow users to be authenticated when signing up
     //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
     //Note the code has been modified, variables have been changed and added by me to suit my project
@@ -78,7 +78,7 @@ public class TradeFragment extends Fragment {
             public void onClick(View view) {
                 validateEmail();
                 //This code has been taken from YouTube
-                //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
+                //Start of YouTube Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
                     String email = tradeEmail.getText().toString();
                     String pwd = tradePassword.getText().toString();
                     if(email.isEmpty()){

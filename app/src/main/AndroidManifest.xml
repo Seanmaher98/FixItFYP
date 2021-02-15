@@ -11,12 +11,22 @@
         android:roundIcon="@drawable/project_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.FixItFYP">
-        <activity android:name=".TradesPricesActivity"></activity>
-        <activity android:name=".ProductDetailsActivity"></activity>
+        <activity android:name=".UserBookings"></activity>
+        <activity android:name=".TradeUpcomingJobs" />
+        <activity android:name=".BookingReceiptActivity" />
+        <activity android:name=".ProductsPriceActivity" />
+        <activity
+            android:name=".TradesPricesActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".UserNavigationActivity"
             android:label="@string/title_activity_user_navigation"
-            android:theme="@style/Theme.FixItFYP.NoActionBar"></activity>
+            android:theme="@style/Theme.FixItFYP.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation|screenSize"

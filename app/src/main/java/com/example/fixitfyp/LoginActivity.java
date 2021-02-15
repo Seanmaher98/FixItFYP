@@ -13,17 +13,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button btnLoginUser;
     CheckBox tradeCheck;
+    CheckBox rememberMe;
     FirebaseAuth fAuth;
     TextView tvSignUp;
+    String uid;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +41,16 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.userPasswordLogin);
         btnLoginUser = findViewById(R.id.buttonUserLogin);
         tradeCheck = findViewById(R.id.checkBoxTrade);
+        rememberMe = findViewById(R.id.rememberMe);
         tvSignUp = findViewById(R.id.textSignUp);
         fAuth = FirebaseAuth.getInstance();
 
-        //This text view allows users who are not registered to navigate to the signup class
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
+
+        Paper.init(this);
+
+        //This text view allows users who are not registered to navigate to the sign-up class
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,56 +62,66 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //I had to insert this if statement as my app kept force closing when the button was pressed an the fields were empty
+                //I had to insert this if statement as my app kept force closing when the button was pressed and the fields were empty
+                AllowAccess(mEmail.toString(), mPassword.toString());
+            }
+
+            //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
+            //making email be valid email address
+            private boolean validateEmail() {
+                String emailInput = mEmail.getText().toString().trim();
+                String passwordInput = mPassword.getText().toString().trim();
+
+                if (emailInput.isEmpty() && passwordInput.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
+                    return false;
+                } else if (passwordInput.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+                    return false;
+                } else if (emailInput.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
+                    return false;
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+                    mEmail.setError("This email address is not valid");
+                    return false;
+                } else {
+                    mEmail.setError(null);
+                    return true;
+                }
+            }
+            //END OF CODE YOUTUBE
+
+            private void AllowAccess(final String email1, final String password1) {
                 validateEmail();
                 if (!validateEmail())
                     validateEmail();
-                else{
-                String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-                //Authentication process, I have used "if" statements to verify users, the check box is used to differentiate users and tradesmen
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful() && tradeCheck.isChecked()) {
-                            startActivity(new Intent(getApplicationContext(), Dashboard.class));
-                            finish();
-                        } else if (task.isSuccessful() && !tradeCheck.isChecked())
-                            startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
-                        else if (!validateEmail())
-                        Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
-                        else{
-                            Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
-                            mPassword.getText().clear();
+                else {
+                    String email = mEmail.getText().toString().trim();
+                    String password = mPassword.getText().toString().trim();
+                    //Authentication process, I have used "if" statements to verify users, the check box is used to differentiate users and tradesmen
+                    fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful() && tradeCheck.isChecked()) {
+                                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                                finish();
+                            } else if (task.isSuccessful() && !tradeCheck.isChecked())
+                                startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
+                            else if (!validateEmail())
+                                Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
+                            else {
+                                Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                                mPassword.getText().clear();
+                            }
                         }
+                    });
+                    if (rememberMe.isChecked()) {
+                        Paper.book().write(Prevalent.userEmailKey, email);
                     }
-                });
-            }
+                }
             }
         });
     }
-    //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
-    //making email be valid email address
-    private boolean validateEmail() {
-        String emailInput = mEmail.getText().toString().trim();
-        String passwordInput = mPassword.getText().toString().trim();
 
-        if (emailInput.isEmpty() && passwordInput.isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (passwordInput.isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if(emailInput.isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            mEmail.setError("This email address is not valid");
-            return false;
-        } else {
-            mEmail.setError(null);
-            return true;
-        }
-    }
-    //END OF CODE YOUTUBE
 }
+

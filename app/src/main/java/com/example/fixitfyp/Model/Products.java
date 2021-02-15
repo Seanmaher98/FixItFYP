@@ -1,24 +1,38 @@
 package com.example.fixitfyp.Model;
 
+import java.util.HashMap;
+
 public class Products {
     //Products class used for retrieving data from firebase and allows me to show them to user
     //Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
     //It is for this reason that it is labelled products as opposed to trades
+    //Used for HomeActivity and UserNavigationActivity
     private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone;
+    HashMap<String, Prices > tradePrice1, tradePrice2;
 
     public Products() {
-
     }
 
-    public Products(String tradeName, String tradeEmail, String tradeId, String tradeJob,
-                    String tradePhone) {
+    public Products(String tradeName, String tradeEmail, String tradeId,
+                    String tradeJob, String tradePhone) {
         this.tradeName = tradeName;
         this.tradeEmail = tradeEmail;
         this.tradeId = tradeId;
         this.tradeJob = tradeJob;
         this.tradePhone = tradePhone;
+
     }
 
+    public Products(String tradeName, String tradeEmail, String tradeId,
+                    String tradeJob, String tradePhone, HashMap<String, Prices> tradePrice1, HashMap<String, Prices> tradePrice2) {
+        this.tradeName = tradeName;
+        this.tradeEmail = tradeEmail;
+        this.tradeId = tradeId;
+        this.tradeJob = tradeJob;
+        this.tradePhone = tradePhone;
+        this.tradePrice1 = tradePrice1;
+        this.tradePrice2 = tradePrice2;
+    }
 
     public String getTradeName() {
         return tradeName;

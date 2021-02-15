@@ -1,5 +1,7 @@
 package com.example.fixitfyp;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -44,6 +44,8 @@ public class SignUp extends AppCompatActivity {
 
     }
 
+    //How to Implement Tablayout With Viewpager in Android Studio Tablayout+Viewpager, Android Coding. (https://youtu.be/NHBO87ZxGgs)
+    //START OF YOUTUBE CODE
     private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
         //Initialise main adapter
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());

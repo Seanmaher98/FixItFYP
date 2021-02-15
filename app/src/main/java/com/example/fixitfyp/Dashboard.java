@@ -19,27 +19,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Dashboard extends AppCompatActivity {
-    TextView nameText;
-    TextView emailText;
-    TextView phoneText;
-    TextView jobText;
-    ImageView nameImage;
-    ImageView emailImage;
-    ImageView phoneImage;
+    //Declare Variables
+    TextView nameText, emailText, phoneText, jobText;
+    ImageView nameImage, emailImage, phoneImage;
     ImageView jobImage;
-    CardView setPriceCard;
+    CardView setPriceCard, upcomingJobsCard, messagesCard, reviewsCard;
     Button btnLogOut;
-
-
-    FirebaseAuth firebaseAuth;
-    FirebaseDatabase database;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        //Initiate
         nameText =findViewById(R.id.textViewName);
         emailText =findViewById(R.id.textViewEmail);
         phoneText =findViewById(R.id.textViewPhone);
@@ -49,30 +40,32 @@ public class Dashboard extends AppCompatActivity {
         phoneImage = findViewById(R.id.imageViewPhone);
         jobImage = findViewById(R.id.imageViewJob);
         btnLogOut = findViewById(R.id.button_LogOut);
-
         setPriceCard = findViewById(R.id.trade_set_prices);
+        upcomingJobsCard = findViewById(R.id.trade_upcoming_jobs);
+        messagesCard = findViewById(R.id.trade_messages);
+        reviewsCard = findViewById(R.id.trade_reviews);
 
-        //This code reads from our database (Lines 53-75)
-        //It reads from our table users and pulls the relevant data to the logged in user
-        database.getInstance().getReference("Trades")
-                .child(firebaseAuth.getInstance().getCurrentUser().getUid())
+        //This code reads from our database (Lines 50-75)
+        //It reads from the users node of the database and pulls the relevant data to the logged in user
+        FirebaseDatabase.getInstance().getReference("Trades")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
-                            //This sets the textviews to the data pulled from firebase
+                            //This sets the textViews to the data pulled from firebase
                             nameText.setText(snapshot.child("tradeName").getValue(String.class));
                             emailText.setText(snapshot.child("tradeEmail").getValue(String.class));
                             phoneText.setText(snapshot.child("tradePhone").getValue(String.class));
                             jobText.setText(snapshot.child("tradeJob").getValue(String.class));
                         }
                         else {
+                            //Used to stopped users who are not registered as trades checking the tradesman check box
                             Toast.makeText(getApplicationContext(), "You are not a registered Tradesman", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                             finish();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -90,7 +83,30 @@ public class Dashboard extends AppCompatActivity {
             setPriceCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //Opens set price activity so tradesmen can edit/set prices for jobs
                     startActivity(new Intent(getApplicationContext(), TradesPricesActivity.class));
+                }
+            });
+
+            upcomingJobsCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Bookings not possible yet so cant implement this on click
+                    startActivity(new Intent(getApplicationContext(), TradeUpcomingJobs.class));
+                }
+            });
+            messagesCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Messages not possible yet so cant implement this on click
+                    Toast.makeText(Dashboard.this, "You have no messages", Toast.LENGTH_LONG).show();
+                }
+            });
+            reviewsCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Reviews not possible yet so cant implement this on click
+                    Toast.makeText(Dashboard.this, "No reviews available", Toast.LENGTH_LONG).show();
                 }
             });
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +19,14 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity {
     //This Activity was created by me with the help of a YouTube Tutorial - https://youtu.be/745ElNRjJew
     //The tutorial was Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
     private Button btnLogIn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +40,16 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnLogIn = findViewById(R.id.button_LogIn);
 
-        Toast.makeText(HomeActivity.this, "To view details you must log in ", Toast.LENGTH_LONG).show();
 
+        Paper.init(this);
     }
 
-    //This method is adpated from the above mentioned video (https://youtu.be/745ElNRjJew)
+    //This method is adapted from the above mentioned video
+    //(https://youtu.be/745ElNRjJew) Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
+    //START OF YOUTUBE CODE
     @Override
     protected void onStart() {
         super.onStart();
-
         //This recycler view is a firebase recycler view, it is used to pull the data from my database.
         //The code uses my database reference to pull data from my "Trades" database path
         FirebaseRecyclerOptions<Products> options =
@@ -75,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
                 };
         adapter.startListening();
         recyclerView.setAdapter(adapter);
+        //END OF YOUTUBE CODE
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +85,44 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+/**
+        String userEmailKey = Paper.book().read(Prevalent.userEmailKey);
 
+
+        if(userEmailKey != "") {
+            if (!TextUtils.isEmpty(userEmailKey)) ;
+            {
+                AllowAccess(userEmailKey);
+            }
+        }
+    }
+
+    private void AllowAccess(String userId) {
+        DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("Users").child(userId).exists())
+                {
+                    Users usersData = snapshot.child("Users").child(userId).getValue(Users.class);
+
+                    if(usersData.getUserId().equals(userId))
+                    {
+                        Toast.makeText(HomeActivity.this, "Still Logged in", Toast.LENGTH_LONG).show();
+
+                        Intent intLogIn = new Intent(HomeActivity.this, UserNavigationActivity.class);
+                        startActivity(intLogIn);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });**/
     }
 
 }

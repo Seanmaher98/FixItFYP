@@ -3,24 +3,19 @@ package com.example.fixitfyp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,10 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class UserFragment extends Fragment {
-    //ITERATION 1 Line 21 to 93 are based off a youtube tutorial - https://youtu.be/EM2x33g4syY
+    //ITERATION based off a youtube tutorial - https://youtu.be/EM2x33g4syY
     //ITERATION 2 This class has been modified in order to allow users to be authenticated when signing up
     //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
     //Note the code has been modified, variables have been changed and added by me to suit my project
@@ -79,8 +73,8 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 validateEmail();
-                //This code has been taken from YouTube
-                //Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
+                //This code has been taken from YouTube and adapted to my project
+                //Start of YouTube Create Login And Registration Screen In Android Using Firebase - https://youtu.be/V0ZrnL-i77Q
                 String email = userEmail.getText().toString();
                 String pwd = userPassword.getText().toString();
 

@@ -36,6 +36,7 @@ THIRD PARTY COMPONENTS
     Used to authenticate and sign in our user, also to create our log in screen and authentication
 
  6) src\main\java\com\example\fixitfyp\HomeActivity.java
+ src\main\java\com\example\fixitfyp\UserNavigationActivity.java
     Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
     Essentially my home page would be similar to that of an e-commerce website, this video was used to create such effect.
 

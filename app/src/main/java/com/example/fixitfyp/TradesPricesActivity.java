@@ -20,11 +20,11 @@ import java.util.HashMap;
 
 public class TradesPricesActivity extends AppCompatActivity {
 
-    private Button btnSave;
-    private Button btnClose;
+    Button btnSave;
+    Button btnClose;
 
-    private TextView calloutPrice;
-    private TextView consultationPrice;
+    TextView calloutPrice;
+    TextView consultationPrice;
 
     FirebaseAuth fAuth;
     DatabaseReference dbTradeRef;
@@ -59,6 +59,8 @@ public class TradesPricesActivity extends AppCompatActivity {
             }
         });
     }
+    //This code has been re-used from my Trade and user sign up fragments
+    //It saves the prices set by the logged in tradesman to the database
     private void addPrices() {
         FirebaseUser rTrade = fAuth.getCurrentUser();
         String tradeId = rTrade.getUid();
@@ -73,6 +75,7 @@ public class TradesPricesActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(TradesPricesActivity.this, "Prices have been added", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
                     //An error handling message as our function is working properly
                     Toast.makeText(TradesPricesActivity.this, "Prices not saved", Toast.LENGTH_LONG).show();
