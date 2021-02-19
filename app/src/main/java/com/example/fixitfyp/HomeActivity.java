@@ -19,8 +19,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import io.paperdb.Paper;
-
 public class HomeActivity extends AppCompatActivity {
     //This Activity was created by me with the help of a YouTube Tutorial - https://youtu.be/745ElNRjJew
     //The tutorial was Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
@@ -40,8 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnLogIn = findViewById(R.id.button_LogIn);
 
-
-        Paper.init(this);
     }
 
     //This method is adapted from the above mentioned video
@@ -85,44 +81,6 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
-/**
-        String userEmailKey = Paper.book().read(Prevalent.userEmailKey);
-
-
-        if(userEmailKey != "") {
-            if (!TextUtils.isEmpty(userEmailKey)) ;
-            {
-                AllowAccess(userEmailKey);
-            }
-        }
-    }
-
-    private void AllowAccess(String userId) {
-        DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-
-        RootRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child("Users").child(userId).exists())
-                {
-                    Users usersData = snapshot.child("Users").child(userId).getValue(Users.class);
-
-                    if(usersData.getUserId().equals(userId))
-                    {
-                        Toast.makeText(HomeActivity.this, "Still Logged in", Toast.LENGTH_LONG).show();
-
-                        Intent intLogIn = new Intent(HomeActivity.this, UserNavigationActivity.class);
-                        startActivity(intLogIn);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });**/
     }
 
 }

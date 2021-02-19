@@ -13,20 +13,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fixitfyp.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import io.paperdb.Paper;
-
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button btnLoginUser;
     CheckBox tradeCheck;
-    CheckBox rememberMe;
     FirebaseAuth fAuth;
     TextView tvSignUp;
     String uid;
@@ -41,14 +37,13 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.userPasswordLogin);
         btnLoginUser = findViewById(R.id.buttonUserLogin);
         tradeCheck = findViewById(R.id.checkBoxTrade);
-        rememberMe = findViewById(R.id.rememberMe);
         tvSignUp = findViewById(R.id.textSignUp);
         fAuth = FirebaseAuth.getInstance();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
-        Paper.init(this);
+        //Paper.init(this);
 
         //This text view allows users who are not registered to navigate to the sign-up class
         tvSignUp.setOnClickListener(new View.OnClickListener() {
@@ -115,9 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    if (rememberMe.isChecked()) {
-                        Paper.book().write(Prevalent.userEmailKey, email);
-                    }
+
                 }
             }
         });

@@ -7,21 +7,18 @@
     android:background="@color/cardview_dark_background"
     tools:context=".ProductDetailsActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/user_profile_image"
+    <ImageView
+        android:id="@+id/trade_profile_image"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic__person_logo"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/white"/>
+        android:src="@drawable/ic__person_logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:layout_below="@id/user_profile_image"
+        android:layout_below="@id/trade_profile_image"
         android:id="@+id/product_name_details"
         android:textColor="@color/white"
         android:textSize="15sp"
@@ -61,33 +58,7 @@
         android:gravity="center"
         android:layout_margin="10dp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Select Date"
-        android:layout_below="@id/product_details_phone"
-        android:id="@+id/product_details_date"
-        android:textColorHint="@color/white"
-        android:inputType="date"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Select Time"
-        android:inputType="time"
-        android:textColorHint="@color/white"
-        android:layout_below="@id/product_details_date"
-        android:id="@+id/product_details_time"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"/>
-
-   <!-- <Button
+    <!--<Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Prices"
@@ -98,13 +69,28 @@
         android:clickable="true"
         android:layout_below="@id/product_details_phone"
         android:layout_margin="10dp">
-    </Button> -->
+    </Button>!-->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Select Date"
+        android:background="@drawable/button_disabled"
+        android:layout_below="@id/product_details_phone"
+        android:id="@+id/datePickerButton"
+        android:textColorHint="@color/white"
+        android:inputType="date"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:onClick="openDatePicker"/>
 
     <Button
         android:id="@+id/btnBook"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/product_details_time"
+        android:layout_below="@id/datePickerButton"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
         android:enabled="true"

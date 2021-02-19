@@ -85,8 +85,8 @@ public class UserNavigationActivity extends AppCompatActivity {
 
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "You are registered as a tradesmen, continue as guest", Toast.LENGTH_LONG).show();
-                            navUsername.setText("Guest");
+                            startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                            finish();
                         }
                     }
                     @Override
@@ -133,6 +133,7 @@ public class UserNavigationActivity extends AppCompatActivity {
                         protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
                             productViewHolder.txtProductName.setText(products.getTradeName());
                             productViewHolder.txtProductDescription.setText(products.getTradeJob());
+                            //Picasso.get().load(products.getImages()).into(productViewHolder.imgProduct);
 
                             productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override

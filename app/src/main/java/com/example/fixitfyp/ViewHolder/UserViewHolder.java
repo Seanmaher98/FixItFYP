@@ -10,13 +10,15 @@ import com.example.fixitfyp.Interface.ItemClickListener;
 import com.example.fixitfyp.R;
 
 public class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-    public TextView txtUserName;
+    //Similar to ProductViewHolder except is used in displaying bookings to tradesman in Upcoming Jobs section
+    //The view holders allow the data to be repeated in the cardview/recyclerview
+    public TextView txtUserEmail, txtUserBookingDate;
     public ItemClickListener listener;
 
     public UserViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtUserName = (TextView) itemView.findViewById(R.id.user_name);
+        txtUserEmail = (TextView) itemView.findViewById(R.id.user_email);
+        txtUserBookingDate = (TextView) itemView.findViewById(R.id.user_BookingDate);
     }
 
     public void setItemClickListener(ItemClickListener listener){

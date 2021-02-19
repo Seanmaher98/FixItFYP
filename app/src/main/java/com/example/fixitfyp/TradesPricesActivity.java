@@ -25,6 +25,8 @@ public class TradesPricesActivity extends AppCompatActivity {
 
     TextView calloutPrice;
     TextView consultationPrice;
+    TextView weekendPrice;
+    TextView urgentPrice;
 
     FirebaseAuth fAuth;
     DatabaseReference dbTradeRef;
@@ -43,6 +45,8 @@ public class TradesPricesActivity extends AppCompatActivity {
         btnClose = findViewById(R.id.btnClose);
         calloutPrice = findViewById(R.id.set_callout_price);
         consultationPrice = findViewById(R.id.set_consultation_price);
+        weekendPrice = findViewById(R.id.set_weekendCall);
+        urgentPrice = findViewById(R.id.set_sameday_price);
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,8 @@ public class TradesPricesActivity extends AppCompatActivity {
         HashMap<String, String> hashMapTradePrices = new HashMap<>();
         hashMapTradePrices.put("tradePrice1", calloutPrice.getText().toString());
         hashMapTradePrices.put("tradePrice2", consultationPrice.getText().toString());
+        hashMapTradePrices.put("tradePrice3", weekendPrice.getText().toString());
+        hashMapTradePrices.put("tradePrice4", urgentPrice.getText().toString());
 
         dbTradeRef.setValue(hashMapTradePrices).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

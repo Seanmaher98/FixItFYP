@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class TradeUpcomingJobs extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     DatabaseReference BookingRef;
-    DatabaseReference TradeRef;
+    Button btnClose;
     String uid;
     FirebaseUser user;
 
@@ -35,6 +36,7 @@ public class TradeUpcomingJobs extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
+        btnClose = findViewById(R.id.btnClose);
 
         BookingRef = FirebaseDatabase.getInstance().getReference("Trades").child(uid).child("Bookings");
 
@@ -42,7 +44,15 @@ public class TradeUpcomingJobs extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
+
 
     //This method is adapted from the above mentioned video
     //(https://youtu.be/745ElNRjJew) Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
@@ -59,7 +69,8 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Bookings, UserViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int i, @NonNull Bookings bookings) {
-                        userViewHolder.txtUserName.setText(bookings.getUserName());
+                        userViewHolder.txtUserEmail.setText(bookings.getUserEmail());
+                        userViewHolder.txtUserBookingDate.setText(bookings.getBookingDate());
                     }
 
                     @NonNull

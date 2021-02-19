@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context=".UserBookings">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Your Bookings"
+        android:id="@+id/txtBookings"
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,12 +37,10 @@
         </LinearLayout>
     </ScrollView>
 
-
     <Button
         android:id="@+id/btnClose"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/booking_time"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
         android:enabled="true"

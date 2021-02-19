@@ -44,3 +44,12 @@ THIRD PARTY COMPONENTS
     How to make an e-commerce app tutorial 21, Coding Cafe, https://youtu.be/enyPmr6XhlQ
     This video allowed me to show my tradesmens details once their name was clicked on,
     By treating my tradesmen as products it was easy to use an e-commerce demo effectively.
+
+ 8) src\main\java\com\example\fixitfyp\Dashboard.java
+    Upload Image To Firebase Storage And add URL to Realtime Database 2020 - Coding Stuff - https://youtu.be/9-oa4OS7lUQ
+    This is Used for all the images in my Firebase Storage, this video showed me how to get the images into my
+    realtime database.
+
+ 9) src\main\java\com\example\fixitfyp\ProductDetailsActivity.java
+    Pop Up Date Picker Android Studio Tutorial - https://youtu.be/qCoidM98zNk
+    This was used to create the select date for job option when booking

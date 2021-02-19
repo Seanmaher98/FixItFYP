@@ -17,11 +17,22 @@
         android:gravity="center"
         android:layout_margin="10dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_prices"
+        android:text="Note: Setting these prices allow a customer to see what prices are charged for certain jobs. Prices for more specific jobs can be arranged personally with the customer"
+        android:id="@+id/messageView"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_margin="10dp"/>
+
     <LinearLayout
         android:id="@+id/priceLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_prices"
+        android:layout_below="@id/messageView"
         android:orientation="horizontal">
 
         <TextView
@@ -43,6 +54,7 @@
             android:backgroundTint="@color/white"/>
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -72,11 +84,65 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout2"
+        android:id="@+id/priceLayout3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weekend Call-Out"
+            android:id="@+id/weekend_call"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_weekendCall"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:background="@drawable/edit_text"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout3"
+        android:id="@+id/priceLayout4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Same Day Job (Urgent)"
+            android:id="@+id/sameday_job"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_sameday_price"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:background="@drawable/edit_text"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnSave"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/priceLayout2"
+        android:layout_below="@id/priceLayout4"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
         android:enabled="true"

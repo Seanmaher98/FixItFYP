@@ -78,14 +78,14 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp" />
 
-        <CheckBox
+        <!--<CheckBox
             android:id="@+id/rememberMe"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Remember Me"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textColor="@color/cardview_dark_background"/>!-->
 
         <Space
             android:layout_width="wrap_content"
