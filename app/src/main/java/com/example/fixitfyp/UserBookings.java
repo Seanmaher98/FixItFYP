@@ -83,6 +83,8 @@ public class UserBookings extends AppCompatActivity {
                                 Intent intent = new Intent(UserBookings.this, CancelBookingActivity.class);
                                 intent.putExtra("tradeId", bookingsUsers.getTradeId());
                                 intent.putExtra("bookingId", bookingsUsers.getBookingId());
+                                intent.putExtra("tradeName", bookingsUsers.getTradeName());
+                                intent.putExtra("bookingDate", bookingsUsers.getBookingDate());
                                 startActivity(intent);
                             }
                         });

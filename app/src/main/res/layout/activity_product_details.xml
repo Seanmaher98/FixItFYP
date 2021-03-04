@@ -17,6 +17,32 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="UserName"
+        android:layout_toLeftOf="@id/trade_profile_image"
+        android:id="@+id/loggedinUser"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:gravity="left"
+        android:layout_margin="10dp"
+        android:visibility="visible"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Prices"
+        android:id="@+id/Prices"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:background="@drawable/button_date"
+        android:clickable="true"
+        android:layout_toRightOf="@id/trade_profile_image"
+        android:layout_margin="10dp">
+    </Button>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Name"
         android:layout_below="@id/trade_profile_image"
         android:id="@+id/product_name_details"
@@ -58,24 +84,12 @@
         android:gravity="center"
         android:layout_margin="10dp"/>
 
-    <!--<Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Prices"
-        android:id="@+id/Prices"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:clickable="true"
-        android:layout_below="@id/product_details_phone"
-        android:layout_margin="10dp">
-    </Button>!-->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Select Date"
-        android:background="@drawable/button_disabled"
+        android:background="@drawable/button_date"
         android:layout_below="@id/product_details_phone"
         android:id="@+id/datePickerButton"
         android:textColorHint="@color/white"
@@ -93,7 +107,7 @@
         android:layout_below="@id/datePickerButton"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
-        android:enabled="true"
+        android:enabled="false"
         android:layout_centerHorizontal="true"
         android:text="Book Now"
         android:textColor="@color/white" />

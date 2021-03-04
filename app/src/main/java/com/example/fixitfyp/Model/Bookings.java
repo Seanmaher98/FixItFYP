@@ -3,14 +3,32 @@ package com.example.fixitfyp.Model;
 //ToDo Show more than just username and booking date
 public class Bookings {
 
-    private String userEmail, BookingDate;
+    private String userId, userName, userEmail, BookingDate;
 
     public Bookings() {
 
     }
-    public Bookings(String userEmail, String bookingDate) {
+    public Bookings(String userId, String userName, String userEmail, String bookingDate) {
+        this.userId = userId;
+        this.userName = userName;
         this.userEmail = userEmail;
         BookingDate = bookingDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getBookingDate() {

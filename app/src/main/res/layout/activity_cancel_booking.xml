@@ -3,19 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
+    app:layout_constraintBottom_toBottomOf="parent"
     android:background="@color/cardview_dark_background"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".CancelBookingActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Details"
+        android:id="@+id/current_view"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_margin="10dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Press Cancel to confirm cancellation"
         android:id="@+id/cancel_message"
+        android:layout_below="@id/current_view"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:gravity="center"
         android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/button_review"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/button_Delete"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/button_date"
+        android:enabled="true"
+        android:layout_centerHorizontal="true"
+        android:text="Leave a review"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/button_Delete"
@@ -23,7 +47,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/cancel_message"
-        android:background="@drawable/custom_buttons"
+        android:background="@drawable/button_cancel"
         android:enabled="true"
         android:layout_centerHorizontal="true"
         android:text="Cancel Booking"
@@ -33,11 +57,12 @@
         android:id="@+id/btnClose"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/button_Delete"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/button_review"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="84dp"
         android:background="@drawable/custom_buttons"
         android:enabled="true"
-        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:text="Close"
         android:textColor="@color/white" />
 </RelativeLayout>

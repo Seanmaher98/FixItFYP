@@ -67,9 +67,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:layout_below="@id/trade_name"
-        android:text="Cancel"
+        android:text="View"
         android:textColor="@color/white"
-        android:background="@drawable/button_cancel"
+        android:background="@drawable/button_date"
         android:layout_centerHorizontal="true"/>
 
 </androidx.cardview.widget.CardView>

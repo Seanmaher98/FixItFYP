@@ -2,6 +2,7 @@ package com.example.fixitfyp;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ProductDetailsActivity extends AppCompatActivity {
@@ -36,7 +38,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button closeButton, dateButton;
     private Button viewPriceButton;
     private ImageView tradeProfileImage;
-    private TextView name, job, email, phone;
+    private TextView name, job, email, phone, userName;
     private DatePickerDialog datePickerDialog;
     //private EditText date_in, time_in;
     private String tradeID = "";
@@ -53,7 +55,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         bookButton = (Button) findViewById(R.id.btnBook);
         closeButton = (Button) findViewById(R.id.btnClose);
-        //viewPriceButton = (Button) findViewById(R.id.Prices);
+        viewPriceButton = (Button) findViewById(R.id.Prices);
 
         dateButton = (Button) findViewById(R.id.datePickerButton);
 
@@ -61,6 +63,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.product_details_description);
         job = (TextView) findViewById(R.id.product_details_job);
         phone = (TextView) findViewById(R.id.product_details_phone);
+        userName = (TextView) findViewById(R.id.loggedinUser);
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -69,7 +72,28 @@ public class ProductDetailsActivity extends AppCompatActivity {
         getTradeDetails(tradeID);
         initDatePicker();
 
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Users users = snapshot.getValue(Users.class);
+                            //This sets the textviews to the data pulled from firebase
+                            userName.setText(users.getUserName());
+                        }
+                        else {
+                            startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                            finish();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
+
     //The date picker was created with the help of Youtube Tutorial - https://youtu.be/qCoidM98zNk
     //Pop Up Date Picker Android Studio Tutorial
     //START OF YOUTUBE CODE
@@ -90,6 +114,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -143,14 +168,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     phone.setText(products.getTradePhone());
                     //Picasso.get().load(products.getTradeImage()).into(tradeProfileImage);
 
-                   /** viewPriceButton.setOnClickListener(new View.OnClickListener() {
+                   viewPriceButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(ProductDetailsActivity.this, ProductsPriceActivity.class);
                             intent.putExtra("tradeId", products.getTradeId());
+                            intent.putExtra("tradeName", products.getTradeName());
                             startActivity(intent);
                         }
-                    });**/
+                    });
 
 
                 } else {
@@ -173,8 +199,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(datePickerDialog ==  null){
-                    Toast.makeText(ProductDetailsActivity.this, "You must choose a date", Toast.LENGTH_LONG).show();
+                if (dateButton.getText().toString().equals("")){
+                    Toast.makeText(ProductDetailsActivity.this, "You must select a date", Toast.LENGTH_LONG).show();
                 }
                 else {
                     addingToUserTradeBookingList();
@@ -195,6 +221,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             saveCurrentTime = currentTime.format(callForDate.getTime());
 
             String userId = uid;
+
             //Creates a random key for the bookingId
             UUID bookingId = UUID.randomUUID();
             //Trades in DB
@@ -204,6 +231,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             tradeMap.put("bookingId", bookingId.toString());
             tradeMap.put("userId", userId);
             tradeMap.put("userEmail", user.getEmail());
+            tradeMap.put("userName", userName.getText().toString());
             tradeMap.put("date", saveCurrentDate);
             tradeMap.put("time", saveCurrentTime);
             tradeMap.put("BookingDate", dateButton.getText().toString());
@@ -217,6 +245,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             cartMap.put("bookingId", bookingId.toString());
             cartMap.put("tradeId", tradeID);
             cartMap.put("tradeName", name.getText().toString());
+            cartMap.put("userName", userName.getText().toString());
             cartMap.put("date", saveCurrentDate);
             cartMap.put("time", saveCurrentTime);
             cartMap.put("BookingDate", dateButton.getText().toString());
@@ -240,5 +269,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         //Calls what happens when the button for select date is clicked on
         public void openDatePicker(View view) {
             datePickerDialog.show();
+            bookButton.setEnabled(true);
         }
     }

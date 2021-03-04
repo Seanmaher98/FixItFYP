@@ -6,41 +6,25 @@ public class Products{
     //It is for this reason that it is labelled products as opposed to trades
     //Used for HomeActivity and UserNavigationActivity
     private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone, imageUrl;
-    private int  tradePrice1, tradePrice2;
 
 
     public Products() {
     }
 
-    public Products(String tradeName, String tradeEmail, String tradeId,
-                    String tradeJob, String tradePhone , String imageUrl, int tradePrice1, int tradePrice2) {
+    public Products( String tradeName, String tradeEmail, String tradeId,
+                    String tradeJob, String tradePhone , String imageUrl) {
+
         this.tradeName = tradeName;
         this.tradeEmail = tradeEmail;
         this.tradeId = tradeId;
         this.tradeJob = tradeJob;
         this.tradePhone = tradePhone;
         this.imageUrl = imageUrl;
-        this.tradePrice1 = tradePrice1;
-        this.tradePrice2 = tradePrice2;
+
 
 
     }
 
-    public int getTradePrice1() {
-        return tradePrice1;
-    }
-
-    public void setTradePrice1(int tradePrice1) {
-        this.tradePrice1 = tradePrice1;
-    }
-
-    public int getTradePrice2() {
-        return tradePrice2;
-    }
-
-    public void setTradePrice2(int tradePrice2) {
-        this.tradePrice2 = tradePrice2;
-    }
 
     public String getImageUrl() {
         return imageUrl;

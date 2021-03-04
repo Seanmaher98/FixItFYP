@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.fixitfyp.Model.Images;
-import com.example.fixitfyp.Model.Products;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,12 +81,13 @@ public class Dashboard extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
-                            Products products = snapshot.getValue(Products.class);
+                            //Products products = snapshot.getValue(Products.class);
                             //This sets the textViews to the data pulled from firebase
                             nameText.setText(snapshot.child("tradeName").getValue(String.class));
                             emailText.setText(snapshot.child("tradeEmail").getValue(String.class));
                             phoneText.setText(snapshot.child("tradePhone").getValue(String.class));
                             jobText.setText(snapshot.child("tradeJob").getValue(String.class));
+
                         }
                         else {
                             //Used to stopped users who are not registered as trades checking the tradesman check box
@@ -128,7 +128,6 @@ public class Dashboard extends AppCompatActivity {
             upcomingJobsCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Bookings not possible yet so cant implement this on click
                     startActivity(new Intent(getApplicationContext(), TradeUpcomingJobs.class));
                 }
             });
@@ -142,8 +141,7 @@ public class Dashboard extends AppCompatActivity {
             reviewsCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Reviews not possible yet so cant implement this on click
-                    Toast.makeText(Dashboard.this, "No reviews available", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), TradeReviewActivity.class));
                 }
             });
 
@@ -152,7 +150,28 @@ public class Dashboard extends AppCompatActivity {
     //Currently having issues with images
     private void addExistingPhoto() {
         FirebaseDatabase.getInstance().getReference("Trades")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Images")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            //This sets the textViews to the data pulled from firebase
+                            tradeProfileImage.setImageURI(snapshot.child("imageUrl").getValue(Uri.class));
+
+                        }
+                        else {
+                            //Used to stopped users who are not registered as trades checking the tradesman check box
+                            Toast.makeText(getApplicationContext(), "No Image found", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
     }
 

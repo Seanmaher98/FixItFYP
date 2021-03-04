@@ -11,7 +11,10 @@
         android:roundIcon="@drawable/project_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.FixItFYP">
-        <activity android:name=".CancelBookingActivity"></activity>
+        <activity android:name=".TradeReviewActivity"></activity>
+        <activity android:name=".TradeUserReviewActivity"></activity>
+        <activity android:name=".UserReviewActivity" />
+        <activity android:name=".CancelBookingActivity" />
         <activity android:name=".UserBookings" />
         <activity android:name=".TradeUpcomingJobs" />
         <activity android:name=".ProductsPriceActivity" />

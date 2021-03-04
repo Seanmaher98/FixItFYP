@@ -40,6 +40,7 @@ public class UserNavigationActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference ProductsRef;
     DatabaseReference UserRef;
+    String userName;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -82,7 +83,6 @@ public class UserNavigationActivity extends AppCompatActivity {
                             Users users = snapshot.getValue(Users.class);
                             //This sets the textviews to the data pulled from firebase
                             navUsername.setText(users.getUserName());
-
                         }
                         else {
                             startActivity(new Intent(getApplicationContext(), Dashboard.class));
@@ -119,7 +119,8 @@ public class UserNavigationActivity extends AppCompatActivity {
         protected void onStart() {
             super.onStart();
             //This recycler view is a firebase recycler view, it is used to pull the data from my database.
-            //The code uses my database reference to pull data from my "Trades" database path - YouTube Tutorial - https://youtu.be/745ElNRjJew
+            //The code uses my database reference to pull data from my "Trades" database path
+            // Displaying Products on Home Activity using Firebase RecyclerView Android Studio Tutorial- https://youtu.be/745ElNRjJew
             //This is the same code as seen in Home Activity
             //START OF YOUTUBE CODE
             FirebaseRecyclerOptions<Products> options =

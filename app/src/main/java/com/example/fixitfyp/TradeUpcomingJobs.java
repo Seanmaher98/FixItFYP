@@ -1,5 +1,6 @@
 package com.example.fixitfyp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class TradeUpcomingJobs extends AppCompatActivity {
             }
         });
 
+
     }
 
 
@@ -69,8 +71,20 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Bookings, UserViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int i, @NonNull Bookings bookings) {
+                        userViewHolder.txtUserName.setText(bookings.getUserName());
                         userViewHolder.txtUserEmail.setText(bookings.getUserEmail());
                         userViewHolder.txtUserBookingDate.setText(bookings.getBookingDate());
+                        userViewHolder.txtUserId.setText(bookings.getUserId());
+
+                        userViewHolder.btnReview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(TradeUpcomingJobs.this, TradeUserReviewActivity.class);
+                                intent.putExtra("userName", bookings.getUserName());
+                                intent.putExtra("userId", bookings.getUserId());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull

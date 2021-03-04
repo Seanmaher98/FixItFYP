@@ -8,10 +8,22 @@
     android:background="@color/cardview_dark_background"
     tools:context=".ProductsPriceActivity">
 
-    <LinearLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Prices of:"
+        android:id="@+id/tradePriceName"
+        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/priceLayout"
+        android:layout_below="@id/tradePriceName"
         android:orientation="horizontal">
 
         <TextView
@@ -24,7 +36,7 @@
             android:layout_margin="10dp">
         </TextView>
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="20dp"
             android:id="@+id/calloutprice"
             android:text="Price"
@@ -36,7 +48,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceLayout"
         android:id="@+id/priceLayout2"
@@ -52,7 +64,7 @@
             android:layout_margin="10dp">
         </TextView>
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="20dp"
             android:id="@+id/phone_consultation_price"
             android:textSize="15sp"
@@ -62,5 +74,76 @@
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout2"
+        android:id="@+id/priceLayout3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weekend Call"
+            android:id="@+id/weekend_call"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/weekend_price"
+            android:textSize="15sp"
+            android:text="Price"
+            android:gravity="right"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout3"
+        android:id="@+id/priceLayout4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Same day job (Urgent)"
+            android:id="@+id/urgent_job"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/urgent_job_price"
+            android:textSize="15sp"
+            android:text="Price"
+            android:gravity="right"
+            android:textColor="@color/white"
+            android:layout_margin="10dp">
+        </TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/priceLayout4"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_buttons"
+        android:enabled="true"
+        android:layout_centerHorizontal="true"
+        android:text="Close"
+        android:textColor="@color/white" />
+
+
 
 </RelativeLayout>
