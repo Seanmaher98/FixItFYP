@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:background="@color/cardview_dark_background"
         android:layout_height="match_parent"
         tools:context=".SignUp">
 
-    <ImageView
-        android:id="@+id/loadimage"
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="800dp"
-        android:src="@drawable/background_universal"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".29"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        android:id="@+id/cardviewLogo"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="255dp"
-        android:layout_height="309dp"
-        android:src="@drawable/project_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="255dp"
+            android:layout_height="309dp"
+            android:src="@drawable/project_logo" />
 
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardviewLogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/logo_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+    </ProgressBar>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

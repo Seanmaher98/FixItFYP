@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
     //This Activity was created by me with the help of a YouTube Tutorial - https://youtu.be/745ElNRjJew
@@ -25,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
     private Button btnLogIn;
+    ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Trades");
+        loading = findViewById(R.id.loading);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -60,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                         //sets the text views on my card view to data from firebase
                         productViewHolder.txtProductName.setText(products.getTradeName());
                         productViewHolder.txtProductDescription.setText(products.getTradeJob());
+                        Picasso.get().load(products.getTradeImage()).into(productViewHolder.imgProduct);
                     }
                     @NonNull
                     @Override
@@ -77,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }

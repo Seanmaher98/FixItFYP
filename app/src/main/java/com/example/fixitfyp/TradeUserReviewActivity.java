@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Dialogs.ReviewDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +33,7 @@ public class TradeUserReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_review);
+        setContentView(R.layout.activity_trade_user_review);
 
         userName = getIntent().getStringExtra("userName");
         userId = getIntent().getStringExtra("userId");
@@ -76,7 +77,8 @@ public class TradeUserReviewActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(TradeUserReviewActivity.this, "Thank you, you review has been recorded", Toast.LENGTH_SHORT).show();
+                    openDialog();
+                    editTextReview.getText().clear();
 
 
                 } else {
@@ -85,6 +87,11 @@ public class TradeUserReviewActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void openDialog() {
+        ReviewDialog reviewDialog = new ReviewDialog();
+        reviewDialog.show(getSupportFragmentManager(), "Review Dialog");
     }
 
 

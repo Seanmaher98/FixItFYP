@@ -4,107 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".ProductDetailsActivity">
 
-    <ImageView
-        android:id="@+id/trade_profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic__person_logo" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="125dp"
+        android:id="@+id/cardviewImage"
+        android:layout_height="170dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_below="@id/btnClose"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/trade_profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic__person_logo" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UserName"
-        android:layout_toLeftOf="@id/trade_profile_image"
+        android:layout_toRightOf="@id/Prices"
         android:id="@+id/loggedinUser"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="10sp"
         android:gravity="left"
         android:layout_margin="10dp"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
-    <Button
+    <TextView
+        android:id="@+id/product_name_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Prices"
+        android:layout_below="@id/cardviewImage"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="25dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="right"
+        android:text="Name"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20sp" />
+
+    <Button
         android:id="@+id/Prices"
-        android:textSize="15sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
+        android:layout_toRightOf="@id/cardviewImage"
+        android:layout_above="@id/product_name_details"
         android:background="@drawable/button_date"
         android:clickable="true"
-        android:layout_toRightOf="@id/trade_profile_image"
-        android:layout_margin="10dp">
+        android:text="View Prices"
+        android:textColor="@color/white"
+        android:textSize="15sp">
+    </Button>
+
+    <Button
+        android:id="@+id/viewReviews"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/cardviewImage"
+        android:layout_above="@id/Prices"
+        android:background="@drawable/button_date"
+        android:clickable="true"
+        android:text="View Reviews"
+        android:textColor="@color/white"
+        android:textSize="15sp">
     </Button>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_below="@id/trade_profile_image"
-        android:id="@+id/product_name_details"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:gravity="center"
-        android:layout_margin="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_name_details"
+        android:layout_below="@id/product_name_details"
         android:id="@+id/product_details_description"
         android:text="Email"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12sp"
+        android:paddingLeft="25dp"
         android:gravity="center"
         android:layout_margin="10dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_details_description"
+        android:layout_below="@+id/product_details_description"
         android:id="@+id/product_details_job"
         android:text="Job"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="15sp"
-        android:gravity="center"
+        android:paddingLeft="25dp"
+        android:gravity="right"
         android:layout_margin="10dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_details_job"
+        android:layout_below="@id/product_name_details"
         android:id="@+id/product_details_phone"
+        android:layout_toRightOf="@id/product_details_description"
         android:text="Phone Number"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="12sp"
         android:gravity="center"
         android:layout_margin="10dp"/>
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Select Date"
+        android:hint="Please Select Date"
         android:background="@drawable/button_date"
-        android:layout_below="@id/product_details_phone"
+        android:layout_below="@id/product_details_job"
         android:id="@+id/datePickerButton"
         android:textColorHint="@color/white"
         android:inputType="date"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:onClick="openDatePicker"/>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/datePickerButton"
+        android:id="@+id/loadingBar"
+        android:visibility="invisible">
+    </ProgressBar>
+
     <Button
         android:id="@+id/btnBook"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:layout_below="@id/datePickerButton"
+        android:layout_below="@id/loadingBar"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
         android:enabled="false"
@@ -114,13 +159,11 @@
 
     <Button
         android:id="@+id/btnClose"
-        android:layout_width="200dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/btnBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/custom_buttons"
+        android:background="@drawable/ic_close"
         android:enabled="true"
-        android:layout_centerHorizontal="true"
-        android:text="Close"
-        android:textColor="@color/white" />
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

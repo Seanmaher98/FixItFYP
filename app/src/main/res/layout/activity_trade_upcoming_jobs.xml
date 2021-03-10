@@ -8,15 +8,27 @@
     android:orientation="vertical"
     tools:context=".TradeUpcomingJobs">
 
-    <TextView
+    <Button
+        android:id="@+id/btnClose"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:text="Your Jobs"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_close"
+        android:enabled="true"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
         android:id="@+id/txtTradeJobs"
-        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:fontFamily="sans-serif-medium"
+        android:padding="25dp"
+        android:text="Your Jobs"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:padding="10dp"/>
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +42,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="450dp"
                 android:id="@+id/recycler_jobs">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -38,15 +50,4 @@
         </LinearLayout>
     </ScrollView>
 
-
-    <Button
-        android:id="@+id/btnClose"
-        android:layout_width="200dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_buttons"
-        android:enabled="true"
-        android:layout_gravity="center"
-        android:text="Close"
-        android:textColor="@color/white" />
 </LinearLayout>

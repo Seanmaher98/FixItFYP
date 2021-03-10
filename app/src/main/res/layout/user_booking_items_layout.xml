@@ -16,14 +16,16 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/trade_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/trade_name"
-            android:text="Trade Name"
-            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="left"
             android:padding="10dp"
-            android:textColor="@color/cardview_dark_background"/>
+            android:text="Trade Name"
+
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"

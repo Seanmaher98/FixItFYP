@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -39,6 +40,7 @@ public class UserNavigationActivity extends AppCompatActivity {
     AppBarConfiguration mAppBarConfiguration;
     RecyclerView recyclerView;
     DatabaseReference ProductsRef;
+    DatabaseReference ImageRef;
     DatabaseReference UserRef;
     String userName;
 
@@ -49,6 +51,7 @@ public class UserNavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_navigation);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Trades");
+        ImageRef = FirebaseDatabase.getInstance().getReference().child("Trades");
         UserRef = FirebaseDatabase.getInstance().getReference("Users");
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -134,7 +137,8 @@ public class UserNavigationActivity extends AppCompatActivity {
                         protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
                             productViewHolder.txtProductName.setText(products.getTradeName());
                             productViewHolder.txtProductDescription.setText(products.getTradeJob());
-                            //Picasso.get().load(products.getImages()).into(productViewHolder.imgProduct);
+                            Picasso.get().load(products.getTradeImage()).into(productViewHolder.imgProduct);
+
 
                             productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -158,6 +162,7 @@ public class UserNavigationActivity extends AppCompatActivity {
                     };
             adapter.startListening();
             recyclerView.setAdapter(adapter);
+
         }
         //END OF YOUTUBE CODE
 }

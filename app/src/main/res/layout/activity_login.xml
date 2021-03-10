@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@color/cardview_dark_background">
+    android:background="@drawable/background2">
 
     <LinearLayout
         android:id="@+id/user_login_layout"
@@ -30,6 +30,7 @@
             android:backgroundTint="@color/white"
             android:cursorVisible="true"
             android:ems="10"
+            android:fontFamily="sans-serif-black"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textAlignment="gravity"
@@ -53,6 +54,7 @@
             android:backgroundTint="@color/white"
             android:cursorVisible="true"
             android:ems="10"
+            android:fontFamily="sans-serif-black"
             android:hint="Password"
             android:inputType="textPassword"
             android:textAlignment="gravity"
@@ -67,29 +69,19 @@
 
         <CheckBox
             android:id="@+id/checkBoxTrade"
-            android:background="@drawable/edit_text"
-            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif-medium"
             android:text="I am a Tradesman"
-            android:textColor="@color/cardview_dark_background"/>
+            android:textColor="@color/cardview_dark_background" />
 
-        <Space
+        <ProgressBar
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
-
-        <!--<CheckBox
-            android:id="@+id/rememberMe"
-            android:background="@drawable/edit_text"
-            android:backgroundTint="@color/white"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remember Me"
-            android:textColor="@color/cardview_dark_background"/>!-->
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:visibility="invisible">
+        </ProgressBar>
 
         <Button
             android:id="@+id/buttonUserLogin"
@@ -103,6 +95,12 @@
         <Space
             android:layout_width="wrap_content"
             android:layout_height="20dp" />
+
+        <ProgressBar
+            android:id="@+id/loadingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/textSignUp"

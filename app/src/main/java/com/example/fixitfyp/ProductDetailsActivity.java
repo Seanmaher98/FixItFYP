@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Dialogs.ExampleDialog;
 import com.example.fixitfyp.Model.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,14 +39,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
     //How to make an e-commerce app tutorial 21 - Coding Cafe, https://youtu.be/enyPmr6XhlQ
     private Button bookButton;
     private Button closeButton, dateButton;
-    private Button viewPriceButton;
+    private Button viewPriceButton, viewReviewsButton;
     private ImageView tradeProfileImage;
     private TextView name, job, email, phone, userName;
     private DatePickerDialog datePickerDialog;
+    ProgressBar loading;
     //private EditText date_in, time_in;
     private String tradeID = "";
     String uid;
     FirebaseUser user;
+    DatabaseReference imageRef;
+
 
 
     @Override
@@ -56,6 +62,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         bookButton = (Button) findViewById(R.id.btnBook);
         closeButton = (Button) findViewById(R.id.btnClose);
         viewPriceButton = (Button) findViewById(R.id.Prices);
+        viewReviewsButton = (Button) findViewById(R.id.viewReviews);
 
         dateButton = (Button) findViewById(R.id.datePickerButton);
 
@@ -65,11 +72,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         phone = (TextView) findViewById(R.id.product_details_phone);
         userName = (TextView) findViewById(R.id.loggedinUser);
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
+        loading = findViewById(R.id.loadingBar);
 
+        imageRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeID).child("Images");
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         //viewPriceButton = (Button) findViewById(R.id.Prices);
         getTradeDetails(tradeID);
+        getTradeImage();
         initDatePicker();
 
         FirebaseDatabase.getInstance().getReference("Users")
@@ -92,6 +102,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void getTradeImage() {
+        imageRef.child("imageUrl").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String link = snapshot.getValue(String.class);
+                Picasso.get().load(link).into(tradeProfileImage);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     //The date picker was created with the help of Youtube Tutorial - https://youtu.be/qCoidM98zNk
@@ -167,6 +192,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     job.setText(products.getTradeJob());
                     phone.setText(products.getTradePhone());
                     //Picasso.get().load(products.getTradeImage()).into(tradeProfileImage);
+                    viewReviewsButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(ProductDetailsActivity.this, ProductsReviewActivity.class);
+                            intent.putExtra("tradeId", products.getTradeId());
+                            intent.putExtra("tradeName", products.getTradeName());
+                            startActivity(intent);
+                        }
+                    });
 
                    viewPriceButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -204,13 +238,21 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
                 else {
                     addingToUserTradeBookingList();
+                    openDialog();
                 }
             }
         });
     }
-        //This code adds the booking to the database
+
+    private void openDialog() {
+        ExampleDialog exampleDialog = new ExampleDialog();
+        exampleDialog.show(getSupportFragmentManager(), "Booking Dialog");
+    }
+
+    //This code adds the booking to the database
         //It uses 2 hashmaps, 1 to send details to Trades and 1 to send to Users
         private void addingToUserTradeBookingList() {
+            loading.setVisibility(View.VISIBLE);
             String saveCurrentTime, saveCurrentDate;
 
             Calendar callForDate = Calendar.getInstance();
@@ -255,12 +297,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(ProductDetailsActivity.this, "Booking has been saved", Toast.LENGTH_SHORT).show();
+                        loading.setVisibility(View.INVISIBLE);
 
 
                     } else {
                         //An error handling message as our function is working properly
                         Toast.makeText(ProductDetailsActivity.this, "Details not saved", Toast.LENGTH_LONG).show();
+                        loading.setVisibility(View.INVISIBLE);
                     }
                 }
 

@@ -13,14 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/trade_profile_image"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/ic__person_logo" />
+            android:id="@+id/cardviewImage"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/trade_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/ic__person_logo" />
+
+        </androidx.cardview.widget.CardView>
 
         <RelativeLayout
-            android:layout_marginTop="12dp"
+
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
@@ -39,13 +46,15 @@
                 android:src="@drawable/ic__person_logo"
                 android:layout_width="94dp"
                 android:layout_height="30dp"/>
+
             <TextView
                 android:id="@+id/textViewName"
-                android:textColor="@color/black"
-                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout

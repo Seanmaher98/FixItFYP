@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Dialogs.ReviewDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +63,11 @@ public class UserReviewActivity extends AppCompatActivity {
 
     }
 
+    private void openDialog() {
+        ReviewDialog reviewDialog = new ReviewDialog();
+        reviewDialog.show(getSupportFragmentManager(), "Review Dialog");
+    }
+
     private void saveReview() {
         String userId = uid;
         //Creates a random key for the bookingId
@@ -79,8 +85,8 @@ public class UserReviewActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(UserReviewActivity.this, "Thank you, you review has been recorded", Toast.LENGTH_SHORT).show();
-
+                    openDialog();
+                    editTextReview.getText().clear();
 
                 } else {
                     //An error handling message as our function is working properly

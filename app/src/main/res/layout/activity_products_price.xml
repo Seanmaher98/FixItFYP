@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".ProductsPriceActivity">
 
     <TextView
@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:text="Prices of:"
         android:id="@+id/tradePriceName"
+        android:layout_below="@id/btnClose"
         android:textSize="35sp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_dark_background"
         android:layout_margin="10dp">
     </TextView>
 
@@ -32,7 +33,7 @@
             android:text="Call Out"
             android:id="@+id/callout"
             android:textSize="15sp"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
         <TextView
@@ -42,7 +43,7 @@
             android:text="Price"
             android:textSize="15sp"
             android:gravity="right"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
@@ -60,7 +61,7 @@
             android:text="Phone Consultation"
             android:id="@+id/phone_consultation"
             android:textSize="15sp"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
         <TextView
@@ -70,7 +71,7 @@
             android:textSize="15sp"
             android:text="Price"
             android:gravity="right"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
@@ -89,7 +90,7 @@
             android:text="Weekend Call"
             android:id="@+id/weekend_call"
             android:textSize="15sp"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
         <TextView
@@ -99,7 +100,7 @@
             android:textSize="15sp"
             android:text="Price"
             android:gravity="right"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
@@ -117,7 +118,7 @@
             android:text="Same day job (Urgent)"
             android:id="@+id/urgent_job"
             android:textSize="15sp"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
         <TextView
@@ -127,21 +128,19 @@
             android:textSize="15sp"
             android:text="Price"
             android:gravity="right"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnClose"
-        android:layout_width="200dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/priceLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/custom_buttons"
+        android:background="@drawable/ic_close"
         android:enabled="true"
         android:layout_centerHorizontal="true"
-        android:text="Close"
         android:textColor="@color/white" />
 
 

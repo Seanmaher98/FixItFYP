@@ -11,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Prices"
+        android:fontFamily="sans-serif-medium"
         android:id="@+id/product_prices"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:gravity="center"
+        android:layout_below="@id/btnClose"
         android:layout_margin="10dp"/>
 
     <TextView
@@ -152,15 +154,13 @@
 
     <Button
         android:id="@+id/btnClose"
-        android:layout_width="200dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/custom_buttons"
+        android:background="@drawable/ic_close"
         android:enabled="true"
-        android:layout_centerHorizontal="true"
-        android:text="Close"
-        android:textColor="@color/white" />
+        android:backgroundTint="@color/white"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

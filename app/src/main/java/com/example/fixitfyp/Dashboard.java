@@ -8,6 +8,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
 
 public class Dashboard extends AppCompatActivity {
     //Declare Variables
     TextView nameText, emailText, phoneText, jobText;
     ImageView nameImage, emailImage, phoneImage, jobImage;
     ImageView tradeProfileImage;
+    ProgressBar progressJob, progressReview, progressPrice, progressMessage;
     CardView setPriceCard, upcomingJobsCard, messagesCard, reviewsCard;
     Uri imageUri;
     Button btnLogOut;
@@ -72,6 +77,7 @@ public class Dashboard extends AppCompatActivity {
         reviewsCard = findViewById(R.id.trade_reviews);
 
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
+        addExistingPhoto();
 
         //This code reads from our database
         //It reads from the users node of the database and pulls the relevant data to the logged in user
@@ -150,28 +156,19 @@ public class Dashboard extends AppCompatActivity {
     //Currently having issues with images
     private void addExistingPhoto() {
         FirebaseDatabase.getInstance().getReference("Trades")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Images")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Images/imageUrl")
                 .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            //This sets the textViews to the data pulled from firebase
-                            tradeProfileImage.setImageURI(snapshot.child("imageUrl").getValue(Uri.class));
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String link = snapshot.getValue(String.class);
+                Picasso.get().load(link).into(tradeProfileImage);
+            }
 
-                        }
-                        else {
-                            //Used to stopped users who are not registered as trades checking the tradesman check box
-                            Toast.makeText(getApplicationContext(), "No Image found", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
-                            finish();
-                        }
-                    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+            }
+        });
 
     }
 
@@ -204,8 +201,13 @@ public class Dashboard extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Images image = new Images(uri.toString());
-                        String imageId = root.push().getKey();
-                        root.child(uid).child("Images").child(imageId).setValue(image);
+                        //String imageId = root.push().getKey();
+                        root.child(uid).child("Images").setValue(image);
+
+                        HashMap imagesHashMap = new HashMap();
+                        imagesHashMap.put("tradeImage", image.getImageUrl());
+                        root.child(uid).updateChildren(imagesHashMap);
+
                         Toast.makeText(Dashboard.this, "Uploaded Successfully", Toast.LENGTH_LONG).show();
                         tradeProfileImage.setImageURI(imageUri);
                     }

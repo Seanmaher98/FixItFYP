@@ -16,15 +16,24 @@
         android:id="@+id/relativeLayout1"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/user_profile_image_items"
-            android:layout_width="78dp"
-            android:layout_height="96dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="125dp"
+            android:id="@+id/cardviewImage"
+            app:cardCornerRadius="20dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/user_profile_image_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/user_profile_image_items"
+            android:layout_toRightOf="@id/cardviewImage"
             android:id="@+id/product_name"
             android:text="User Name"
             android:textAlignment="center"
@@ -36,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/product_description"
-            android:layout_toRightOf="@id/user_profile_image_items"
+            android:layout_toRightOf="@id/cardviewImage"
             android:text="Job"
             android:textAlignment="center"
             android:layout_below="@id/product_name"

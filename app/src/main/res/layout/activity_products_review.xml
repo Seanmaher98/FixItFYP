@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".TradeReviewActivity">
@@ -16,16 +16,16 @@
         android:background="@drawable/ic_close"
         android:enabled="true"
         android:layout_gravity="center"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/cardview_dark_background"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:text="Your Reviews"
+        android:text="Reviews"
         android:id="@+id/txtReviews"
         android:textFontWeight="@android:integer/config_mediumAnimTime"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="20sp"
         android:padding="12dp"/>
 
@@ -41,7 +41,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="450dp"
-                android:id="@+id/recycler_trade_reviews">
+                android:id="@+id/recycler_product_review">
 
             </androidx.recyclerview.widget.RecyclerView>
 

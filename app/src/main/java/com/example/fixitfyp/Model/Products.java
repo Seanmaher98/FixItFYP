@@ -5,33 +5,33 @@ public class Products{
     //Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
     //It is for this reason that it is labelled products as opposed to trades
     //Used for HomeActivity and UserNavigationActivity
-    private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone, imageUrl;
+    private String tradeName, tradeEmail, tradeId, tradeJob, tradePhone, tradeImage;
 
 
     public Products() {
     }
 
     public Products( String tradeName, String tradeEmail, String tradeId,
-                    String tradeJob, String tradePhone , String imageUrl) {
+                    String tradeJob, String tradePhone , String tradeImage) {
 
         this.tradeName = tradeName;
         this.tradeEmail = tradeEmail;
         this.tradeId = tradeId;
         this.tradeJob = tradeJob;
         this.tradePhone = tradePhone;
-        this.imageUrl = imageUrl;
+        this.tradeImage = tradeImage;
 
 
 
     }
 
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getTradeImage() {
+        return tradeImage;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setTradeImage(String tradeImage) {
+        this.tradeImage = tradeImage;
     }
 
     public String getTradeName() {

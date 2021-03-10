@@ -15,42 +15,28 @@ import com.example.fixitfyp.Model.Reviews;
 import com.example.fixitfyp.ViewHolder.ReviewViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class TradeReviewActivity extends AppCompatActivity {
+public class ProductsReviewActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private Button btnClose;
-
+    private String tradeID = "";
+    private String tradeName = "";
+    private Button closeButton;
+    RecyclerView recyclerView;
     DatabaseReference tradeReviewRef;
-    String uid;
-    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trade_review);
+        setContentView(R.layout.activity_products_review);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        uid = user.getUid();
-        btnClose = findViewById(R.id.btnClose);
+        tradeReviewRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeID).child("Reviews");
 
-        tradeReviewRef = FirebaseDatabase.getInstance().getReference("Trades").child(uid).child("Reviews");
-
-        recyclerView = findViewById(R.id.recycler_trade_reviews);
+        recyclerView = findViewById(R.id.recycler_product_review);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
     }
 
     //This method is adapted from the above mentioned video
@@ -75,7 +61,7 @@ public class TradeReviewActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trade_review_layout, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_review_layout, parent, false);
                         ReviewViewHolder holder = new ReviewViewHolder(view);
                         return holder;
                     }
@@ -85,5 +71,4 @@ public class TradeReviewActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         //END OF YOUTUBE CODE
     }
-
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox tradeCheck;
     FirebaseAuth fAuth;
     TextView tvSignUp;
+    ProgressBar loading;
     String uid;
     FirebaseUser user;
 
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.userEmailLogin);
         mPassword = findViewById(R.id.userPasswordLogin);
         btnLoginUser = findViewById(R.id.buttonUserLogin);
+        loading = findViewById(R.id.loadingBar);
         tradeCheck = findViewById(R.id.checkBoxTrade);
         tvSignUp = findViewById(R.id.textSignUp);
         fAuth = FirebaseAuth.getInstance();
@@ -81,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     return false;
                 } else {
                     mEmail.setError(null);
+                    loading.setVisibility(View.VISIBLE);
                     return true;
                 }
             }
@@ -100,7 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful() && tradeCheck.isChecked()) {
                                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
                                 finish();
-                            } else if (task.isSuccessful() && !tradeCheck.isChecked())
+                            }
+                            else if (task.isSuccessful() && !tradeCheck.isChecked())
                                 startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                             else if (!validateEmail())
                                 Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();

@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Dialogs.DeleteDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -62,7 +62,6 @@ public class CancelBookingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 deleteBooking(bookingID);
-                finish();
             }
         });
         btnClose.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +73,11 @@ public class CancelBookingActivity extends AppCompatActivity {
 
     }
 
+    private void openDialog() {
+        DeleteDialog deleteDialog = new DeleteDialog();
+        deleteDialog.show(getSupportFragmentManager(), "Delete Dialog");
+    }
+
     //This function deletes the selected Booking from the users and trades paths in Firebase
     private void deleteBooking(String bookingID) {
             DatabaseReference drUser = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Bookings").child(bookingID);
@@ -82,6 +86,7 @@ public class CancelBookingActivity extends AppCompatActivity {
             drUser.removeValue();
             drTrade.removeValue();
 
-            Toast.makeText(this, "Booking Deleted", Toast.LENGTH_LONG).show();
+            openDialog();
+
     }
 }
