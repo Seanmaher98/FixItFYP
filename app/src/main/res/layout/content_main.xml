@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
@@ -15,25 +16,34 @@
         android:src="@drawable/project_logo"
         android:background="@color/white" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_below="@id/logo"
-        android:text="Choose a Tradesman:"
-        android:id="@+id/txtChooseTrade"
-        android:textFontWeight="@android:integer/config_mediumAnimTime"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:padding="10dp"/>
-
-
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@id/txtChooseTrade"
-        android:layout_height="500dp"
-        android:id="@+id/recycler_menu"
-        >
+        android:layout_height="match_parent"
+        android:layout_below="@id/logo">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/logo"
+                    android:text="Tradesman"
+                    android:id="@+id/txtChooseTrade"
+                    android:textFontWeight="@android:integer/config_mediumAnimTime"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="20sp"
+                    android:padding="10dp"/>
 
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/txtChooseTrade"
+                    android:layout_height="500dp"
+                    android:id="@+id/recycler_menu">
+
+                </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

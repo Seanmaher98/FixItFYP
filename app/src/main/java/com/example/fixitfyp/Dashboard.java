@@ -4,7 +4,10 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -97,7 +100,7 @@ public class Dashboard extends AppCompatActivity {
                         }
                         else {
                             //Used to stopped users who are not registered as trades checking the tradesman check box
-                            Toast.makeText(getApplicationContext(), "You are not a registered Tradesman", Toast.LENGTH_LONG).show();
+                            showToastIncorrectLogin();
                             startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                             finish();
                         }
@@ -208,7 +211,7 @@ public class Dashboard extends AppCompatActivity {
                         imagesHashMap.put("tradeImage", image.getImageUrl());
                         root.child(uid).updateChildren(imagesHashMap);
 
-                        Toast.makeText(Dashboard.this, "Uploaded Successfully", Toast.LENGTH_LONG).show();
+                        showToastUpload();
                         tradeProfileImage.setImageURI(imageUri);
                     }
                 });
@@ -216,7 +219,7 @@ public class Dashboard extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Dashboard.this, "Image Failed to Upload", Toast.LENGTH_LONG).show();
+                showToastFail();
             }
         });
     }
@@ -227,4 +230,48 @@ public class Dashboard extends AppCompatActivity {
     }
     //END YOUTUBE CODE
 
+    public void showToastUpload() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_message);
+
+        toastText.setText("Upload Successful");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    public void showToastFail() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_message);
+
+        toastText.setText("Oops, it looks like something went wrong, please try again");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    public void showToastIncorrectLogin() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_message);
+
+        toastText.setText("Oops, our records show you are not a tradesman");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
 }

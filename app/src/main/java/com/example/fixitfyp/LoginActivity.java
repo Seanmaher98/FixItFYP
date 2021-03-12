@@ -3,7 +3,10 @@ package com.example.fixitfyp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading.setVisibility(View.VISIBLE);
                 Intent intSignUp = new Intent(LoginActivity.this, SignUp.class);
                 startActivity(intSignUp);
             }
@@ -71,13 +75,13 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordInput = mPassword.getText().toString().trim();
 
                 if (emailInput.isEmpty() && passwordInput.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
+                    showToast();
                     return false;
                 } else if (passwordInput.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Password cannot be empty", Toast.LENGTH_LONG).show();
+                    showToast();
                     return false;
                 } else if (emailInput.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Email cannot be empty", Toast.LENGTH_LONG).show();
+                    showToast();
                     return false;
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
                     mEmail.setError("This email address is not valid");
@@ -108,9 +112,9 @@ public class LoginActivity extends AppCompatActivity {
                             else if (task.isSuccessful() && !tradeCheck.isChecked())
                                 startActivity(new Intent(getApplicationContext(), UserNavigationActivity.class));
                             else if (!validateEmail())
-                                Toast.makeText(LoginActivity.this, "Email Not Valid", Toast.LENGTH_LONG).show();
+                                showToast();
                             else {
-                                Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                                showToast();
                                 mPassword.getText().clear();
                             }
                         }
@@ -119,6 +123,24 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+    public void showToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_message);
+
+        toastText.setText("Hey, Looks like something went wrong, please check details and try again!");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+
+        loading.setVisibility(View.INVISIBLE);
+
     }
 
 }

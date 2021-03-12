@@ -35,7 +35,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
@@ -53,8 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/loading"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:indeterminateTint="@color/white">
     </ProgressBar>
+
     <Button
         android:id="@+id/button_LogIn"
         android:layout_width="match_parent"

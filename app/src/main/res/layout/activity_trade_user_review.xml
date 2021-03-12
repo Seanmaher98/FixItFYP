@@ -47,6 +47,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginLeft="12dp"
         android:padding="5dp"
+        android:imeOptions="actionDone"
         android:hint="Please type your review here..."
         android:inputType="textMultiLine"
         android:textColor="@color/white"

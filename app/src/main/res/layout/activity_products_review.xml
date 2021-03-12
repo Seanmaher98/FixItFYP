@@ -20,14 +20,15 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:id="@+id/txtReviews"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:fontFamily="sans-serif-medium"
+        android:padding="12dp"
         android:text="Reviews"
-        android:id="@+id/txtReviews"
-        android:textFontWeight="@android:integer/config_mediumAnimTime"
         android:textColor="@color/cardview_dark_background"
-        android:textSize="20sp"
-        android:padding="12dp"/>
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"

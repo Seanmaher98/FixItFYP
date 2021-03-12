@@ -3,6 +3,7 @@ package com.example.fixitfyp;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -105,7 +106,7 @@ public class UserNavigationActivity extends AppCompatActivity {
 
                     if(id == R.id.nav_logOut){
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        Toast.makeText(getApplication(),"You are now logged out", Toast.LENGTH_SHORT).show();
+                        showToastLogOut();
                         finish();
                     }
                     else if(id == R.id.nav_bookings){
@@ -165,4 +166,19 @@ public class UserNavigationActivity extends AppCompatActivity {
 
         }
         //END OF YOUTUBE CODE
+
+    public void showToastLogOut() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
+
+        TextView toastText = layout.findViewById(R.id.toast_message);
+
+        toastText.setText("You are logged out!");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
 }

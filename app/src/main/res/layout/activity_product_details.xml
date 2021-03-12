@@ -142,7 +142,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/datePickerButton"
         android:id="@+id/loadingBar"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:indeterminateTint="@color/white">
     </ProgressBar>
 
     <Button

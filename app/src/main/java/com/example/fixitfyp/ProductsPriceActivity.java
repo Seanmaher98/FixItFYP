@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ProductsPriceActivity extends AppCompatActivity {
-    //ToDo Prices still not displaying (User Story 5)
+
     private TextView calloutPrice, consultationPrice, weekendPrice, urgentPrice, tradePriceName;
     private String tradeID = "";
     private String tradeName = "";
