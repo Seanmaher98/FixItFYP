@@ -45,7 +45,7 @@ public class Dashboard extends AppCompatActivity {
     ProgressBar progressJob, progressReview, progressPrice, progressMessage;
     CardView setPriceCard, upcomingJobsCard, messagesCard, reviewsCard;
     Uri imageUri;
-    Button btnLogOut;
+    Button btnLogOut, btnUploadPhotos;
 
     String uid;
     FirebaseUser user;
@@ -73,6 +73,7 @@ public class Dashboard extends AppCompatActivity {
         jobImage = findViewById(R.id.imageViewJob);
 
         btnLogOut = findViewById(R.id.button_LogOut);
+        btnUploadPhotos = findViewById(R.id.button_uploadPics);
 
         setPriceCard = findViewById(R.id.trade_set_prices);
         upcomingJobsCard = findViewById(R.id.trade_upcoming_jobs);
@@ -154,9 +155,14 @@ public class Dashboard extends AppCompatActivity {
                 }
             });
 
+            btnUploadPhotos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(), UploadJobPics.class));
+                }
+            });
+
     }
-    //ToDo needs to add the photo to image view if one is already saved
-    //Currently having issues with images
     private void addExistingPhoto() {
         FirebaseDatabase.getInstance().getReference("Trades")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Images/imageUrl")

@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.fixitfyp.Dialogs.SuccessDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,6 +39,7 @@ public class UserFragment extends Fragment {
     EditText userPhone;
     Button buttonAddUser;
     TextView tvSignIn;
+    ProgressBar progressBar;
 
     FirebaseAuth fAuth;
     DatabaseReference dbRef;
@@ -58,6 +61,7 @@ public class UserFragment extends Fragment {
         userPassword = (EditText) view.findViewById(R.id.editUserPassword);
         userPhone = (EditText) view.findViewById(R.id.editPhoneNumber);
         buttonAddUser = (Button) view.findViewById(R.id.buttonAddUser);
+        progressBar = (ProgressBar) view.findViewById(R.id.loadingBar);
         tvSignIn =(TextView) view.findViewById(R.id.textAlreadyMember);
 
 
@@ -95,9 +99,12 @@ public class UserFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 addUser();
+                                progressBar.setVisibility(view.VISIBLE);
                             }
                             else {
                                 Toast.makeText(getContext(), "It seems you already have an account, log in", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getContext(), LoginActivity.class));
+                                progressBar.setVisibility(view.INVISIBLE);
                             }
                         }
                     });
@@ -108,6 +115,11 @@ public class UserFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void openDialog() {
+        SuccessDialog successDialog = new SuccessDialog();
+        successDialog.show(getChildFragmentManager(), "Success Dialog");
     }
 
     private void addUser(){
@@ -123,15 +135,16 @@ public class UserFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
                     userName.getText().clear();
                     userEmail.getText().clear();
                     userPassword.getText().clear();
                     userPhone.getText().clear();
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    openDialog();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else{
                     Toast.makeText(getContext(), "Details not saved", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

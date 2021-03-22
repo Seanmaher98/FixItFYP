@@ -25,21 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/logo"
-                    android:text="Tradesman"
-                    android:id="@+id/txtChooseTrade"
-                    android:textFontWeight="@android:integer/config_mediumAnimTime"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="20sp"
-                    android:padding="10dp"/>
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_below="@id/txtChooseTrade"
                     android:layout_height="500dp"
                     android:id="@+id/recycler_menu">
 

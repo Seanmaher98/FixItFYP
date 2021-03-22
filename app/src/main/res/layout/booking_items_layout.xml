@@ -16,15 +16,27 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_BookingDate"
+            android:text="Date"
+            android:padding="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18dp"
+            android:gravity="left"
+            android:textColor="@color/cardview_dark_background"/>
+
+        <TextView
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/user_BookingDate"
             android:fontFamily="sans-serif-medium"
             android:gravity="left"
             android:padding="6dp"
             android:text="User Name"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20dp" />
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -32,25 +44,16 @@
             android:id="@+id/user_email"
             android:text="User email"
             android:layout_below="@id/user_name"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:padding="6dp"
             android:gravity="left"
             android:textColor="@color/cardview_dark_background"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user_BookingDate"
-            android:layout_below="@id/user_email"
-            android:text="Date"
-            android:padding="6dp"
-            android:textSize="14dp"
-            android:gravity="left"
-            android:textColor="@color/cardview_dark_background"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/user_id"
-            android:layout_below="@id/user_BookingDate"
+            android:layout_below="@id/user_email"
             android:padding="6dp"
             android:textSize="8dp"
             android:gravity="left"

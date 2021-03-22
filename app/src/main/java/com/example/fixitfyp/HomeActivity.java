@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                         //sets the text views on my card view to data from firebase
                         productViewHolder.txtProductName.setText(products.getTradeName());
                         productViewHolder.txtProductDescription.setText(products.getTradeJob());
+                        productViewHolder.txtProductLocation.setText(products.getTradeCounty());
                         Picasso.get().load(products.getTradeImage()).into(productViewHolder.imgProduct);
                     }
                     @NonNull

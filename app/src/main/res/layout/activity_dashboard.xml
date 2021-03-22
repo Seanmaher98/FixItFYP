@@ -26,15 +26,6 @@
 
         </androidx.cardview.widget.CardView>
 
-        <RelativeLayout
-
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="28dp"
@@ -268,6 +259,15 @@
             </androidx.cardview.widget.CardView>
 
         </GridLayout>
+
+        <Button
+            android:id="@+id/button_uploadPics"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Upload Photos"
+            android:background="@drawable/custom_buttons"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
 
         <Button
             android:id="@+id/button_LogOut"

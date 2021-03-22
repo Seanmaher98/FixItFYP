@@ -14,7 +14,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     //Used as a placeholder for the data that will be pulled from firebase
     //Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe, https://youtu.be/745ElNRjJew
     //The view holders allow the data to be repeated in the cardview/recyclerview
-    public TextView txtProductName, txtProductDescription;
+    public TextView txtProductName, txtProductDescription, txtProductLocation;
     public ImageView imgProduct;
 
     public ItemClickListener listener;
@@ -25,6 +25,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtProductName = (TextView) itemView.findViewById(R.id.product_name);
         txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
         imgProduct = (ImageView) itemView.findViewById(R.id.user_profile_image_items);
+        txtProductLocation = (TextView) itemView.findViewById(R.id.product_county);
     }
 
     public void setItemClickListener(ItemClickListener listener){

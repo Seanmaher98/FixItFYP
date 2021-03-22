@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/background2">
+    android:background="@color/white">
+
 
     <LinearLayout
         android:id="@+id/user_login_layout"
@@ -18,9 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="25dp" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="405dp"
+            android:layout_height="115dp"
+            android:paddingTop="16dp"
+            android:src="@drawable/project_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".29"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
 
         <EditText
             android:id="@+id/userEmailLogin"
@@ -71,7 +81,7 @@
 
         <CheckBox
             android:id="@+id/checkBoxTrade"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"
@@ -84,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            android:indeterminateTint="@color/white"/>
+            android:indeterminateTint="@color/cardview_dark_background"/>
 
         <Button
             android:id="@+id/buttonUserLogin"
@@ -105,7 +115,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="Not a member? Click here to sign up"
-            android:textColor="@color/white"
+            android:textColor="@color/cardview_dark_background"
             android:gravity="center"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

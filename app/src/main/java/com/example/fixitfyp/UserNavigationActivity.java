@@ -23,9 +23,7 @@ import com.example.fixitfyp.Model.Products;
 import com.example.fixitfyp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +41,6 @@ public class UserNavigationActivity extends AppCompatActivity {
     DatabaseReference ProductsRef;
     DatabaseReference ImageRef;
     DatabaseReference UserRef;
-    String userName;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -62,15 +59,7 @@ public class UserNavigationActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.user_profile_name);
-        //Default when creating UserNavigation Activity
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "You have no messages", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         //Default when creating UserNavigation Activity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -112,8 +101,10 @@ public class UserNavigationActivity extends AppCompatActivity {
                     else if(id == R.id.nav_bookings){
                         startActivity(new Intent(getApplicationContext(), UserBookings.class));
                     }
+                    else if(id == R.id.nav_account){
+                        startActivity(new Intent(getApplicationContext(), MyAccount.class));
+                    }
                     return true;
-
             }
         });
 
@@ -138,6 +129,7 @@ public class UserNavigationActivity extends AppCompatActivity {
                         protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
                             productViewHolder.txtProductName.setText(products.getTradeName());
                             productViewHolder.txtProductDescription.setText(products.getTradeJob());
+                            productViewHolder.txtProductLocation.setText(products.getTradeCounty());
                             Picasso.get().load(products.getTradeImage()).into(productViewHolder.imgProduct);
 
 

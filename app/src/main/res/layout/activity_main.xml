@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="255dp"
-            android:layout_height="309dp"
+            android:layout_width="205dp"
+            android:layout_height="205dp"
             android:src="@drawable/project_logo" />
 
 
@@ -35,7 +35,8 @@
         android:id="@+id/logo_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:indeterminateTint="@color/white">
     </ProgressBar>
 
 

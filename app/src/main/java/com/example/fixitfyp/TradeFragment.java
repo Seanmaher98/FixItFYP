@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.fixitfyp.Dialogs.SuccessDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,8 +40,10 @@ public class TradeFragment extends Fragment {
     EditText tradePhone;
     Button buttonAdd;
     Spinner tradejobSpinner;
+    Spinner tradejobCounty;
     TextView tvSignIn2;
     Trades trade;
+    ProgressBar progressBar;
 
     FirebaseAuth fAuth;
     DatabaseReference dbTradeRef;
@@ -60,7 +64,9 @@ public class TradeFragment extends Fragment {
         tradePassword = (EditText) view.findViewById(R.id.editTradePassword);
         tradePhone = (EditText) view.findViewById(R.id.editTradePhone);
         tradejobSpinner = (Spinner) view.findViewById(R.id.spinnerJobs);
+        tradejobCounty = (Spinner) view.findViewById(R.id.spinnerCounty);
         buttonAdd = (Button) view.findViewById(R.id.buttonAddTrade);
+        progressBar = (ProgressBar) view.findViewById(R.id.loadingBar);
         tvSignIn2 =(TextView) view.findViewById(R.id.textAlreadyMember2);
         trade = new Trades();
 
@@ -98,9 +104,12 @@ public class TradeFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                  addTrade();
+                                 progressBar.setVisibility(view.VISIBLE);
                                 }
                                 else {
                                     Toast.makeText(getContext(), "It seems like you already have an account, please log in", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getContext(), LoginActivity.class));
+                                    progressBar.setVisibility(view.INVISIBLE);
                                 }
                             }
                         });
@@ -108,6 +117,11 @@ public class TradeFragment extends Fragment {
                 }
             });
         return view;
+    }
+
+    private void openDialog() {
+        SuccessDialog successDialog = new SuccessDialog();
+        successDialog.show(getChildFragmentManager(), "Success Dialog");
     }
 
     private void addTrade(){
@@ -122,19 +136,21 @@ public class TradeFragment extends Fragment {
         hashMapTrade.put("tradePhone", tradePhone.getText().toString());
         hashMapTrade.put("tradePrices", null);
         hashMapTrade.put("tradeJob", tradejobSpinner.getSelectedItem().toString());
+        hashMapTrade.put("tradeCounty", tradejobCounty.getSelectedItem().toString());
         dbTradeRef.setValue(hashMapTrade).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "Congratulations you are now a member", Toast.LENGTH_SHORT).show();
                     tradeName.getText().clear();
                     tradeEmail.getText().clear();
                     tradePassword.getText().clear();
                     tradePhone.getText().clear();
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    openDialog();
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     //An error handling message as our function is working properly
                     Toast.makeText(getContext(), "Details not saved", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

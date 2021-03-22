@@ -58,6 +58,7 @@
                 android:cursorVisible="true"
                 android:ems="10"
                 android:hint="Company Name"
+                android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:textAlignment="gravity"
                 android:textCursorDrawable="@color/teal_200"
@@ -79,6 +80,7 @@
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
+                android:imeOptions="actionNext"
                 android:hint="E-mail"
                 android:inputType="textEmailAddress"
                 android:textAlignment="gravity"
@@ -98,6 +100,7 @@
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
+                android:imeOptions="actionNext"
                 android:hint="Create Password"
                 android:inputType="textPassword"
                 android:textAlignment="gravity"
@@ -117,6 +120,7 @@
                 android:background="@drawable/edit_text"
                 android:cursorVisible="true"
                 android:ems="10"
+                android:imeOptions="actionDone"
                 android:hint="Phone Number"
                 android:inputType="phone"
                 android:textCursorDrawable="@color/teal_200"
@@ -127,6 +131,20 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="248dp"
+                android:layout_height="20dp"
+                android:text="What county are you based in?"
+                android:textSize="10dp"
+                android:textColor="@color/black"/>
+
+            <Spinner
+                android:id="@+id/spinnerCounty"
+                android:layout_width="248dp"
+                android:layout_height="47dp"
+                android:entries="@array/County"
+                android:background="@drawable/edit_text" />
 
             <TextView
                 android:layout_width="248dp"
@@ -158,17 +176,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/trade_scroll"/>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
+            <ProgressBar
+                android:id="@+id/loadingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/black"/>
 
             <TextView
                 android:id="@+id/textAlreadyMember2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:textSize="18dp"
                 android:text="Already a member? Sign In here"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editPhoneNumber"

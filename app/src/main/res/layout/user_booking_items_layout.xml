@@ -19,11 +19,10 @@
             android:id="@+id/trade_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-black"
             android:gravity="left"
             android:padding="10dp"
             android:text="Trade Name"
-
             android:textColor="@color/cardview_dark_background"
             android:textSize="14sp" />
 
@@ -69,7 +68,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:layout_below="@id/trade_name"
-        android:text="View"
+        android:text="Options"
         android:textColor="@color/white"
         android:background="@drawable/button_date"
         android:layout_centerHorizontal="true"/>

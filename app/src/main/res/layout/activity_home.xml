@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".HomeActivity">
@@ -15,20 +15,23 @@
         android:src="@drawable/project_logo"
         android:background="@color/white" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Log In to view Tradesmen details"
-        android:id="@+id/txtChooseTrade"
-        android:textFontWeight="@android:integer/config_mediumAnimTime"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:textSize="14sp"
-        android:padding="10dp"/>
+    <Button
+        android:id="@+id/button_LogIn"
+        android:layout_marginTop="5dp"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_centerHorizontal="true"
+        android:text="Log in here to view details !"
+        android:layout_below="@id/logo"
+        android:background="@drawable/custom_buttons"
+        android:textColor="@color/white" />
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/button_LogIn">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,48 +40,26 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="500dp"
                 android:id="@+id/recycler_menu"
-                android:clickable="true">
+                android:clickable="true"
+                android:focusable="true">
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/recycler_menu"
+                android:id="@+id/loading"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:indeterminateTint="@color/cardview_dark_background">
+            </ProgressBar>
         </LinearLayout>
 
     </ScrollView>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/loading"
-        android:visibility="invisible"
-        android:indeterminateTint="@color/white">
-    </ProgressBar>
 
-    <Button
-        android:id="@+id/button_LogIn"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Log In"
-        android:background="@drawable/custom_buttons"
-        android:textColor="@color/white"
-        android:textSize="18dp"/>
-
-
-
-    <!--<com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:id="@+id/bottombar"
-        app:menu="@menu/bottommenu"
-        app:itemTextColor="@android:color/white"
-        app:itemIconTint="@android:color/white"
-        android:background="@color/bottombar"
-        android:layout_height="60dp">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

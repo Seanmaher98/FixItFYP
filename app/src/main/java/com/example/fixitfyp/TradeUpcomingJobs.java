@@ -71,9 +71,9 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Bookings, UserViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int i, @NonNull Bookings bookings) {
-                        userViewHolder.txtUserName.setText(bookings.getUserName());
-                        userViewHolder.txtUserEmail.setText(bookings.getUserEmail());
-                        userViewHolder.txtUserBookingDate.setText(bookings.getBookingDate());
+                        userViewHolder.txtUserName.setText("Name" + bookings.getUserName());
+                        userViewHolder.txtUserEmail.setText("Contact:" + bookings.getUserEmail());
+                        userViewHolder.txtUserBookingDate.setText("Date:" + bookings.getBookingDate());
                         userViewHolder.txtUserId.setText(bookings.getUserId());
 
                         userViewHolder.btnReview.setOnClickListener(new View.OnClickListener() {
