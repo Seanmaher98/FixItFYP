@@ -20,11 +20,22 @@
         android:layout_margin="10dp">
     </TextView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tradePriceName"
+        android:text="Note: These prices are just standard prices. To get a specific price you can message the tradesman"
+        android:id="@+id/messageView"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_margin="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/priceLayout"
-        android:layout_below="@id/tradePriceName"
+        android:layout_below="@id/messageView"
         android:orientation="horizontal">
 
         <TextView
@@ -132,6 +143,8 @@
             android:layout_margin="10dp">
         </TextView>
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/btnClose"

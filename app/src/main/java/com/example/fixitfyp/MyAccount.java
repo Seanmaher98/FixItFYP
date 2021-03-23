@@ -125,7 +125,6 @@ public class MyAccount extends AppCompatActivity {
 
     }
 
-
     //Upload Image To Firebase Storage And add URL to Realtime Database 2020 - Coding Stuff - https://youtu.be/9-oa4OS7lUQ
     //START YOUTUBE CODE
     private void choosePicture() {

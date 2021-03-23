@@ -159,9 +159,9 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
                 android:clickable="true"
-                android:id="@+id/trade_messages"
+                android:id="@+id/trade_reviews"
+                app:cardCornerRadius="12dp"
                 app:cardElevation="6dp">
 
                 <LinearLayout
@@ -174,19 +174,20 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/icon_message" />
+                        android:src="@drawable/ic_reviews" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Messages"
+                        android:text="Reviews"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -230,7 +231,7 @@
                 android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 android:clickable="true"
-                android:id="@+id/trade_reviews"
+                android:id="@+id/trade_logOut"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp">
 
@@ -244,13 +245,13 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_reviews" />
+                        android:src="@drawable/ic_exit" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Reviews"
+                        android:text="Log Out"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -259,24 +260,6 @@
             </androidx.cardview.widget.CardView>
 
         </GridLayout>
-
-        <Button
-            android:id="@+id/button_uploadPics"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Upload Photos"
-            android:background="@drawable/custom_buttons"
-            android:textColor="@color/white"
-            android:textSize="18dp"/>
-
-        <Button
-            android:id="@+id/button_LogOut"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Log Out"
-            android:background="@drawable/custom_buttons"
-            android:textColor="@color/white"
-            android:textSize="18dp"/>
 
     </LinearLayout>
 

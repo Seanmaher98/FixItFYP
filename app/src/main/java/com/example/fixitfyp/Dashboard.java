@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,10 +41,9 @@ public class Dashboard extends AppCompatActivity {
     TextView nameText, emailText, phoneText, jobText;
     ImageView nameImage, emailImage, phoneImage, jobImage;
     ImageView tradeProfileImage;
-    ProgressBar progressJob, progressReview, progressPrice, progressMessage;
-    CardView setPriceCard, upcomingJobsCard, messagesCard, reviewsCard;
+    CardView setPriceCard, upcomingJobsCard, logOutCard, reviewsCard;
     Uri imageUri;
-    Button btnLogOut, btnUploadPhotos;
+    Button btnLogOut;
 
     String uid;
     FirebaseUser user;
@@ -72,12 +70,9 @@ public class Dashboard extends AppCompatActivity {
         phoneImage = findViewById(R.id.imageViewPhone);
         jobImage = findViewById(R.id.imageViewJob);
 
-        btnLogOut = findViewById(R.id.button_LogOut);
-        btnUploadPhotos = findViewById(R.id.button_uploadPics);
-
         setPriceCard = findViewById(R.id.trade_set_prices);
         upcomingJobsCard = findViewById(R.id.trade_upcoming_jobs);
-        messagesCard = findViewById(R.id.trade_messages);
+        logOutCard = findViewById(R.id.trade_logOut);
         reviewsCard = findViewById(R.id.trade_reviews);
 
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
@@ -112,7 +107,7 @@ public class Dashboard extends AppCompatActivity {
                 });
 
 
-            btnLogOut.setOnClickListener(new View.OnClickListener() {
+            logOutCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
@@ -141,13 +136,6 @@ public class Dashboard extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), TradeUpcomingJobs.class));
                 }
             });
-            messagesCard.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Messages not possible yet so cant implement this on click
-                    Toast.makeText(Dashboard.this, "You have no messages", Toast.LENGTH_LONG).show();
-                }
-            });
             reviewsCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -155,12 +143,6 @@ public class Dashboard extends AppCompatActivity {
                 }
             });
 
-            btnUploadPhotos.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(getApplicationContext(), UploadJobPics.class));
-                }
-            });
 
     }
     private void addExistingPhoto() {

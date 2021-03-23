@@ -14,7 +14,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     //Similar to ProductViewHolder except is used in displaying bookings to tradesman in Upcoming Jobs section
     //The view holders allow the data to be repeated in the cardview/recyclerview
     public TextView txtUserId, txtUserName ,txtUserEmail, txtUserBookingDate;
-    public Button btnReview;
+    public Button btnReview, btnMessageClient;
     public ItemClickListener listener;
 
     public UserViewHolder(@NonNull View itemView) {
@@ -24,6 +24,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         txtUserEmail = (TextView) itemView.findViewById(R.id.user_email);
         txtUserBookingDate = (TextView) itemView.findViewById(R.id.user_BookingDate);
         btnReview = (Button) itemView.findViewById(R.id.btnReviewClient);
+        btnMessageClient = (Button) itemView.findViewById(R.id.btnMessageClient);
     }
 
     public void setItemClickListener(ItemClickListener listener){

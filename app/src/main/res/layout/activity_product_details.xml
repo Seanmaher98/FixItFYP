@@ -167,14 +167,11 @@
         android:enabled="true"
         android:layout_centerHorizontal="true" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:layout_margin="20dp"
-        android:layout_toRightOf="@id/btnClose"
-        android:background="@color/cardview_dark_background"
-        android:src="@drawable/ic_email_logo_white" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="130dp"
+        android:layout_below="@id/btnBook"
+        android:src="@drawable/backgroundsample"/>
 
 </RelativeLayout>

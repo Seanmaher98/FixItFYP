@@ -19,7 +19,6 @@ import com.example.fixitfyp.Dialogs.ExampleDialog;
 import com.example.fixitfyp.Model.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +41,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button closeButton, dateButton;
     private Button viewPriceButton, viewReviewsButton;
     private ImageView tradeProfileImage;
-    private TextView name, job, email, phone, userName, messageText;
+    private TextView name, job, email, phone, userName;
     private DatePickerDialog datePickerDialog;
     ProgressBar loading;
     //private EditText date_in, time_in;
@@ -72,7 +71,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         job = (TextView) findViewById(R.id.product_details_job);
         phone = (TextView) findViewById(R.id.product_details_phone);
         userName = (TextView) findViewById(R.id.loggedinUser);
-        messageText = (TextView) findViewById(R.id.message_text);
+        //messageText = (TextView) findViewById(R.id.message_text);
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
         loading = findViewById(R.id.loadingBar);
 
@@ -83,15 +82,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         getTradeDetails(tradeID);
         getTradeImage();
         initDatePicker();
-
-        //Default when creating UserNavigation Activity
-        FloatingActionButton fab = findViewById(R.id.fabMessage);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMessageDialog();
-            }
-        });
 
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())

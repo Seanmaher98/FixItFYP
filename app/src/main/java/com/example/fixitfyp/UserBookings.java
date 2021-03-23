@@ -70,7 +70,7 @@ public class UserBookings extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<BookingsUsers, UserBookingViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull UserBookingViewHolder userBookingViewHolder, int i, @NonNull BookingsUsers bookingsUsers) {
-                        userBookingViewHolder.txtTradeName.setText("Tradesman: " + bookingsUsers.getTradeName());
+                        userBookingViewHolder.txtTradeName.setText(bookingsUsers.getTradeName());
                         userBookingViewHolder.txtDate.setText("Booking Date: " + bookingsUsers.getBookingDate());
                         userBookingViewHolder.txtBookingId.setText(bookingsUsers.getBookingId());
                         userBookingViewHolder.txtTradeId.setText(bookingsUsers.getTradeId());

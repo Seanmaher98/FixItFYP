@@ -20,7 +20,7 @@ public class ExampleDialog extends AppCompatDialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        getActivity().finish();
                     }
                 });
         return builder.create();

@@ -85,6 +85,15 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+                        userViewHolder.btnMessageClient.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(TradeUpcomingJobs.this, TradeMessages.class);
+                                intent.putExtra("userName", bookings.getUserName());
+                                intent.putExtra("userId", bookings.getUserId());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull

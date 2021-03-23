@@ -63,12 +63,23 @@
     </RelativeLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:id="@+id/btnReviewClient"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="right"
-        android:layout_below="@id/trade_name"
+        android:layout_below="@id/user_BookingDate"
         android:text="Review Client"
+        android:textColor="@color/white"
+        android:background="@drawable/button_date"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:id="@+id/btnMessageClient"
+        android:layout_height="50dp"
+        android:layout_gravity="right|bottom"
+        android:layout_below="@id/btnReviewClient"
+        android:text="Message Client"
         android:textColor="@color/white"
         android:background="@drawable/button_date"
         android:layout_centerHorizontal="true"/>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".TradeMessages">
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_close"
+        android:enabled="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:layout_below="@id/btnClose"
+        android:id="@+id/txtMessageName"
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:textColor="@color/cardview_dark_background"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll_messages"
+        android:layout_below="@+id/txtMessageName">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="10dp"
+            android:id="@+id/recycler_messages"
+            android:clickable="true"
+            android:focusable="true">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <EditText
+            android:id="@+id/editTextLeaveMessage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/review_style"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:padding="5dp"
+            android:hint="Please type your Message here..."
+            android:textColor="@color/white"
+            android:textColorHighlight="#FAF9F9"
+            android:textColorHint="#F8F5F5"
+            android:textColorLink="#FBFBFB"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_marginTop="12dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_enabled"
+            android:text="Send"
+            android:id="@+id/btnSaveMessage"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center">
+        </Button>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

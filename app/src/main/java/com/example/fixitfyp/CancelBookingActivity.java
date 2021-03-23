@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CancelBookingActivity extends AppCompatActivity {
     //This Activity appears when cancel button is clicked on my user in "My Bookings" (UserBookingsActivity)
-    private Button btnDelete, btnClose, btnReview;
+    private Button btnDelete, btnClose, btnReview, btnMessage;
     private TextView txtCurrentView;
     private String tradeID = "";
     private String bookingID = "";
@@ -33,6 +33,7 @@ public class CancelBookingActivity extends AppCompatActivity {
         btnReview = findViewById(R.id.button_review);
         btnDelete = findViewById(R.id.button_Delete);
         btnClose = findViewById(R.id.btnClose);
+        btnMessage = findViewById(R.id.button_message);
         txtCurrentView = findViewById(R.id.current_view);
         //Allows the tradeID and bookingID from UserBookings to be reused here
         //This is necessary to get the path for deletion in Firebase
@@ -71,6 +72,15 @@ public class CancelBookingActivity extends AppCompatActivity {
             }
         });
 
+        btnMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CancelBookingActivity.this, UserMessages.class);
+                intent.putExtra("tradeId", tradeID);
+                intent.putExtra("tradeName", tradeName);
+                startActivity(intent);
+            }
+        });
     }
 
     private void openDialog() {
