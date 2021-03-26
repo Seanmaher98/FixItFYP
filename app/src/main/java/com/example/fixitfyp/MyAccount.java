@@ -64,6 +64,7 @@ public class MyAccount extends AppCompatActivity {
 
         addExistingPhoto();
 
+
         //Adapted from the Dashboard Activity this code displays the logged in users username
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
@@ -119,7 +120,6 @@ public class MyAccount extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 

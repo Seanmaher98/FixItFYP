@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fixitfyp.Dialogs.PricesDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,8 +81,7 @@ public class TradesPricesActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(TradesPricesActivity.this, "Prices have been added", Toast.LENGTH_SHORT).show();
-                    finish();
+                    openDialog();
                 } else {
                     //An error handling message as our function is working properly
                     Toast.makeText(TradesPricesActivity.this, "Prices not saved", Toast.LENGTH_LONG).show();
@@ -89,6 +89,10 @@ public class TradesPricesActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void openDialog() {
+        PricesDialog pricesDialog = new PricesDialog();
+        pricesDialog.show(getSupportFragmentManager(), "Prices Dialog");
     }
 }
 

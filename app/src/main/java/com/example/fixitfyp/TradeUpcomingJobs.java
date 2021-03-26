@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixitfyp.Dialogs.DeleteDialogJob;
 import com.example.fixitfyp.Model.Bookings;
 import com.example.fixitfyp.ViewHolder.UserViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -71,9 +72,9 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Bookings, UserViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int i, @NonNull Bookings bookings) {
-                        userViewHolder.txtUserName.setText("Name" + bookings.getUserName());
-                        userViewHolder.txtUserEmail.setText("Contact:" + bookings.getUserEmail());
-                        userViewHolder.txtUserBookingDate.setText("Date:" + bookings.getBookingDate());
+                        userViewHolder.txtUserName.setText("Name: " + bookings.getUserName());
+                        userViewHolder.txtUserEmail.setText("Contact: " + bookings.getUserEmail());
+                        userViewHolder.txtUserBookingDate.setText("Date: " + bookings.getBookingDate());
                         userViewHolder.txtUserId.setText(bookings.getUserId());
 
                         userViewHolder.btnReview.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +95,32 @@ public class TradeUpcomingJobs extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+
+                        userViewHolder.btnAccept.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                userViewHolder.btnAccept.setVisibility(View.INVISIBLE);
+                                userViewHolder.btnReject.setVisibility(View.INVISIBLE);
+                            }
+                        });
+
+                        userViewHolder.btnReject.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String userId = bookings.getUserId();
+                                String bookingID = bookings.getBookingId();
+                                DatabaseReference drUser = FirebaseDatabase.getInstance().getReference("Users").
+                                        child(userId).child("Bookings").child(bookingID);
+                                DatabaseReference drTrade = FirebaseDatabase.getInstance().getReference("Trades").
+                                        child(uid).child("Bookings").child(bookingID);
+
+                                drUser.removeValue();
+                                drTrade.removeValue();
+
+                                openDialog();
+
+                            }
+                        });
                     }
 
                     @NonNull
@@ -109,4 +136,10 @@ public class TradeUpcomingJobs extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         //END OF YOUTUBE CODE
     }
+
+    private void openDialog() {
+        DeleteDialogJob deleteDialogJob = new DeleteDialogJob();
+        deleteDialogJob.show(getSupportFragmentManager(), "Delete Dialog");
+    }
+
 }

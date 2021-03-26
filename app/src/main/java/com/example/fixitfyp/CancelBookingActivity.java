@@ -90,8 +90,10 @@ public class CancelBookingActivity extends AppCompatActivity {
 
     //This function deletes the selected Booking from the users and trades paths in Firebase
     private void deleteBooking(String bookingID) {
-            DatabaseReference drUser = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Bookings").child(bookingID);
-            DatabaseReference drTrade = FirebaseDatabase.getInstance().getReference("Trades").child(tradeID).child("Bookings").child(bookingID);
+            DatabaseReference drUser = FirebaseDatabase.getInstance().getReference("Users").
+                    child(uid).child("Bookings").child(bookingID);
+            DatabaseReference drTrade = FirebaseDatabase.getInstance().getReference("Trades").
+                    child(tradeID).child("Bookings").child(bookingID);
 
             drUser.removeValue();
             drTrade.removeValue();

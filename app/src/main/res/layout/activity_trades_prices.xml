@@ -7,6 +7,7 @@
     android:background="@color/cardview_dark_background"
     tools:context=".TradesPricesActivity">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,15 +31,9 @@
         android:gravity="center"
         android:layout_margin="10dp"/>
 
-    <LinearLayout
-        android:id="@+id/priceLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/messageView"
-        android:orientation="horizontal">
-
         <TextView
             android:id="@+id/callout"
+            android:layout_below="@id/messageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -49,26 +44,19 @@
         <EditText
             android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:layout_below="@id/messageView"
+            android:layout_toRightOf="@id/btnSave"
             android:id="@+id/set_callout_price"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:inputType="number"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/priceLayout"
-        android:id="@+id/priceLayout2"
-        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone Consultation"
+            android:layout_below="@id/callout"
             android:id="@+id/phone_consultation"
             android:textSize="15sp"
             android:textColor="@color/white"
@@ -77,25 +65,18 @@
         <EditText
             android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:layout_below="@id/callout"
+            android:layout_toRightOf="@id/btnSave"
             android:id="@+id/set_consultation_price"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:inputType="number"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"/>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/priceLayout2"
-        android:id="@+id/priceLayout3"
-        android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/phone_consultation"
             android:text="Weekend Call-Out"
             android:id="@+id/weekend_call"
             android:textSize="15sp"
@@ -105,24 +86,18 @@
         <EditText
             android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:layout_below="@id/phone_consultation"
+            android:layout_toRightOf="@id/btnSave"
             android:id="@+id/set_weekendCall"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:inputType="number"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/priceLayout3"
-        android:id="@+id/priceLayout4"
-        android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/weekend_call"
             android:text="Same Day Job (Urgent)"
             android:id="@+id/sameday_job"
             android:textSize="15sp"
@@ -131,22 +106,25 @@
         </TextView>
         <EditText
             android:layout_width="75dp"
+            android:layout_below="@id/weekend_call"
+            android:layout_toRightOf="@id/btnSave"
             android:layout_height="wrap_content"
             android:id="@+id/set_sameday_price"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:inputType="number"
             android:background="@drawable/edit_text"
             android:backgroundTint="@color/white"/>
 
-    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="200dp"
         android:layout_height="47dp"
-        android:layout_below="@id/priceLayout4"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_buttons"
+        android:layout_below="@id/sameday_job"
         android:enabled="true"
         android:layout_centerHorizontal="true"
         android:text="Save"

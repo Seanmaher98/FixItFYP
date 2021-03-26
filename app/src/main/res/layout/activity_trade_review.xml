@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@drawable/background_universal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".TradeReviewActivity">
@@ -16,7 +16,7 @@
         android:background="@drawable/ic_close"
         android:enabled="true"
         android:layout_gravity="center"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/cardview_dark_background"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -26,7 +26,10 @@
         android:id="@+id/txtReviews"
         android:textFontWeight="@android:integer/config_mediumAnimTime"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:background="@drawable/edit_text"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:textSize="22sp"
         android:padding="12dp"/>
 
     <ScrollView
