@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.fixitfyp.Dialogs.ErrorDialog;
 import com.example.fixitfyp.Model.Images;
@@ -39,7 +38,6 @@ import java.util.Objects;
 
 public class MyAccount extends AppCompatActivity {
 
-    AppBarConfiguration mAppBarConfiguration;
     TextView viewPhone, viewEmail;
     ImageView viewImage;
     TextView userName;

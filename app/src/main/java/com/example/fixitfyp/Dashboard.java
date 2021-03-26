@@ -218,6 +218,7 @@ public class Dashboard extends AppCompatActivity {
     }
     //END YOUTUBE CODE
 
+    //The code below makes my toast error messages more aesthetically pleasing
     public void showToastUpload() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));

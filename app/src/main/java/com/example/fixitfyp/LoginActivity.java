@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
-        //Paper.init(this);
 
         //This text view allows users who are not registered to navigate to the sign-up class
         tvSignUp.setOnClickListener(new View.OnClickListener() {

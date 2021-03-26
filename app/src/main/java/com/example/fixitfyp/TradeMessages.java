@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +39,6 @@ public class TradeMessages extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String userId = "";
     private Button btnSave, btnClose;
-    private CardView cdMessage;
     String uid;
     String tradeEmail;
     FirebaseUser user;
@@ -57,7 +55,6 @@ public class TradeMessages extends AppCompatActivity {
         txtMessageName = (TextView) findViewById(R.id.txtMessageName);
         btnSave = (Button) findViewById(R.id.btnSaveMessage);
         btnClose = (Button) findViewById(R.id.btnClose);
-        cdMessage = (CardView) findViewById(R.id.cardviewMessage);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         tradeEmail = user.getEmail();

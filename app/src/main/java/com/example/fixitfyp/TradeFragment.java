@@ -158,23 +158,23 @@ public class TradeFragment extends Fragment {
     }
 
 
-            //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
-            //making email be valid email
-                private boolean validateEmail() {
-                    String emailInput = tradeEmail.getText().toString().trim();
+    //Youtube - Validate Email & Password with Regular Expression - Android Studio Tutorial (https://youtu.be/cnD_7qFeZcY)
+    //making email be valid email
+    private boolean validateEmail() {
+        String emailInput = tradeEmail.getText().toString().trim();
 
-                    if (emailInput.isEmpty()) {
-                        tradeEmail.setError("This Field can't be empty");
-                        return false;
-                    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-                        tradeEmail.setError("This email address is not valid");
-                        return false;
-                    } else {
-                        tradeEmail.setError(null);
-                        return true;
-                    }
-                }
-                //END OF CODE YOUTUBE
+        if (emailInput.isEmpty()) {
+            tradeEmail.setError("This Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            tradeEmail.setError("This email address is not valid");
+            return false;
+        } else {
+            tradeEmail.setError(null);
+            return true;
+        }
+    }
+    //END OF CODE YOUTUBE
 }
 
 

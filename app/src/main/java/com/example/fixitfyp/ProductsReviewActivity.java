@@ -55,8 +55,6 @@ public class ProductsReviewActivity extends AppCompatActivity {
         });
     }
 
-
-
     //This method is adapted from the above mentioned video
     //(https://youtu.be/745ElNRjJew) Displaying Products on Home Activity using Firebase RecyclerView Android Studio, by coding cafe
     //START OF YOUTUBE CODE

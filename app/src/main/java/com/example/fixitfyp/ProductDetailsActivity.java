@@ -44,7 +44,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView name, job, email, phone, userName;
     private DatePickerDialog datePickerDialog;
     ProgressBar loading;
-    //private EditText date_in, time_in;
     private String tradeID = "";
     String uid;
     FirebaseUser user;
@@ -71,14 +70,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         job = (TextView) findViewById(R.id.product_details_job);
         phone = (TextView) findViewById(R.id.product_details_phone);
         userName = (TextView) findViewById(R.id.loggedinUser);
-        //messageText = (TextView) findViewById(R.id.message_text);
         tradeProfileImage = (ImageView) findViewById(R.id.trade_profile_image);
         loading = findViewById(R.id.loadingBar);
 
         imageRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeID).child("Images");
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
-        //viewPriceButton = (Button) findViewById(R.id.Prices);
+
         getTradeDetails(tradeID);
         getTradeImage();
         initDatePicker();
@@ -90,7 +88,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             Users users = snapshot.getValue(Users.class);
-                            //This sets the textviews to the data pulled from firebase
+                            //This sets the text views to the data pulled from firebase
                             userName.setText(users.getUserName());
                         }
                         else {
@@ -103,11 +101,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                     }
                 });
-    }
-
-    private void showMessageDialog() {
-       
-
     }
 
     private void getTradeImage() {
@@ -255,8 +248,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         exampleDialog.show(getSupportFragmentManager(), "Booking Dialog");
     }
 
-    //This code adds the booking to the database
-        //It uses 2 hashmaps, 1 to send details to Trades and 1 to send to Users
+        //This code adds the booking to the database
+        //It uses 2 hash maps, 1 to send details to Trades and 1 to send to Users
         private void addingToUserTradeBookingList() {
             loading.setVisibility(View.VISIBLE);
             String saveCurrentTime, saveCurrentDate;

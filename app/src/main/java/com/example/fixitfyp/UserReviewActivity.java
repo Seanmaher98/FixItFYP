@@ -25,7 +25,6 @@ public class UserReviewActivity extends AppCompatActivity {
     private EditText editTextReview;
     private TextView txtReviewName;
     private String tradeID = "";
-    private String bookingID = "";
     private String tradeName = "";
     private Button btnSave, btnClose;
     String uid;
@@ -37,7 +36,6 @@ public class UserReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_review);
 
         tradeID = getIntent().getStringExtra("tradeId");
-        bookingID = getIntent().getStringExtra("bookingId");
         tradeName = getIntent().getStringExtra("tradeName");
         editTextReview = (EditText) findViewById(R.id.editTextLeaveReview);
         txtReviewName = (TextView) findViewById(R.id.txtReviewName);

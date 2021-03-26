@@ -24,7 +24,7 @@ public class TradesPricesActivity extends AppCompatActivity {
     Button btnSave;
     Button btnClose;
 
-    TextView calloutPrice;
+    TextView callOutPrice;
     TextView consultationPrice;
     TextView weekendPrice;
     TextView urgentPrice;
@@ -44,7 +44,7 @@ public class TradesPricesActivity extends AppCompatActivity {
 
         btnSave = findViewById(R.id.btnSave);
         btnClose = findViewById(R.id.btnClose);
-        calloutPrice = findViewById(R.id.set_callout_price);
+        callOutPrice = findViewById(R.id.set_callout_price);
         consultationPrice = findViewById(R.id.set_consultation_price);
         weekendPrice = findViewById(R.id.set_weekendCall);
         urgentPrice = findViewById(R.id.set_sameday_price);
@@ -72,7 +72,7 @@ public class TradesPricesActivity extends AppCompatActivity {
 
         dbTradeRef = FirebaseDatabase.getInstance().getReference("Trades").child(tradeId).child("Prices");
         HashMap<String, String> hashMapTradePrices = new HashMap<>();
-        hashMapTradePrices.put("tradePrice1", calloutPrice.getText().toString());
+        hashMapTradePrices.put("tradePrice1", callOutPrice.getText().toString());
         hashMapTradePrices.put("tradePrice2", consultationPrice.getText().toString());
         hashMapTradePrices.put("tradePrice3", weekendPrice.getText().toString());
         hashMapTradePrices.put("tradePrice4", urgentPrice.getText().toString());

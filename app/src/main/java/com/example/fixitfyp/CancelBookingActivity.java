@@ -99,6 +99,5 @@ public class CancelBookingActivity extends AppCompatActivity {
             drTrade.removeValue();
 
             openDialog();
-
     }
 }

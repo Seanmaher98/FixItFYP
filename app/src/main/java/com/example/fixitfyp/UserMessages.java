@@ -6,13 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,11 +41,9 @@ public class UserMessages extends AppCompatActivity {
     private String tradeID = "";
     private String tradeName = "";
     private Button btnSave, btnClose;
-    private CardView cdMessage;
     String uid;
     FirebaseUser user;
 
-    ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +58,6 @@ public class UserMessages extends AppCompatActivity {
         MessagesRef = FirebaseDatabase.getInstance().getReference().child("Trades").child(tradeID).child("Messages").child(uid);
 
         editTextMessage = (EditText) findViewById(R.id.editTextLeaveMessage);
-        cdMessage = (CardView) findViewById(R.id.cardviewMessage);
         btnSave = (Button) findViewById(R.id.btnSaveMessage);
         txtMessageName = (TextView) findViewById(R.id.txtMessageName);
         btnClose = (Button) findViewById(R.id.btnClose);

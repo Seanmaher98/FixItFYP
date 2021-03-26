@@ -40,8 +40,6 @@ public class SignUp extends AppCompatActivity {
 
         //Set up with view pager
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     //How to Implement Tablayout With Viewpager in Android Studio Tablayout+Viewpager, Android Coding. (https://youtu.be/NHBO87ZxGgs)
@@ -85,7 +83,6 @@ public class SignUp extends AppCompatActivity {
         public MainAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
-
         @NonNull
         @Override
         public Fragment getItem(int position) {

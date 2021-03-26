@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
+    //This activity is the splash screen that displays when the app is launched
     public static int SPLASH_SCREEN = 3000;
-    ImageView HomeScreenLogo, HomeScreenBackground;
+    ImageView HomeScreenLogo;
     CardView CardViewLogo;
     ProgressBar loadBar;
 
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         HomeScreenLogo = findViewById(R.id.logo);
         CardViewLogo = findViewById(R.id.cardviewLogo);
         loadBar = findViewById(R.id.logo_load);
-        //makes the items slide upwards/downwards on home screen
 
         new Handler().postDelayed(new Runnable() {
             @Override
